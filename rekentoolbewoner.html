@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<!-- 
+Gemaakt door: Avery Vermaas
+MIT licentie:
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR 
+PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE 
+FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR 
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+DEALINGS IN THE SOFTWARE. 
+ -->
+<html lang="nl">
+<head>
+    <title>Rekentool Bewoner</title>
+    <link rel="icon" type="image/x-icon" href="/afbeeldingen/favicon.ico">
+    <link rel="stylesheet" href="/css/base.css">
+    <meta charset="UTF-8">
+    <meta name="description" content="Bekijk hier hoe lidmaatschap aan het energieschap een verschil maakt voor u.">
+    <meta name="keywords" content="rekentool, bewoner, salderen, energieschap">
+    <meta name="author" content="Avery Vermaas">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+    <script src="https://kit.fontawesome.com/2c8d5bea2d.js" crossorigin="anonymous"></script>
+    <style>
+* {box-sizing: border-box}
+body {font-family: Verdana, sans-serif; margin:0}
+.mySlides {display: none}
+img {vertical-align: middle;}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .prev, .next,.text {font-size: 11px}
+}
+details {
+  user-select: none;
+}
+
+details>summary span.icon {
+  width: 24px;
+  height: 24px;
+  transition: all 0.3s;
+  margin-left: auto;
+}
+
+details[open] summary span.icon {
+  transform: rotate(180deg) translateY(-30px);
+}
+
+summary {
+  display: flex;
+  cursor: pointer;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="topnav" w3-include-html="./topnav.html"></div> 
+    <main>
+      <div class="row">
+        <div class="column left" style="border-color: #00000000; background-color: #00000000; box-shadow: none; margin-top: 0;">
+        <h1>Rekentool Bewoner</h1>
+        <div>
+                <p>In 2027 stopt het salderen. Dit betekent dat je moet betalen voor de stroom die je opwekt, maar niet zelf gebruikt. Daardoor kunnen je energiekosten met honderden euro’s per jaar stijgen. </p>
+ 
+<p>Wij bieden hiervoor een oplossing: energie delen. De stroom die je zelf niet gebruikt, kun je doneren aan het Energieschap. In ruil daarvoor krijg je belastingvoordeel op je inkomstenbelasting en help je tegelijkertijd je buurman. Zo voorkom je dat je rekening hoog oploopt.</p>
+ 
+<p>Wil je weten wat het stoppen van het salderen voor jou betekent? Gebruik dan de tool hieronder.</p>
+
+            <p>* Let op, deze tool geeft een indicatie, aan de uitkomsten kunnen geen rechten worden ontleend.</p>
+        </div>
+        </div>
+        <div class="column right" style="display: inline;">
+          <details>
+            <summary>
+          <h2>Kassabon 2026</h2>
+          <span class="icon" style="font-size: 30px;padding-top: 10px;">👇</span>
+          </summary>
+
+            <h3>Opwek en verbruik</h3>
+            <label for="">Gemiddeld gelijktijdig verbruik:
+            <input type="text" id="gemegl26" name="" class="inputresult" value="30 %" readonly>
+            </label>
+
+            <h3>Tarieven</h3>
+            <label for="">Energie inkoop kosten:
+            <input type="text" id="inkoop26" name="" class="inputresult" value="676.00" readonly>
+            </label>
+            <label for="">Terugleverkosten:
+            <input type="text" id="tlk26" name="" class="inputresult" value="94.50" readonly>
+            </label>
+            <label for="">Terugleververgoeding:
+            <input type="text" id="tlv26" name="" class="inputresult" value="-105.00" readonly>
+            </label><!--
+            <label for="">Inkoop buurtstroom:
+            <input type="text" id="" name="" class="inputresult" value="0.00" readonly>
+            </label>
+            <label for="">Korting inkomstenbelasting:
+            <input type="text" id="" name="" class="inputresult" value="0.00" readonly>
+            </label>
+            <h3>Lidmaatschap</h3>
+            <label for="">Lidmaatschapskosten:
+            <input type="text" id="" name="" class="inputresult" value="24.00" readonly>
+            </label>-->
+            <hr>
+            <label for="" class="totaal">Totaal p.j.:
+            <input type="text" id="tot26" name="" class="inputresult" value="695.50" readonly>
+            </label>
+        </div>
+        </details>
+        </div>
+        
+            <div class="row">
+                <div class="column left">
+                    <!-- Sanity test
+                    <h2>Input</h2>
+                    <label for="">Input:</label>
+                    <input type="text" name="" onkeyup="mult(this.value);">
+                    <br><br>-->
+                    <div>
+                      <h2>Mijn huishouden</h2>
+                        <div>
+                          <p>Kies hier een voorgemaakt voorbeeld (op basis van het landelijk gemiddelde), of vul je eigen gegevens in:</p>
+                          <input type="radio" id="1" name="fav_language" value="1" onclick="hidecustom();p1();">
+                          <label for="1">Een volwassene</label><br>
+                          <input type="radio" id="2" name="fav_language" value="2" onclick="hidecustom();p2();">
+                          <label for="2">Twee volwassenen</label><br>
+                          <input type="radio" id="3" name="fav_language" value="3" onclick="hidecustom();p3();">
+                          <label for="3">Twee volwassenen, een kind</label><br>
+                          <input type="radio" id="4" name="fav_language" value="4" onclick="hidecustom();p4();" checked="checked">
+                          <label for="4">Twee volwassenen, twee kinderen</label><br>
+                          <input type="radio" id="cust" name="fav_language" value="custom" onclick="showcustom();">
+                          <label for="cust" style="font-style: italic;">Zelf invullen</label><br>
+                          <label class="switch" style="font-weight: bold;">Ik heb zonnepanelen
+                            <input type="checkbox" onclick="updatepres();" checked="checked" id="zonp">
+                            <span class="slider round"></span>
+                          </label>
+                        </div>
+                    </div>
+                    <div id="custom" style="display: none;">
+                    <div>
+                        <div>
+                          <h2 style="margin-top: 0;">Opwek en verbruik</h2>
+                          <label for="">Mijn verbruik per jaar:
+                          <input type="number" min="0" value="3500" id="gemjaarverbr" name="someid" onclick="inkoopz();inkoopm();totaalz();totaalm();gelijkz();gelijkm();versch();" onkeyup="inkoopz();totaalz();totaalm();gelijkz();gelijkm();versch();" step="50">
+                          </label>
+                          <label for="">Mijn opwek per jaar:
+                          <input type="number" min="0" value="3000" id="opwek" name="" onclick="inkoopz();inkoopm();totaalz();totaalm();tlkz();tlkm();tlvz();tlvm();gelijkz();gelijkm();versch();" onkeyup="inkoopz();inkoopm();totaalz();totaalm();tlkz();tlkm();tlvz();tlvm();gelijkz();gelijkm();versch();" step="50">
+                          </label>
+                        </div>
+                    </div> <!-- Gelijktijdigheid 30% of 40% bij delen-->
+                    <div>
+                        <h2>Tarieven</h2>
+                        <h3>2026</h3>
+                        <label for="">Energieprijs per kWh:
+                        <input type="number" min="0" id="energiepr26" value="0.24" name="" onclick="totaalz();inkoopz();versch();" onkeyup="totaalz();inkoopz();versch();" step=".01">
+                        </label>
+                        <label for="">Terugleverkosten per kWh:
+                        <input type="number" min="0" id="teruglvrkost26" value="0.14" name="" onclick="totaalz();tlkz();versch();" onkeyup="totaalz();tlkz();versch();" step=".01">
+                        </label>
+                        <label for="">Terugleververgoeding per kWh:
+                        <input type="number" min="0" id="teruglvrverg26" value="0.15" name="" onclick="totaalz();tlvz();versch();" onkeyup="totaalz();tlvz();versch();" step=".01">
+                        </label>
+                        <h3>2027</h3>
+                        <label for="">Energieprijs per kWh:
+                        <input type="number" min="0" id="energiepr" value="0.26" name="" onclick="totaalz();inkoopz();versch();" onkeyup="totaalz();inkoopz();versch();" step=".01">
+                        </label>
+                        <label for="">Terugleverkosten per kWh:
+                        <input type="number" min="0" id="teruglvrkost" value="0.045" name="" onclick="totaalz();tlkz();versch();" onkeyup="totaalz();tlkz();versch();" step=".01">
+                        </label>
+                        <label for="">Terugleververgoeding per kWh:
+                        <input type="number" min="0" id="teruglvrverg" value="0.05" name="" onclick="totaalz();tlvz();versch();" onkeyup="totaalz();tlvz();versch();" step=".01">
+                        </label>
+                        <label for="">Buurtstroom per kWh:
+                        <input type="" min="0" id="buurtstr" value="0.21" name="" readonly class="inputno">
+                        </label>
+                        <label for="">Terugleverkosten buurtstroom per kWh:
+                        <input type="" min="0" id="teruglvrkostbs" value="0.009" name="" onclick="" onkeyup=""  readonly class="inputno">
+                        </label>
+                        <label for="">Korting inkomstenbelasting per kWh:
+                        <input type="" min="0" id="kortingib" value="0.02" name="" onclick="" onkeyup="" readonly class="inputno">
+                        </label>
+                    </div>
+                    </div>
+                </div>
+                <div class="column right">
+                    
+                    <!-- Sanity test
+                    <h2>Output</h2>
+                        <label for="">Output 2x:</label>
+                    <input type="text" id="out2x" name=""> -->
+                    <h2 style="margin-top: 0;">Kassabon 2027</h2>
+                    <div class="slideshow-container">
+                        <div class="mySlides fade"><!--2027 zonder-->
+                            <!--<h3 style="color:#ff7716;">Zonder energie delen (dus als je niets doet)</h3>-->
+                            <div style="display: block;background-color: white;float: right; border-radius: 5px; position: absolute;top:-50px;right:0;border:solid;border-width: 5px;border-color: #ff7716;">
+                              <h3 style="color: #ff7716;padding: 10px;;"> Zonder energie delen </h3>
+                            </div>
+
+                            <h3>Opwek en verbruik</h3>
+                            <label for="">Gemiddeld gelijktijdig verbruik:
+                            <input type="text" id="gelijktz" name="" class="inputresult" value="30 %" readonly>
+                            </label>
+
+                            <h3>Tarieven</h3>
+                            <label for="">Energie inkoop kosten:
+                            <input type="text" id="jaarverbrz" name="" class="inputresult" value="676.00" readonly>
+                            </label>
+                            <label for="">Terugleverkosten:
+                            <input type="text" id="terugleverkostz" name="" class="inputresult" value="94.50" readonly>
+                            </label>
+                            <label for="">Terugleververgoeding:
+                            <input type="text" id="terugleververgz" name="" class="inputresult" value="-105.00" readonly>
+                            </label>
+                            <label for="" class="inactive">Inkoop buurtstroom:
+                            <input type="text" id="in" name="" class="inputresult inactive" value="0.00" readonly>
+                            </label>
+                            <label for="" class="inactive">Terugleverkosten buurtstroom:
+                            <input type="text" id="in" name="" class="inputresult inactive" value="0.00" readonly>
+                            </label>
+                            <label for="" class="inactive">Korting inkomstenbelasting:
+                            <input type="text" id="in" name="" class="inputresult inactive" value="0.00" readonly>
+                            </label>
+                            <h3>Lidmaatschap</h3>
+                            <label for="" class="inactive">Lidmaatschapskosten:
+                            <input type="text" id="participkost" name="" class="inputresult inactive" value="0.00" readonly>
+                            </label>
+                            <hr>
+                            <label for="" class="totaal">Totaal p.j.:
+                            <input type="text" id="totaalz" name="" class="inputresult" value="695.50" readonly>
+                            </label>
+                        </div>
+                        <div class="mySlides fade"><!--2027 met-->
+                            <div style="display: block;background-color: #ff7716;float: right; border-radius: 5px; position: absolute;top:-50px;right:0;border:solid;border-width: 5px;border-color: #ff7716;">
+                              <h3 style="color: white;padding: 10px;;"> Met energie delen </h3>
+                            </div>
+
+                            <h3>Opwek en verbruik</h3>
+                            <label for="">Gemiddeld gelijktijdig verbruik:
+                            <input type="text" id="gelijkt" name="" class="inputresult" value="40 %" readonly>
+                            </label>
+
+                            <h3>Tarieven</h3>
+                            <label for="" class="inactive">Energie inkoop kosten:
+                            <input type="text" id="in" name="" class="inputresult inactive" value="0.00" readonly>
+                            </label>
+                            <label for="" class="inactive">Terugleverkosten:
+                            <input type="text" id="in" name="" class="inputresult inactive" value="0.00" readonly>
+                            </label>
+                            <label for="" class="inactive">Terugleververgoeding:
+                            <input type="text" id="in" name="" class="inputresult inactive" value="0.00" readonly>
+                            </label>
+                            <label for="">Inkoop buurtstroom:
+                            <input type="text" id="tariefbuurtstr" name="" class="inputresult" value="483.00" readonly>
+                            </label>
+                            <label for="">Terugleverkosten buurtstroom:
+                            <input type="text" id="terugleverbuurtm" name="" class="inputresult" value="16.20" readonly>
+                            </label>
+                            <label for="">Korting inkomstenbelasting:
+                            <input type="text" id="inkomstbelast" name="" class="inputresult" value="-162.00" readonly>
+                            </label>
+                            <h3>Lidmaatschap</h3>
+                            <label for="">Lidmaatschapskosten:
+                            <input type="text" id="participkostm" name="" class="inputresult" value="24.00" readonly>
+                            </label>
+                            <hr>
+                            <label for="" class="totaal">Totaal p.j.:
+                            <input type="text" id="totaalm" name="" class="inputresult" value="401.20" readonly>
+                            </label>
+                        </div>
+
+                        
+                    </div>
+                    <button onclick="displayverschilbottom();currentSlide(2);" id="watkanikdoen">Wat kan ik hier aan doen?</button>
+                    <br><br>
+                    <div id="verschilbottom" style="display: none;">
+                    <div style="text-align:center">
+                        <span class="dot" onclick="currentSlide(1)"></span> 
+                        <span class="dot" onclick="currentSlide(2)"></span> 
+                    </div>
+                    <div style="padding-top: 50px;">
+                      <hr>
+                      <h3>Verschil:
+                      <input type="" min="0" id="verschil" value="294.30" name="" onclick="" onkeyup="" readonly class="inputno verschil" style="font-weight: bold;font-size: 20px;float:right;">
+                        </h3>
+                        <hr>
+                    </div>
+                    <div style="display: none;">
+                      Sanity check
+                      <p>Met delen, met panelen</p>
+                      <label for="" class="totaal">Gelijktijdigverbr:
+                      <input type="text" id="kwhgelijkm" name="" class="inputresult" value="1200" readonly>
+                      </label>
+                      <label for="" class="totaal">Ongelijktijdigverbr:
+                      <input type="text" id="kwhongelijkm" name="" class="inputresult" value="1800" readonly>
+                      </label>
+                      <label for="" class="totaal">Restverbr:
+                      <input type="text" id="kwhrestm" name="" class="inputresult" value="2300" readonly>
+                      </label>
+                      <label for="">Gelijktijdigheid
+                      <input type="number" min="0" id="gelijktm" value="40" name="" readonly>
+                      </label>
+
+                      <p>Zonder delen, met panelen</p>
+                      <label for="" class="totaal">Gelijktijdigverbr:
+                      <input type="text" id="kwhgelijkz" name="" class="inputresult" value="900" readonly>
+                      </label>
+                      <label for="" class="totaal">Ongelijktijdigverbr:
+                      <input type="text" id="kwhongelijkz" name="" class="inputresult" value="2100" readonly>
+                      </label>
+                      <label for="" class="totaal">Restverbr:
+                      <input type="text" id="kwhrestz" name="" class="inputresult" value="2600" readonly>
+                      </label>
+                      <label for="">Gelijktijdigheid
+                      <input type="number" min="0" id="gelijktz" value="30" name="" readonly>
+                      </label>
+
+                      <p>Zonder panelen</p>
+                      <label for="" class="totaal">Gelijktijdigverbr:
+                      <input type="text" id="kwhgelijk0" name="" class="inputresult" value="0" readonly>
+                      </label>
+                      <label for="" class="totaal">Ongelijktijdigverbr:
+                      <input type="text" id="kwhongelijk0" name="" class="inputresult" value="0" readonly>
+                      </label>
+                      <label for="" class="totaal">Restverbr:
+                      <input type="text" id="kwhrest0" name="" class="inputresult" value="3500" readonly>
+                      </label>
+                      <label for="">Gelijktijdigheid
+                      <input type="number" min="0" id="gelijkt0" value="0" name="" readonly>
+                      </label>
+                    </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="row" style="display: none;">
+              <div class="column left" style="border-color: #00000000; background-color: #00000000; box-shadow: none;"></div>
+                  <div class="column right" style="border-color: #00000000; background-color: #00000000; box-shadow: none; margin-top: 0;">
+                    <div class="row" style="margin-top: 0;">
+                      <div class="column left" style="margin-top: 0;">
+                        Zonder
+                      </div>
+                      <div class="column right" style="margin-top: 0;">
+                        Met
+                      </div>
+                    </div>
+                  </div>
+                </div> 
+    </main>
+    <footer>
+        <div class="footer">
+            <div w3-include-html="./footer.html"></div>
+        </div>
+        <element onload="myScript"></element>
+    </footer>
+</body>
+<script>
+  function displayverschilbottom(){
+    document.getElementById('verschilbottom').style.display = "inline";
+    document.getElementById('watkanikdoen').style.display = "none";
+  }
+
+  function showcustom(){
+    document.getElementById('custom').style.display = "inline";
+  }
+
+  function hidecustom(){
+    document.getElementById('custom').style.display = "none";
+  }
+</script>
+<script>
+let slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0"></script>
+<script src="/js/bewonertool.js"></script>
+<script src="/js/includehtml.js"></script>
+<script>includeHTML();</script>
+<!--
+<script>
+    let button = document.getElementById("button");
+    let makepdf = document.getElementById("makepdf");
+
+    var opt = {
+    margin:       1,
+        filename:     'mijnwijk.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 5 },
+        jsPDF:        { unit: 'cm', format: 'a4', orientation: 'landscape' }
+    };
+
+    button.addEventListener("click", function () {
+        html2pdf().set(opt).from(makepdf).save();
+    });
+</script>
+
+ <script>
+    Chart.defaults.color = '#000000'
+    var verbruik = document.getElementById('gemjaarverbr').value;
+    var opwelk = document.getElementById('gemjaaropwek').value;
+    var gelijk = document.getElementById('gelijkt').value;
+    const xValuesVerbruik = ["Verbruik per jaar", "Opwek per jaar", "Gelijktijdig gebruik"];
+    const yValuesVerbruik = [verbruik, opwelk, gelijk];
+    const barColorsVerbruik = ["red", "green","blue","orange","brown"];
+
+const ctxVerbruik = document.getElementById('verbruikChart');
+
+new Chart(ctxVerbruik, {
+  type: "bar",
+  data: {
+    labels: xValuesVerbruik,
+    datasets: [{
+      backgroundColor: barColorsVerbruik,
+      data: yValuesVerbruik
+    }]
+  },
+  options: {
+  	indexAxis:'y',
+    plugins: {
+    
+      legend: {display: false},
+      title: {
+        display: false,
+        text: "World Wine Production 2018",
+        font: {size: 16}
+      },
+      
+    }
+  }
+});
+</script>
+<script>
+const xValues = ["Niet gelijktijdig", "Gelijktijdig"];
+const yValues = [70, 30];
+const barColors = [
+  "#00008b",
+  "#ff8c00"
+];
+
+const ctx = document.getElementById('gelijkChart');
+
+new Chart(ctx, {
+  type: "doughnut",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    plugins: {
+      legend: {display:false},
+      title: {
+        display: false,
+        text: "World Wine Production 2018",
+        font: {size:16}
+      }
+    }
+  }
+});
+</script>-->
+</html>

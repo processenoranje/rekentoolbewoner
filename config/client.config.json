@@ -1,0 +1,22 @@
+{
+  "configVersion": 1,
+  "brand": {
+    "siteTitle": "Mijn Rekentool",
+    "logo": "/afbeeldingen/logo.png",
+    "favicon": "/afbeeldingen/favicon.ico"
+  },
+  "theme": {
+    "mode": "light",
+    "colors": {
+      "primary": "#ff7716",
+      "primary-contrast": "#FFFFFF",
+      "background": "#f2f2f2",
+      "background-column": "white",
+      "background-footer": "rgb(48, 47, 47)",
+      "background-nav": "#00000055",
+      "surface": "white",
+      "text": "#0F172A",
+      "text-nav": "#000000"
+    }
+  }
+}

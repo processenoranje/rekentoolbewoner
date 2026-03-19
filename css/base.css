@@ -1,0 +1,273 @@
+/*
+Gemaakt door: Avery Vermaas
+MIT licentie:
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR 
+PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE 
+FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR 
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+DEALINGS IN THE SOFTWARE.
+*/
+:root {
+  --color-primary: #ff7716;
+  --color-primary-contrast: #FFFFFF;
+  --color-bg: #f2f2f2;
+  --color-bg-column: white;
+  --color-bg-footer: rgb(48, 47, 47);
+  --color-bg-nav: #00000055;
+  --color-surface: white;
+  --color-text: #0F172A;
+  --color-text-nav: #000000;
+  --radius: 8px;
+}
+
+/* -------------------------------------------------------------------- */
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--color-bg);
+}
+
+main{
+    margin: 50px;
+}
+
+label{
+    display: block;
+    margin-top: 10px;
+}
+
+input{
+    position: relative;
+    right: 20px;
+    float: right;
+    margin-left: 10%;
+    z-index: 0;
+}
+
+.inputresult{
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: large;
+    width: 150px;
+    text-align: end;
+}
+.inputno{
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+button{
+  width: 100%;
+  background-color: var(--color-primary);
+  font-weight: bold;
+  color: white;
+  padding: 14px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #1a4b03;
+}
+
+.inactive{
+    color:#949494;
+}
+
+.totaal{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+footer{
+    margin-top: 100px;
+    position:relative;
+    bottom: 0;
+    height: 400px;
+    width: 100%;
+    background-color: var(--color-bg-footer);
+    color: var(--color-bg);
+}
+
+.footer{
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.footer a {
+    color: var(--color-primary);
+}
+
+a{
+    color:var(--color-primary);
+}
+
+img {
+    pointer-events: none;
+}
+
+.topnav {
+    position: sticky;
+    top: 0;
+    background: var(--color-surface);
+    overflow: hidden;
+    z-index: 1;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.topnav a {
+    float: left;
+    color: var(--color-text-nav);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topnav p {
+    float: left;
+    color: var(--color-surface);
+    text-align: center;
+    vertical-align: middle;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    margin: 0;
+}
+
+.topnav a:hover {
+    background-color: var(--color-bg-nav);
+    color: var(--color-surface);
+}
+
+.topnav a.active {
+    background-color: var(--color-bg-nav);
+    color: var(--color-surface);
+}
+
+.hidex{
+    color: var(--color-bg);
+    cursor: pointer; 
+}
+
+.row {
+  display: flex;
+}
+
+.column {
+    float: left;
+    border-radius: 25px;
+    border-style: solid;
+    border-width: 10px;
+    background-color: var(--color-bg-column);
+    border-color: var(--color-primary);
+    padding: 20px;
+    width: 200px;
+    height: 100%;
+    margin: 50px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.dashboard{
+    float: left;
+    border-radius: 25px;
+    border-style: solid;
+    border-width: 5px;
+    background-color: var(--color-bg-column);
+    border-color: var(--color-primary);
+    padding: 20px;
+    height: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.c50{
+    width: 40%;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 10px;
+}
+
+.left {
+  width: 40%;
+}
+.middle{
+    width: 5%;
+}
+
+.right {
+  width: 40%;
+}
+
+@keyframes verschil {
+    from { font-size: 20px; }
+    50%{ font-size: 30px; }
+    to { font-size: 20px; }
+}
+
+.verschil {
+    animation: verschil 2s ease-in-out infinite; /* remove infinite*/ 
+}
+
+@media screen and (max-width: 600px) {
+.verschil {
+    animation: none; /* remove infinite*/ 
+    font-size: 20px;
+    display: flex;
+    position: absolute;
+    left: 100px;
+}
+
+    .empty{
+        display: none;
+    }
+
+    main{
+        margin: 25px;
+    }
+
+    .formcontent{
+        margin: 25px;
+        display: flex;
+    }
+
+    .menu-pc{
+        display: none;
+    }
+
+    .menu-mob{
+        display: inline;
+    } 
+    .row {
+        display: block;
+    }
+
+    .column {
+        width: 100%;
+        margin: 0;
+    }
+    .c50{
+    width: 40%;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 10px;
+}
+
+    footer{
+        display: none;
+    }
+    .slideshow-container{
+        margin: 0;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .empty{
+        display: none;
+    }
+}
