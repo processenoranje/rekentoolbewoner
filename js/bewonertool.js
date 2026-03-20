@@ -15,24 +15,24 @@ function logMessage() {
   console.log("Logging every second...");
 }
  
-    intervalId = setInterval(logMessage, 1000);
-    intervalId = setInterval(inkoopz, 1000);
-    intervalId = setInterval(inkoopm, 1000);
-    intervalId = setInterval(tlkz, 1000);
-    intervalId = setInterval(tlkm, 1000);
-    intervalId = setInterval(tlvz, 1000);
-    intervalId = setInterval(tlvm, 1000);
-    intervalId = setInterval(totaalz, 1000);
-    intervalId = setInterval(totaalm, 1000);
-    intervalId = setInterval(gelijkz, 1000);
-    intervalId = setInterval(gelijkm, 1000);
-    intervalId = setInterval(versch, 1000);
-    intervalId = setInterval(inkoop26, 1000);
-    intervalId = setInterval(tlk26, 1000);
-    intervalId = setInterval(tlv26, 1000);
-    intervalId = setInterval(totaal26, 1000);
-    intervalId = setInterval(gelijkt26, 1000);
-    intervalId = setInterval(updatepres, 1000);
+    intervalId = setInterval(logMessage, 2000);
+    intervalId = setInterval(inkoopz, 2000);
+    intervalId = setInterval(inkoopm, 2000);
+    intervalId = setInterval(tlkz, 2000);
+    intervalId = setInterval(tlkm, 2000);
+    intervalId = setInterval(tlvz, 2000);
+    intervalId = setInterval(tlvm, 2000);
+    intervalId = setInterval(totaalz, 2000);
+    intervalId = setInterval(totaalm, 2000);
+    intervalId = setInterval(gelijkz, 2000);
+    intervalId = setInterval(gelijkm, 2000);
+    intervalId = setInterval(versch, 2000);
+    intervalId = setInterval(inkoop26, 2000);
+    intervalId = setInterval(tlk26, 2000);
+    intervalId = setInterval(tlv26, 2000);
+    intervalId = setInterval(totaal26, 2000);
+    intervalId = setInterval(gelijkt26, 2000);
+    intervalId = setInterval(updatepres, 2000);
     console.log("Logging started!");
 
 function gelijkt26(){
@@ -222,12 +222,17 @@ function totaal26(){
 
 function gelijkz(){
     var opw = document.getElementById('opwek').value;
-    var gel = document.getElementById('gelijktz').value;
-    var gelt = gel.replace(" %", "");
+    var gelt;
     var verbr = document.getElementById('gemjaarverbr').value;
     var cost;
     var tsoc;
     var rest;
+
+    if(document.getElementById('opwek').value >0){
+        gelt = 30;
+    }else{
+        gelt = 0;
+    }
 
     cost = opw * gelt / 100;
     tsoc = opw * (100-gelt) / 100;
@@ -266,6 +271,15 @@ function versch(){
     var vers = z*1 - m*1;
 
     document.getElementById('verschil').value = vers.toFixed(2);
+
+    /* verschil 26 27 */
+    var t26 = document.getElementById('tot26').value;
+    var tt26 = t26.replace(" €", "");
+    var t27 = document.getElementById('totaalz').value;
+    var tt27 = t27.replace(" €","");
+    var verschil2627 = tt27*1 - tt26*1;
+
+    document.getElementById('verschil2627').value = verschil2627.toFixed(2);
 }
 
 /* Presets */

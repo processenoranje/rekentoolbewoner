@@ -154,9 +154,14 @@ summary::-webkit-details-marker {
 
             <p>* Let op, deze tool geeft een indicatie, aan de uitkomsten kunnen geen rechten worden ontleend.</p>
         </div>
+        <div>
+          <h2>Verschil 2026 -> 2027:</h2>
+          <input type="text" id="verschil2627" name="" class="inputresult" value="" readonly style="font-size: 30px;float:left;color:red;font-weight: bold;">
+          
+        </div>
         </div>
         <div class="column right" style="display: inline;">
-          <details>
+          <!--<details>
             <summary>
           <h2>Kassabon 2026</h2>
           <span class="icon" style="font-size: 30px;padding-top: 10px;">👇</span>
@@ -168,7 +173,43 @@ summary::-webkit-details-marker {
             </label>
 
             <h3>Tarieven</h3>
-            <label for="">Energie inkoop kosten:
+            <label for="">Energie kosten:
+            <input type="text" id="inkoop26" name="" class="inputresult" value="676.00" readonly>
+            </label>
+            <label for="">Terugleverkosten:
+            <input type="text" id="tlk26" name="" class="inputresult" value="94.50" readonly>
+            </label>
+            <label for="">Terugleververgoeding:
+            <input type="text" id="tlv26" name="" class="inputresult" value="-105.00" readonly>
+            </label>
+            <label for="">Inkoop buurtstroom:
+            <input type="text" id="" name="" class="inputresult" value="0.00" readonly>
+            </label>
+            <label for="">Korting inkomstenbelasting:
+            <input type="text" id="" name="" class="inputresult" value="0.00" readonly>
+            </label>
+            <h3>Lidmaatschap</h3>
+            <label for="">Lidmaatschapskosten:
+            <input type="text" id="" name="" class="inputresult" value="24.00" readonly>
+            </label>
+            <hr>
+            <label for="" class="totaal">Totaal per jaar:
+            <input type="text" id="tot26" name="" class="inputresult" value="695.50" readonly>
+            </label>
+        </div>
+        </details>
+        </div> -->
+        
+          <h2>Kassabon 2026</h2>
+          
+
+            <h3 style="display: none;">Opwek en verbruik</h3>
+            <label for="" style="display:none">Gemiddeld gelijktijdig verbruik:
+            <input type="text" id="gemegl26" name="" class="inputresult" value="30 %" readonly>
+            </label>
+
+            <h3>Tarieven</h3>
+            <label for="">Energie kosten:
             <input type="text" id="inkoop26" name="" class="inputresult" value="676.00" readonly>
             </label>
             <label for="">Terugleverkosten:
@@ -188,12 +229,13 @@ summary::-webkit-details-marker {
             <input type="text" id="" name="" class="inputresult" value="24.00" readonly>
             </label>-->
             <hr>
-            <label for="" class="totaal">Totaal p.j.:
+            <label for="" class="totaal">Totaal per jaar:
             <input type="text" id="tot26" name="" class="inputresult" value="695.50" readonly>
             </label>
         </div>
-        </details>
+      
         </div>
+        
         
             <div class="row">
                 <div class="column left">
@@ -238,13 +280,13 @@ summary::-webkit-details-marker {
                         <h2>Tarieven</h2>
                         <h3>2026</h3>
                         <label for="">Energieprijs per kWh:
-                        <input type="number" min="0" id="energiepr26" value="0.24" name="" onclick="totaalz();inkoopz();versch();" onkeyup="totaalz();inkoopz();versch();" step=".01">
+                        <input type="number" min="0" id="energiepr26" value="0.26" name="" onclick="totaalz();inkoopz();versch();" onkeyup="totaalz();inkoopz();versch();" step=".01">
                         </label>
                         <label for="">Terugleverkosten per kWh:
-                        <input type="number" min="0" id="teruglvrkost26" value="0.14" name="" onclick="totaalz();tlkz();versch();" onkeyup="totaalz();tlkz();versch();" step=".01">
+                        <input type="number" min="0" id="teruglvrkost26" value="0.045" name="" onclick="totaalz();tlkz();versch();" onkeyup="totaalz();tlkz();versch();" step=".01">
                         </label>
                         <label for="">Terugleververgoeding per kWh:
-                        <input type="number" min="0" id="teruglvrverg26" value="0.15" name="" onclick="totaalz();tlvz();versch();" onkeyup="totaalz();tlvz();versch();" step=".01">
+                        <input type="number" min="0" id="teruglvrverg26" value="0.05" name="" onclick="totaalz();tlvz();versch();" onkeyup="totaalz();tlvz();versch();" step=".01">
                         </label>
                         <h3>2027</h3>
                         <label for="">Energieprijs per kWh:
@@ -260,10 +302,10 @@ summary::-webkit-details-marker {
                         <input type="" min="0" id="buurtstr" value="0.21" name="" readonly class="inputno">
                         </label>
                         <label for="">Terugleverkosten buurtstroom per kWh:
-                        <input type="" min="0" id="teruglvrkostbs" value="0.009" name="" onclick="" onkeyup=""  readonly class="inputno">
+                        <input type="" min="0" id="teruglvrkostbs" value="0.09" name="" onclick="" onkeyup=""  readonly class="inputno">
                         </label>
                         <label for="">Korting inkomstenbelasting per kWh:
-                        <input type="" min="0" id="kortingib" value="0.02" name="" onclick="" onkeyup="" readonly class="inputno">
+                        <input type="" min="0" id="kortingib" value="0.096" name="" onclick="" onkeyup="" readonly class="inputno">
                         </label>
                     </div>
                     </div>
@@ -274,21 +316,23 @@ summary::-webkit-details-marker {
                     <h2>Output</h2>
                         <label for="">Output 2x:</label>
                     <input type="text" id="out2x" name=""> -->
-                    <h2 style="margin-top: 0;">Kassabon 2027</h2>
+                    <h2 style="margin-top: 0;" class="pc">Kassabon 2027</h2>
+                    <h2 style="margin-top: 0;" class="mob">Kassabon</h2><br>
+                    <h2 style="margin-top: 0;" class="mob">2027</h2>
                     <div class="slideshow-container">
                         <div class="mySlides fade"><!--2027 zonder-->
                             <!--<h3 style="color:#ff7716;">Zonder energie delen (dus als je niets doet)</h3>-->
                             <div style="display: block;background-color: white;float: right; border-radius: 5px; position: absolute;top:-50px;right:0;border:solid;border-width: 5px;border-color: #ff7716;">
-                              <h3 style="color: #ff7716;padding: 10px;;"> Zonder energie delen </h3>
+                              <h3 style="color: #ff7716;padding: 10px;"> Zonder energie delen </h3>
                             </div>
 
-                            <h3>Opwek en verbruik</h3>
-                            <label for="">Gemiddeld gelijktijdig verbruik:
+                            <h3 style="display: none;">Opwek en verbruik</h3>
+                            <label for="" style="display: none;">Gemiddeld gelijktijdig verbruik:
                             <input type="text" id="gelijktz" name="" class="inputresult" value="30 %" readonly>
                             </label>
 
                             <h3>Tarieven</h3>
-                            <label for="">Energie inkoop kosten:
+                            <label for="">Energie kosten:
                             <input type="text" id="jaarverbrz" name="" class="inputresult" value="676.00" readonly>
                             </label>
                             <label for="">Terugleverkosten:
@@ -297,7 +341,7 @@ summary::-webkit-details-marker {
                             <label for="">Terugleververgoeding:
                             <input type="text" id="terugleververgz" name="" class="inputresult" value="-105.00" readonly>
                             </label>
-                            <label for="" class="inactive">Inkoop buurtstroom:
+                            <label for="" class="inactive">Buurtstroom kosten:
                             <input type="text" id="in" name="" class="inputresult inactive" value="0.00" readonly>
                             </label>
                             <label for="" class="inactive">Terugleverkosten buurtstroom:
@@ -311,7 +355,7 @@ summary::-webkit-details-marker {
                             <input type="text" id="participkost" name="" class="inputresult inactive" value="0.00" readonly>
                             </label>
                             <hr>
-                            <label for="" class="totaal">Totaal p.j.:
+                            <label for="" class="totaal">Totaal per jaar:
                             <input type="text" id="totaalz" name="" class="inputresult" value="695.50" readonly>
                             </label>
                         </div>
@@ -320,13 +364,13 @@ summary::-webkit-details-marker {
                               <h3 style="color: white;padding: 10px;;"> Met energie delen </h3>
                             </div>
 
-                            <h3>Opwek en verbruik</h3>
-                            <label for="">Gemiddeld gelijktijdig verbruik:
+                            <h3 style="display: none;">Opwek en verbruik</h3>
+                            <label for="" style="display: none;">Gemiddeld gelijktijdig verbruik:
                             <input type="text" id="gelijkt" name="" class="inputresult" value="40 %" readonly>
                             </label>
 
                             <h3>Tarieven</h3>
-                            <label for="" class="inactive">Energie inkoop kosten:
+                            <label for="" class="inactive">Energie kosten:
                             <input type="text" id="in" name="" class="inputresult inactive" value="0.00" readonly>
                             </label>
                             <label for="" class="inactive">Terugleverkosten:
@@ -335,7 +379,7 @@ summary::-webkit-details-marker {
                             <label for="" class="inactive">Terugleververgoeding:
                             <input type="text" id="in" name="" class="inputresult inactive" value="0.00" readonly>
                             </label>
-                            <label for="">Inkoop buurtstroom:
+                            <label for="">Buurtstroom kosten:
                             <input type="text" id="tariefbuurtstr" name="" class="inputresult" value="483.00" readonly>
                             </label>
                             <label for="">Terugleverkosten buurtstroom:
@@ -349,7 +393,7 @@ summary::-webkit-details-marker {
                             <input type="text" id="participkostm" name="" class="inputresult" value="24.00" readonly>
                             </label>
                             <hr>
-                            <label for="" class="totaal">Totaal p.j.:
+                            <label for="" class="totaal">Totaal per jaar:
                             <input type="text" id="totaalm" name="" class="inputresult" value="401.20" readonly>
                             </label>
                         </div>

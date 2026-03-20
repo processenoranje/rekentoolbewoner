@@ -214,11 +214,19 @@ img {
     animation: verschil 2s ease-in-out infinite; /* remove infinite*/ 
 }
 
+.pc{
+    display: inline;
+}
+
+.mob{
+    display: none;
+}
+
 @media screen and (max-width: 600px) {
 .verschil {
     animation: none; /* remove infinite*/ 
     font-size: 20px;
-    display: flex;
+    display: block;
     position: absolute;
     left: 100px;
 }
@@ -264,6 +272,14 @@ img {
     .slideshow-container{
         margin: 0;
     }
+
+    .pc{
+    display: none;
+}
+
+.mob{
+    display: inline;
+}
 }
 
 @media screen and (max-width: 1200px) {
@@ -271,3 +287,4 @@ img {
         display: none;
     }
 }
+
