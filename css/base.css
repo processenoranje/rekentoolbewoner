@@ -22,14 +22,35 @@ DEALINGS IN THE SOFTWARE.
 }
 
 /* -------------------------------------------------------------------- */
+
+html, body {
+  overflow-x: hidden;
+}
+
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     background-color: var(--color-bg);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-main{
+main{ /* everything but the topnav and footer */
     margin: 50px;
+    flex: 1;
+    min-height: auto;
+    
+}
+
+.content{ /* The content of the page */
+    padding-bottom: 400px;;
 }
 
 label{
@@ -85,14 +106,13 @@ button:hover {
     font-size: 20px;
 }
 
-footer{
-    margin-top: 100px;
-    position:relative;
-    bottom: 0;
-    height: 400px;
-    width: 100%;
-    background-color: var(--color-bg-footer);
-    color: var(--color-bg);
+
+footer {
+  position: relative; /* or just remove position entirely */
+  height: auto;       /* let content decide height */
+  width: 100%;
+  background-color: var(--color-bg-footer);
+  color: var(--color-bg);
 }
 
 .footer{
@@ -212,7 +232,7 @@ img {
 }
 
 .verschil {
-    animation: verschil 2s ease-in-out infinite; /* remove infinite*/ 
+    /*animation: verschil 2s ease-in-out infinite; /* remove infinite*/ 
 }
 
 .pc{

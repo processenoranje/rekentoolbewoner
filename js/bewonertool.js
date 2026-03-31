@@ -15,25 +15,37 @@ function logMessage() {
   console.log("Logging every second...");
 }
  
-    intervalId = setInterval(logMessage, 2000);
-    intervalId = setInterval(inkoopz, 2000);
-    intervalId = setInterval(inkoopm, 2000);
-    intervalId = setInterval(tlkz, 2000);
-    intervalId = setInterval(tlkm, 2000);
-    intervalId = setInterval(tlvz, 2000);
-    intervalId = setInterval(tlvm, 2000);
-    intervalId = setInterval(totaalz, 2000);
-    intervalId = setInterval(totaalm, 2000);
-    intervalId = setInterval(gelijkz, 2000);
-    intervalId = setInterval(gelijkm, 2000);
-    intervalId = setInterval(versch, 2000);
-    intervalId = setInterval(inkoop26, 2000);
-    intervalId = setInterval(tlk26, 2000);
-    intervalId = setInterval(tlv26, 2000);
-    intervalId = setInterval(totaal26, 2000);
-    intervalId = setInterval(gelijkt26, 2000);
-    intervalId = setInterval(updatepres, 2000);
-    console.log("Logging started!");
+
+document.addEventListener('DOMContentLoaded', () => {
+  updateAll();
+  setInterval(updateAll, 1000);
+});
+
+function updateAll() {
+  try {
+    inkoopz();
+    inkoopm();
+    inkoopth();
+    tlkz();
+    tlkm();
+    tlkth();
+    tlvz();
+    tlvm();
+    tlvth();
+    totaalz();
+    totaalm();
+    totaalthuis();
+    versch();
+    inkoop26();
+    tlk26();
+    tlv26();
+    totaal26();
+    gelijkt26();
+    updatepres();
+  } catch (e) {
+    console.warn('Update skipped:', e.message);
+  }}
+
 
 function gelijkt26(){
     var opw = document.getElementById('opwek').value;
@@ -54,6 +66,17 @@ function inkoopz(){
     cost = restverb * prijs;
 
     document.getElementById('jaarverbrz').value = cost.toFixed(2);
+    console.log(cost);
+}
+
+function inkoopth(){
+    var restverb = document.getElementById('kwhrestth').value;
+    var prijs = document.getElementById('energiepr').value;
+    var cost;
+
+    cost = restverb * prijs;
+
+    document.getElementById('jaarverbth').value = cost.toFixed(2);
     console.log(cost);
 }
 
@@ -108,6 +131,17 @@ function tlkm(){
     console.log(cost);
 }
 
+function tlkth(){
+    var ongel = document.getElementById('kwhongelijkth').value;
+    var tlk = document.getElementById('teruglvrkost').value;
+    var cost;
+
+    cost = ongel*1  * tlk*1;
+
+    document.getElementById('terugleverkostth').value = cost.toFixed(2);
+    console.log(cost);
+}
+
 function tlk26(){
     var ongel = document.getElementById('gemjaarverbr').value;
     var tlk = document.getElementById('teruglvrkost26').value;
@@ -146,6 +180,17 @@ function tlvm(){
     console.log(cost);
 }
 
+function tlvth(){
+    var ongel = document.getElementById('kwhongelijkth').value;
+    var tlv = document.getElementById('teruglvrverg').value;
+    var cost;
+
+    cost = ongel*1 * tlv*1;
+
+    document.getElementById('terugleververgth').value = "-" + cost.toFixed(2);
+    console.log(cost);
+}
+
 function tlv26(){
     var ongel = document.getElementById('gemjaarverbr').value;
     var tlv = document.getElementById('teruglvrverg26').value;
@@ -165,7 +210,7 @@ function tlv26(){
 function totaalz(){
     var inkk = document.getElementById('jaarverbrz').value;
     var ink = inkk.replace(" €", "");
-    tlkk = document.getElementById('terugleverkostz').value;
+    var tlkk = document.getElementById('terugleverkostz').value;
     var tlk = tlkk.replace(" €","")
     var tlvv = document.getElementById('terugleververgz').value;
     var tlv = tlvv.replace(" €","");
@@ -181,7 +226,7 @@ function totaalz(){
 function totaalm(){
     var inkk = document.getElementById('tariefbuurtstr').value;
     var ink = inkk.replace(" €", "");
-    tlkk = document.getElementById('terugleverbuurtm').value;
+    var tlkk = document.getElementById('terugleverbuurtm').value;
     var tlk = tlkk.replace(" €","")
     var tlvv = document.getElementById('inkomstbelast').value;
     var tlv = tlvv.replace(" €","");
@@ -204,10 +249,22 @@ function totaalm(){
     }
 }
 
+function totaalthuis() {
+  const ink = Number(document.getElementById('jaarverbth').value || 0);
+  const tlk = Number(document.getElementById('terugleverkostth').value || 0);
+  const tlv = Number(
+    (document.getElementById('terugleververgth').value || '0').replace('-', '')
+  );
+
+  const total = ink + tlk - tlv;
+  document.getElementById('totaalthuis').value = total.toFixed(2);
+}
+
+
 function totaal26(){
     var inkk = document.getElementById('inkoop26').value;
     var ink = inkk.replace(" €", "");
-    tlkk = document.getElementById('tlk26').value;
+    var tlkk = document.getElementById('tlk26').value;
     var tlk = tlkk.replace(" €","")
     var tlvv = document.getElementById('tlv26').value;
     var tlv = tlvv.replace(" €","");
@@ -243,6 +300,29 @@ function gelijkz(){
     document.getElementById('kwhrestz').value = rest;
 }
 
+function gelijkth(){
+    var opw = document.getElementById('opwek').value;
+    var gelt;
+    var verbr = document.getElementById('gemjaarverbr').value;
+    var cost;
+    var tsoc;
+    var rest;
+
+    if(document.getElementById('opwek').value >0){
+        gelt = 40;
+    }else{
+        gelt = 0;
+    }
+
+    cost = opw * gelt / 100;
+    tsoc = opw * (100-gelt) / 100;
+    rest = verbr - cost;
+
+    document.getElementById('kwhgelijkth').value = cost;
+    document.getElementById('kwhongelijkth').value = tsoc;
+    document.getElementById('kwhrestth').value = rest;
+}
+
 function gelijkm(){
     var opw = document.getElementById('opwek').value;
     var gel = document.getElementById('gelijktm').value;
@@ -266,13 +346,15 @@ function versch(){
     var z = zonder.replace(" €", "");
     var met = document.getElementById('totaalm').value;
     var m = met.replace(" €","");
+    var th = document.getElementById('totaalthuis').value;
     var vers;
 
     var vers = z*1 - m*1;
+    var vers1 = z*1 - th*1;
 
     document.getElementById('verschil').value = vers.toFixed(2);
-
-    /* verschil 26 27 */
+    document.getElementById('verschil1').value = vers1.toFixed(2);
+     
     var t26 = document.getElementById('tot26').value;
     var tt26 = t26.replace(" €", "");
     var t27 = document.getElementById('totaalz').value;
@@ -282,25 +364,38 @@ function versch(){
     document.getElementById('verschil2627').value = verschil2627.toFixed(2);
 }
 
+
 /* Presets */
 function p1(){
     document.getElementById('gemjaarverbr').value = 1500;
     document.getElementById('opwek').value = 1000;
+    document.getElementById('defverb').innerHTML = '<i class="fa-solid fa-bolt"></i> 1500 kWh';
+    document.getElementById('defgas').innerHTML = '<i class="fa-solid fa-fire-flame-simple"></i> 800 m3';
+    document.getElementById('defopw').innerHTML = '<i class="fa-solid fa-solar-panel"></i> 1000 kWh';
 }
 
 function p2(){
     document.getElementById('gemjaarverbr').value = 2500;
     document.getElementById('opwek').value = 2000;
+    document.getElementById('defverb').innerHTML = '<i class="fa-solid fa-bolt"></i> 2500 kWh';
+    document.getElementById('defgas').innerHTML = '<i class="fa-solid fa-fire-flame-simple"></i> 1000 m3';
+    document.getElementById('defopw').innerHTML = '<i class="fa-solid fa-solar-panel"></i> 2000 kWh';
 }
 
 function p3(){
     document.getElementById('gemjaarverbr').value = 3000;
     document.getElementById('opwek').value = 2500;
+    document.getElementById('defverb').innerHTML = '<i class="fa-solid fa-bolt"></i> 3000 kWh';
+    document.getElementById('defgas').innerHTML = '<i class="fa-solid fa-fire-flame-simple"></i> 1200 m3';
+    document.getElementById('defopw').innerHTML = '<i class="fa-solid fa-solar-panel"></i> 2500 kWh';
 }
 
 function p4(){
     document.getElementById('gemjaarverbr').value = 3500;
     document.getElementById('opwek').value = 3000;
+    document.getElementById('defverb').innerHTML = '<i class="fa-solid fa-bolt"></i> 3500 kWh';
+    document.getElementById('defgas').innerHTML = '<i class="fa-solid fa-fire-flame-simple"></i> 1400 m3';
+    document.getElementById('defopw').innerHTML = '<i class="fa-solid fa-solar-panel"></i> 3000 kWh';  
 }
 
 function updatepres(){
@@ -308,21 +403,26 @@ function updatepres(){
         console.log("zonP");
         if(document.getElementById('1').checked){
             document.getElementById('opwek').value = 1000;
+            document.getElementById('defopw').innerHTML = '<i class="fa-solid fa-solar-panel"></i> 1000 kWh';
         }
         else if(document.getElementById('2').checked){
             document.getElementById('opwek').value = 2000;
+            document.getElementById('defopw').innerHTML = '<i class="fa-solid fa-solar-panel"></i> 2000 kWh';
         }
         else if(document.getElementById('3').checked){
             document.getElementById('opwek').value = 2500;
+            document.getElementById('defopw').innerHTML = '<i class="fa-solid fa-solar-panel"></i> 2500 kWh';
         }
         else if(document.getElementById('4').checked){
             document.getElementById('opwek').value = 3000;
+            document.getElementById('defopw').innerHTML = '<i class="fa-solid fa-solar-panel"></i> 3000 kWh';
         }
     }else{
         if(document.getElementById('cust').checked){
             console.log("not my prob");
         }else{
         document.getElementById('opwek').value = 0;
+        document.getElementById('defopw').innerHTML = '<i class="fa-solid fa-solar-panel"></i> 0 kWh';
         }
     }
 }
