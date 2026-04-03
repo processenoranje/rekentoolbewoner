@@ -457,16 +457,19 @@ summary::-webkit-details-marker {
 
                       <p>thuisbat, met panelen</p>
                       <label for="" class="totaal">Gelijktijdigverbr:
-                      <input type="text" id="kwhgelijkth" name="" class="inputresult" value="900" readonly>
+                      <input type="text" id="kwhgelijkth" name="" class="inputresult" value="0" readonly>
                       </label>
                       <label for="" class="totaal">Ongelijktijdigverbr:
-                      <input type="text" id="kwhongelijkth" name="" class="inputresult" value="2100" readonly>
+                      <input type="text" id="kwhongelijkth" name="" class="inputresult" value="0" readonly>
                       </label>
                       <label for="" class="totaal">Restverbr:
-                      <input type="text" id="kwhrestth" name="" class="inputresult" value="2600" readonly>
+                      <input type="text" id="kwhrestth" name="" class="inputresult" value="0" readonly>
                       </label>
                       <label for="">Gelijktijdigheid
                       <input type="number" min="0" id="gelijktth" value="40" name="" readonly>
+                      </label>
+                      <label for="">Custom view
+                        <input type="number" id="customview" value="0" readonly>
                       </label>
                     </div>
                     </div>
@@ -510,11 +513,13 @@ summary::-webkit-details-marker {
   function showcustom(){
     document.getElementById('custom').style.display = "inline";
     document.getElementById('schatten').style.display = "none";
+    document.getElementById('customview').value = 1;
   }
 
   function hidecustom(){
     document.getElementById('custom').style.display = "none";
     document.getElementById('schatten').style.display = "inline";
+    document.getElementById('customview').value = 0;
   }
 </script>
 <script>

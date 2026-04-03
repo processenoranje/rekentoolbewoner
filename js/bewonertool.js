@@ -18,10 +18,10 @@ function logMessage() {
 
 document.addEventListener('DOMContentLoaded', () => {
   updateAll();
-  setInterval(updateAll, 1000);
+  setInterval(updateAll, 1500);
 });
 
-function updateAll() {
+/*function updateAll() {
   try {
     inkoopz();
     inkoopm();
@@ -41,10 +41,37 @@ function updateAll() {
     tlv26();
     totaal26();
     gelijkt26();
+    gelijkth();
+    gelijkm();
+    gelijkz();
     updatepres();
   } catch (e) {
     console.warn('Update skipped:', e.message);
-  }}
+  }}*/
+
+
+function updateAll() {
+  const fns = [
+    updatepres,
+    inkoopz, inkoopm, inkoopth,
+    tlkz, tlkm, tlkth,
+    tlvz, tlvm, tlvth,
+    totaalz, totaalm, totaalthuis,
+    versch,
+    inkoop26, tlk26, tlv26, totaal26,
+    gelijkt26, gelijkth, gelijkm, gelijkz
+    
+  ];
+
+  for (const fn of fns) {
+    try {
+      fn();
+    } catch (e) {
+      console.warn(`Update step failed: ${fn.name}`, e);
+    }
+  }
+}
+
 
 
 function gelijkt26(){
@@ -55,6 +82,7 @@ function gelijkt26(){
     }else{
         document.getElementById('gemegl26').value = "0 %";
     }
+    console.log("updated");
 }
 
 
@@ -247,9 +275,10 @@ function totaalm(){
     }else{
         document.getElementById('participkostm').value = 12;
     }
+    console.log("updated");
 }
 
-function totaalthuis() {
+/*function totaalthuis() {
   const ink = Number(document.getElementById('jaarverbth').value || 0);
   const tlk = Number(document.getElementById('terugleverkostth').value || 0);
   const tlv = Number(
@@ -258,7 +287,22 @@ function totaalthuis() {
 
   const total = ink + tlk - tlv;
   document.getElementById('totaalthuis').value = total.toFixed(2);
+    console.log("updated");
+}*/
+
+
+function totaalthuis() {
+  const ink = Number(document.getElementById('jaarverbth')?.value || 0);
+  const tlk = Number(document.getElementById('terugleverkostth')?.value || 0);
+
+  const tlvRaw = (document.getElementById('terugleververgth')?.value || '0');
+  const tlv = Number(String(tlvRaw).replace('-', '')) || 0;
+
+  const total = ink + tlk - tlv;
+  document.getElementById('totaalthuis').value = total.toFixed(2);
+  console.log("updated");
 }
+
 
 
 function totaal26(){
@@ -298,6 +342,7 @@ function gelijkz(){
     document.getElementById('kwhgelijkz').value = cost;
     document.getElementById('kwhongelijkz').value = tsoc;
     document.getElementById('kwhrestz').value = rest;
+    console.log("updatedZ");
 }
 
 function gelijkth(){
@@ -321,6 +366,7 @@ function gelijkth(){
     document.getElementById('kwhgelijkth').value = cost;
     document.getElementById('kwhongelijkth').value = tsoc;
     document.getElementById('kwhrestth').value = rest;
+    console.log("updatedTH");
 }
 
 function gelijkm(){
@@ -339,6 +385,7 @@ function gelijkm(){
     document.getElementById('kwhgelijkm').value = cost;
     document.getElementById('kwhongelijkm').value = tsoc;
     document.getElementById('kwhrestm').value = rest;
+    console.log("updatedM");
 }
 
 function versch(){
@@ -354,7 +401,7 @@ function versch(){
 
     document.getElementById('verschil').value = vers.toFixed(2);
     document.getElementById('verschil1').value = vers1.toFixed(2);
-     
+
     var t26 = document.getElementById('tot26').value;
     var tt26 = t26.replace(" €", "");
     var t27 = document.getElementById('totaalz').value;
@@ -362,6 +409,7 @@ function versch(){
     var verschil2627 = tt27*1 - tt26*1;
 
     document.getElementById('verschil2627').value = verschil2627.toFixed(2);
+    console.log("updated");
 }
 
 
@@ -399,30 +447,33 @@ function p4(){
 }
 
 function updatepres(){
-    if(document.getElementById('zonp').checked){
-        console.log("zonP");
-        if(document.getElementById('1').checked){
-            document.getElementById('opwek').value = 1000;
-            document.getElementById('defopw').innerHTML = '<i class="fa-solid fa-solar-panel"></i> 1000 kWh';
-        }
-        else if(document.getElementById('2').checked){
-            document.getElementById('opwek').value = 2000;
-            document.getElementById('defopw').innerHTML = '<i class="fa-solid fa-solar-panel"></i> 2000 kWh';
-        }
-        else if(document.getElementById('3').checked){
-            document.getElementById('opwek').value = 2500;
-            document.getElementById('defopw').innerHTML = '<i class="fa-solid fa-solar-panel"></i> 2500 kWh';
-        }
-        else if(document.getElementById('4').checked){
-            document.getElementById('opwek').value = 3000;
-            document.getElementById('defopw').innerHTML = '<i class="fa-solid fa-solar-panel"></i> 3000 kWh';
-        }
-    }else{
-        if(document.getElementById('cust').checked){
-            console.log("not my prob");
+    if(document.getElementById('customview').value != 1){
+        if(document.getElementById('zonp').checked){
+            console.log("zonP");
+            if(document.getElementById('1').checked){
+                document.getElementById('opwek').value = 1000;
+                document.getElementById('defopw').innerHTML = '<i class="fa-solid fa-solar-panel"></i> 1000 kWh';
+                console.log("1");
+            }
+            else if(document.getElementById('2').checked){
+                document.getElementById('opwek').value = 2000;
+                document.getElementById('defopw').innerHTML = '<i class="fa-solid fa-solar-panel"></i> 2000 kWh';
+                console.log("2");
+            }
+            else if(document.getElementById('3').checked){
+                document.getElementById('opwek').value = 2500;
+                document.getElementById('defopw').innerHTML = '<i class="fa-solid fa-solar-panel"></i> 2500 kWh';
+                console.log("3");
+            }
+            else if(document.getElementById('4').checked){
+                document.getElementById('opwek').value = 3000;
+                document.getElementById('defopw').innerHTML = '<i class="fa-solid fa-solar-panel"></i> 3000 kWh';
+                console.log("4");
+            }
         }else{
-        document.getElementById('opwek').value = 0;
-        document.getElementById('defopw').innerHTML = '<i class="fa-solid fa-solar-panel"></i> 0 kWh';
+            document.getElementById('opwek').value = 0;
+            document.getElementById('defopw').innerHTML = '<i class="fa-solid fa-solar-panel"></i> 0 kWh';
+            
         }
     }
 }
