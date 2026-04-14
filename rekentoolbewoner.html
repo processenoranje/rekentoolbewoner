@@ -165,18 +165,18 @@ summary::-webkit-details-marker {
         </div>
         </div>
         <div class="column right" style="display: inline;">
-          <form id="myForm" action="submit_form.php" method="post">
+          <form id="myForm" action="submit.php" method="post" novalidate>
             <h2>Mijn huishouden</h2>
               <div>
                 <label>Postcode
-                <input type="text" id="postcode" name="postcode" placeholder="0000AB">
+                <input type="text" id="postcode" name="postcode" placeholder="0000AB" style="left:0px">
                 </label>
                 <label>Huisnummer
-                <input type="text" id="huisnummer" name="huisnummer" placeholder="00">
+                <input type="text" id="huisnummer" name="huisnummer" placeholder="00" style="left:0px">
                 </label>
                 <label>Toevoeging
-                <input type="text" id="toevoeging" name="toevoeging">
-                </label><br>
+                <input type="text" id="toevoeging" name="toevoeging" style="left:0px">
+                </label><br><br>
                 <div id="schatten" style="display: inline;">
                 <label class="switch" style="font-weight: bold;">Ik heb zonnepanelen
                   <input type="checkbox" onclick="updatepres();" checked="checked" id="zonp" name="zonnepanelen">
@@ -240,10 +240,10 @@ summary::-webkit-details-marker {
                     <label for="">Korting inkomstenbelasting per kWh:
                     <input type="" min="0" id="kortingib" value="0.096" name="" onclick="" onkeyup="" readonly class="inputno">
                     </label>
-                    <button onclick="hidecustom();" style="background-color: #fdd3b5;color: #ec6403;">Help mij schatten</button>
+                    <button type="button" onclick="hidecustom();" style="background-color: #fdd3b5;color: #ec6403;">Help mij schatten</button>
                 </div>
               </div>
-              <button onclick="submitAndShow();">Bereken</button>
+              <button type="button" onclick="submitAndShow();">Verstuur</button>
           </form>
         </div>
       </div>
@@ -1962,7 +1962,7 @@ Herkomst grijs gas
   function submitAndShow(){
     const form = document.getElementById('myForm');
     const formData = new FormData(form);
-    fetch('submit_form.php', {
+    fetch('submit.php', {
       method: 'POST',
       body: formData
     }).then(response => response.text()).then(data => {
