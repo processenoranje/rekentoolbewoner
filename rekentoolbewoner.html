@@ -152,7 +152,7 @@ summary::-webkit-details-marker {
     <main>
       <div class="content">
       <div class="row">
-        <div class="column left" style="border-color: #00000000; background-color: #00000000; box-shadow: none; margin-top: 0;">
+        <div class="column left" style="border-color: #00000000; background-color: #00000000; box-shadow: none; margin-top: 0;" id="content-descritpion">
         <h1>Rekentool Bewoner</h1>
         <div>
           <p>In 2027 stopt het salderen. Dit betekent dat je moet betalen voor de stroom die je opwekt, maar niet zelf gebruikt. Daardoor kunnen je energiekosten met honderden euro’s per jaar stijgen. </p>
@@ -165,18 +165,18 @@ summary::-webkit-details-marker {
         </div>
         </div>
         <div class="column right" style="display: inline;">
-          <form id="myForm" action="submit_form.php" method="post">
+          <form id="myForm" action="submit.php" method="post" novalidate>
             <h2>Mijn huishouden</h2>
               <div>
                 <label>Postcode
-                <input type="text" id="postcode" name="postcode" placeholder="0000AB">
+                <input type="text" id="postcode" name="postcode" placeholder="0000AB" style="left:0px">
                 </label>
                 <label>Huisnummer
-                <input type="text" id="huisnummer" name="huisnummer" placeholder="00">
+                <input type="text" id="huisnummer" name="huisnummer" placeholder="00" style="left:0px">
                 </label>
                 <label>Toevoeging
-                <input type="text" id="toevoeging" name="toevoeging">
-                </label><br>
+                <input type="text" id="toevoeging" name="toevoeging" style="left:0px">
+                </label><br><br>
                 <div id="schatten" style="display: inline;">
                 <label class="switch" style="font-weight: bold;">Ik heb zonnepanelen
                   <input type="checkbox" onclick="updatepres();" checked="checked" id="zonp" name="zonnepanelen">
@@ -240,10 +240,10 @@ summary::-webkit-details-marker {
                     <label for="">Korting inkomstenbelasting per kWh:
                     <input type="" min="0" id="kortingib" value="0.096" name="" onclick="" onkeyup="" readonly class="inputno">
                     </label>
-                    <button onclick="hidecustom();" style="background-color: #fdd3b5;color: #ec6403;">Help mij schatten</button>
+                    <button type="button" onclick="hidecustom();" style="background-color: #fdd3b5;color: #ec6403;">Help mij schatten</button>
                 </div>
               </div>
-              <button onclick="submitAndShow();">Bereken</button>
+              <button type="button" onclick="submitAndShow();">Verstuur</button>
           </form>
         </div>
       </div>
@@ -517,7 +517,7 @@ summary::-webkit-details-marker {
 <section class="c-comparison__coverage-section js-comparison__coverage-section--header c-comparison__coverage-section--header c-comparison-head headroom--not-bottom c-comparison-head--up c-comparison-head--not-floating" style="transform: translateX(0px);">
 <div class="layout layout--flex layout--flush js-comparison__category c-comparison__category js-comparison__category--header c-comparison__category--header">
 <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label c-comparison__coverage-cell--header u-palm-visuallyhidden palm-pt0 pt">
-<h4 class="u-text-color-white default-font-size">Keuze voor 2027</h4>
+<h4 class="u-text-color-white default-font-size" id="title1">Keuzes voor 2027</h4>
 </div>
 <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white u-border-radius u-border-radius--top c-comparison__coverage-cell palm-pt0 js-comparison-list__item js-auto-navigate" data-comparison-id="4850">
 <div class="zeta u-text-align--center">
@@ -553,37 +553,29 @@ summary::-webkit-details-marker {
 <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell palm-pt0 js-comparison-list__item js-auto-navigate" data-comparison-id="4850">
 <div class="zeta u-text-align--center">
 <div class="c-comparison__detailname">
-<a class="c-link c-link--hover-underline" title="Eneco Hollandse Wind&amp;Zon en Aardgas 1 jaar" href="https://www.gaslicht.com/energie-vergelijken/eneco/hollandse-wind-en-zon-en-aardgas-1-jaar-vast-4850?positionType=sidebyside">
+<p id="content-a1" style="font-weight: bold;">Niets doen</p>
 
-Eneco Hollandse Wind&amp;Zon en Aardgas 1 jaar
-</a>
 </div>
 </div>
 </div>
 <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell palm-pt0 js-comparison-list__item js-auto-navigate" data-comparison-id="4932">
 <div class="zeta u-text-align--center">
 <div class="c-comparison__detailname">
-<a class="c-link c-link--hover-underline" title="Vattenfall Nederlandse Groene Stroom en Aardgas tot 1 jaar Actie" href="https://www.gaslicht.com/energie-vergelijken/vattenfall/nederlandse-groene-stroom-en-aardgas-tot-1-jaar-vast-4932?positionType=sidebyside">
-
-Vattenfall Nederlandse Groene Stroom en Aardgas tot 1 jaar Actie
-</a>
+<p id="content-b1" style="font-weight: bold;">Buurtbatterij</p>
 </div>
 </div>
 </div>
 <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell palm-pt0 js-comparison-list__item js-auto-navigate" data-comparison-id="5205">
 <div class="zeta u-text-align--center">
 <div class="c-comparison__detailname">
-<a class="c-link c-link--hover-underline" title="ENGIE Nederlandse Groene Stroom en Aardgas 1 jaar" href="https://www.gaslicht.com/energie-vergelijken/engie/nederlandse-groene-stroom-en-gas-1-jaar-vast-5205?positionType=sidebyside">
-
-ENGIE Nederlandse Groene Stroom en Aardgas 1 jaar
-</a>
+<p id="content-c1" style="font-weight: bold;">Thuisbatterij</p>
 </div>
 </div>
 </div>
 </div>
 <div class="layout layout--flex layout--flush js-comparison__category c-comparison__category js-comparison__category--header c-comparison__category--header">
 <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label c-comparison__coverage-cell--header u-palm-visuallyhidden palm-pt0 pt-">
-<h4 class="u-text-color-white default-font-size">Totale jaarkosten (incl.&nbsp;btw)</h4>
+<h4 class="u-text-color-white default-font-size" id="title2">Totale jaarkosten (incl.&nbsp;btw)</h4>
 </div>
 <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell c-comparison__coverage-cell--header palm-pt0 js-comparison-list__item js-auto-navigate" data-comparison-id="4850">
 <div class="c-spec c-spec--amount u-text-align--center">
@@ -605,7 +597,34 @@ ENGIE Nederlandse Groene Stroom en Aardgas 1 jaar
 </div>
 </div>
 </section>
-<section class="c-comparison__coverage-section mt0">
+<input type="checkbox" class="js-comparison__category-checkbox c-comparison__category-checkbox u-visuallyhidden" id="comparison__category3" checked="checked">
+<label class="layout layout--flex layout--flush js-comparison__category c-comparison__category js-comparison__category--header c-comparison__category--header" for="comparison__category3">
+<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label c-comparison__coverage-cell--header">
+<h3 class="epsilon palm-default-font-size u-weight--normal u-text-color-white palm-pv--">Stroom</h3>
+</div>
+<div class="layout__item u-1/4 u-1/3-palm u-bg-color-white c-comparison__coverage-cell c-comparison__coverage-cell--header u-palm-visuallyhidden"></div>
+<div class="layout__item u-1/4 u-1/3-palm u-bg-color-white c-comparison__coverage-cell c-comparison__coverage-cell--header u-palm-visuallyhidden"></div>
+<div class="layout__item u-1/4 u-1/3-palm u-bg-color-white c-comparison__coverage-cell c-comparison__coverage-cell--header u-palm-visuallyhidden"></div>
+</label>
+<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features c-comparison__category--no-differences">
+<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
+<h4 class="u-text-color-white default-font-size">
+</h4>
+</div>
+<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+
+Groen uit Nederland
+</div>
+<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+
+Groen uit Nederland
+</div>
+<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+
+Groen uit Nederland
+</div>
+</div>
+<!--<section class="c-comparison__coverage-section mt0">
 <div class="layout layout--flex layout--flush js-comparison__category c-comparison__category">
 <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label u-palm-visuallyhidden palm-pt0 pt">
 <h4 class="u-text-color-white default-font-size">Korting</h4>
@@ -648,12 +667,12 @@ ENGIE Nederlandse Groene Stroom en Aardgas 1 jaar
 </div>
 </div>
 </div>
-</section>
+</section>-->
 <section class="js-comparison__coverage-section c-comparison__coverage-section">
 <input type="checkbox" class="js-comparison__category-checkbox c-comparison__category-checkbox u-visuallyhidden" id="comparison__category1" checked="checked">
 <label class="layout layout--flex layout--flush js-comparison__category c-comparison__category js-comparison__category--header c-comparison__category--header" for="comparison__category1">
 <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label c-comparison__coverage-cell--header">
-<h3 class="epsilon palm-default-font-size u-weight--normal u-text-color-white palm-pv--">Totale pakketscore</h3>
+<h3 class="epsilon palm-default-font-size u-weight--normal u-text-color-white palm-pv--" id="title3">Totale pakketscore</h3>
 </div>
 <div class="layout__item u-1/4 u-1/3-palm u-bg-color-white c-comparison__coverage-cell c-comparison__coverage-cell--header u-palm-visuallyhidden"></div>
 <div class="layout__item u-1/4 u-1/3-palm u-bg-color-white c-comparison__coverage-cell c-comparison__coverage-cell--header u-palm-visuallyhidden"></div>
@@ -661,7 +680,7 @@ ENGIE Nederlandse Groene Stroom en Aardgas 1 jaar
 </label>
 <div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
 <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size js-tooltip-trigger tooltipstered">
+<h4 class="u-text-color-white default-font-size js-tooltip-trigger tooltipstered" id="title3">
 
 Totale pakketscore
 <!--<span class="u-display--inline-block ml-"><svg width="5" height="11" viewBox="0 0 5 11" xmlns="http://www.w3.org/2000/svg"><path d="M5 9.5c0-.273-.227-.5-.5-.5H4V4.5c0-.273-.227-.5-.5-.5h-3c-.273 0-.5.227-.5.5V2c0 .273.227.5.5.5H1v3H.5c-.273 0-.5.227-.5.5v1c0 .273.227.5.5.5h4c.273 0 .5-.227.5-.5v-1zm-1-9c0-.273-.227-.5-.5-.5h-2c-.273 0-.5.227-.5.5V2c0 .273.227.5.5.5h2c.273 0 .5-.227.5-.5V.5z" fill="#9B9B9B" class="u-svg-fill" fill-rule="evenodd"></path></svg></span>-->
@@ -704,7 +723,7 @@ Totale pakketscore
 </div>
 <div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
 <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size">
+<h4 class="u-text-color-white default-font-size" id="title4">
 
 Klantwaardering
 </h4>
@@ -742,7 +761,7 @@ Klantwaardering
 </div>
 <div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
 <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size">
+<h4 class="u-text-color-white default-font-size" id="title5">
 
 Leverancierswaardering
 </h4>
@@ -780,7 +799,7 @@ Leverancierswaardering
 </div>
 <div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
 <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size">
+<h4 class="u-text-color-white default-font-size" id="title6">
 
 Pakketwaardering
 </h4>
@@ -1962,7 +1981,7 @@ Herkomst grijs gas
   function submitAndShow(){
     const form = document.getElementById('myForm');
     const formData = new FormData(form);
-    fetch('submit_form.php', {
+    fetch('submit.php', {
       method: 'POST',
       body: formData
     }).then(response => response.text()).then(data => {
@@ -2005,4 +2024,42 @@ function showSlides(n) {
 <script src="/js/bewonertool.js"></script>
 <script src="/js/includehtml.js"></script>
 <script>includeHTML();</script>
+<script>
+  // Load dynamic content sections on page load
+  document.addEventListener('DOMContentLoaded', function() {
+    const sections = [
+      { id: 'content-descritpion', key: 'omschrijving'},
+
+      { id: 'title1', key: 'title1'},
+      { id: 'content-a1', key: 'optie1'},
+      { id: 'content-b1', key: 'optie2'},
+      { id: 'content-c1', key: 'optie3'},
+      { id: 'title2', key: 'title2'},
+
+      { id: 'title3', key: 'title3'},
+      { id: 'content-a3', key: 'optie1'},
+      { id: 'content-b3', key: 'optie2'},
+      { id: 'content-c3', key: 'optie3'},
+      { id: 'content-a4', key: 'optie1'},
+      { id: 'content-b4', key: 'optie2'},
+      { id: 'content-c4', key: 'optie3'}
+    ];
+
+    sections.forEach(section => {
+      const element = document.getElementById(section.id);
+      if (element) {
+        fetch(`api/content.php?action=get&section=${section.key}`)
+          .then(response => response.json())
+          .then(data => {
+            if (data.success && data.content) {
+              element.innerHTML = data.content;
+            }
+          })
+          .catch(error => {
+            console.error(`Error loading content for ${section.key}:`, error);
+          });
+      }
+    });
+  });
+</script>
 </html>
