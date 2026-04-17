@@ -1,0 +1,24 @@
+/var/www/example-site/
+├── public/                     ← ONLY this is web-accessible
+│   ├── index.php
+│   ├── submit.php
+│   ├── assets/
+│   └── .htaccess
+│
+├── app/                        ← application logic (PRIVATE)
+│   ├── bootstrap.php
+│   ├── Mailer.php
+│   ├── Database.php
+│   ├── FormHandler.php
+│   └── Security.php
+│
+├── config/                     ← SECRETS (PRIVATE)
+│   ├── config.php
+│   ├── mail.php
+│   └── database.php
+│
+├── storage/                    ← writable, PRIVATE
+│   ├── logs/
+│   └── temp/
+│
+└── vendor/                     ← composer (optional)

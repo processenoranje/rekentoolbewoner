@@ -21,7 +21,7 @@ DEALINGS IN THE SOFTWARE.
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
     <script src="https://kit.fontawesome.com/2c8d5bea2d.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/styles.min.css">
+    <link rel="stylesheet" href="css/styles_bewoner.css">
 <script src="js/loader.js"></script>
 <script src="js/jsapi_compiled_default_module.js"></script>
 <script src="js/jsapi_compiled_graphics_module.js"></script>
@@ -144,6 +144,59 @@ summary::-webkit-details-marker {
   display: none;
 }
 
+.comparison-table-wrapper {
+  margin: 20px 0;
+}
+.comparison-table-wrapper .comparison-table__button {
+  display: inline-block;
+  margin-bottom: 16px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 4px;
+  background: #fdd3b5;
+  color: #ec6403;
+  font-weight: 700;
+  cursor: pointer;
+}
+.comparison-table-wrapper .comparison-table__container {
+  overflow-x: auto;
+}
+.comparison-table {
+  width: 100%;
+  min-width: 620px;
+  border-collapse: collapse;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  background: #fff;
+}
+.comparison-table th,
+.comparison-table td {
+  padding: 14px 16px;
+  border: 1px solid #ddd;
+  text-align: left;
+  vertical-align: top;
+}
+.comparison-table th {
+  background: #f7f7f7;
+  font-weight: 700;
+  color: #1f1f1f;
+}
+.comparison-table th:first-child,
+.comparison-table td:first-child {
+  background: #f4f4f4;
+  width: 40%;
+}
+.comparison-table tbody tr:nth-child(even) td {
+  background: #fafafa;
+}
+@media (max-width: 900px) {
+  .comparison-table {
+    min-width: auto;
+  }
+  .comparison-table th:first-child,
+  .comparison-table td:first-child {
+    width: auto;
+  }
+}
 
     </style>
 </head>
@@ -152,7 +205,7 @@ summary::-webkit-details-marker {
     <main>
       <div class="content">
       <div class="row">
-        <div class="column left" style="border-color: #00000000; background-color: #00000000; box-shadow: none; margin-top: 0;">
+        <div class="column left" style="border-color: #00000000; background-color: #00000000; box-shadow: none; margin-top: 0;" id="content-descritpion">
         <h1>Rekentool Bewoner</h1>
         <div>
           <p>In 2027 stopt het salderen. Dit betekent dat je moet betalen voor de stroom die je opwekt, maar niet zelf gebruikt. Daardoor kunnen je energiekosten met honderden euro’s per jaar stijgen. </p>
@@ -165,18 +218,18 @@ summary::-webkit-details-marker {
         </div>
         </div>
         <div class="column right" style="display: inline;">
-          <form id="myForm" action="submit_form.php" method="post">
+          <form id="myForm" action="submit.php" method="post" novalidate>
             <h2>Mijn huishouden</h2>
               <div>
                 <label>Postcode
-                <input type="text" id="postcode" name="postcode" placeholder="0000AB">
+                <input type="text" id="postcode" name="postcode" placeholder="0000AB" style="left:0px">
                 </label>
                 <label>Huisnummer
-                <input type="text" id="huisnummer" name="huisnummer" placeholder="00">
+                <input type="text" id="huisnummer" name="huisnummer" placeholder="00" style="left:0px">
                 </label>
                 <label>Toevoeging
-                <input type="text" id="toevoeging" name="toevoeging">
-                </label><br>
+                <input type="text" id="toevoeging" name="toevoeging" style="left:0px">
+                </label><br><br>
                 <div id="schatten" style="display: inline;">
                 <label class="switch" style="font-weight: bold;">Ik heb zonnepanelen
                   <input type="checkbox" onclick="updatepres();" checked="checked" id="zonp" name="zonnepanelen">
@@ -240,14 +293,14 @@ summary::-webkit-details-marker {
                     <label for="">Korting inkomstenbelasting per kWh:
                     <input type="" min="0" id="kortingib" value="0.096" name="" onclick="" onkeyup="" readonly class="inputno">
                     </label>
-                    <button onclick="hidecustom();" style="background-color: #fdd3b5;color: #ec6403;">Help mij schatten</button>
+                    <button type="button" onclick="hidecustom();" style="background-color: #fdd3b5;color: #ec6403;">Help mij schatten</button>
                 </div>
               </div>
-              <button onclick="submitAndShow();">Bereken</button>
+              <button type="button" onclick="submitAndShow();">Verstuur</button>
           </form>
         </div>
       </div>
-    <div class="row" style="display: none;" id="resultaat">
+    <div class="row" style="display: inline;" id="resultaat">
         <div class="column left">
             <h2>Kassabon 2026</h2>
 
@@ -272,151 +325,14 @@ summary::-webkit-details-marker {
   
 
         </div>
-        <div class="column right">
+        <div class="column right" style="display: none;">
             
             <!-- Sanity test
             <h2>Output</h2>
                 <label for="">Output 2x:</label>
             <input type="text" id="out2x" name=""> -->
-            <h2 style="margin-top: 0;" class="pc">Kassabon 2027</h2>
-            <h2 style="margin-top: 0;" class="mob">Kassabon</h2><br>
-            <h2 style="margin-top: 0;" class="mob">2027</h2>
-            <div class="slideshow-container">
-                <div class="mySlides fade"><!--2027 zonder-->
-                    <!--<h3 style="color:#ff7716;">Zonder energie delen (dus als je niets doet)</h3>-->
-                    <div style="display: block;background-color: white;float: right; border-radius: 5px; position: absolute;top:-50px;right:0;border:solid;border-width: 5px;border-color: #ff7716;">
-                      <h3 style="color: #ff7716;padding: 10px;"> Niets doen</h3>
-                    </div>
-
-                    <h3>Tarieven</h3>
-                    <label for="">Energie kosten:
-                    <input type="text" id="jaarverbrz" name="" class="inputresult" value="676.00" readonly>
-                    </label>
-                    <label for="">Terugleverkosten:
-                    <input type="text" id="terugleverkostz" name="" class="inputresult" value="94.50" readonly>
-                    </label>
-                    <label for="">Terugleververgoeding:
-                    <input type="text" id="terugleververgz" name="" class="inputresult" value="-105.00" readonly>
-                    </label>
-                    <label for="" class="inactive">Buurtstroom kosten:
-                    <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly>
-                    </label>
-                    <label for="" class="inactive">Terugleverkosten buurtstroom:
-                    <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly>
-                    </label>
-                    <label for="" class="inactive">Korting inkomstenbelasting:
-                    <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly>
-                    </label>
-                    <h3>Lidmaatschap</h3>
-                    <label for="" class="inactive">Lidmaatschapskosten:
-                    <input type="text" id="participkost" name="" class="inputresult inactive" value="0.00" readonly>
-                    </label>
-                    <hr>
-                    <label for="" class="totaal">Totaal per jaar:
-                    <input type="text" id="totaalz" name="" class="inputresult" value="695.50" readonly>
-                    </label>
-                </div>
-                <div class="mySlides fade"><!--2027 met-->
-                    <div style="display: block;background-color: #ff7716;float: right; border-radius: 5px; position: absolute;top:-50px;right:0;border:solid;border-width: 5px;border-color: #ff7716;">
-                      <h3 style="color: white;padding: 10px;;"> Energie delen </h3>
-                    </div>
-
-                    <h3 style="display: none;">Opwek en verbruik</h3>
-                    <label for="" style="display: none;">Gemiddeld gelijktijdig verbruik:
-                    <input type="text" id="gelijkt" name="" class="inputresult" value="40 %" readonly>
-                    </label>
-
-                    <h3>Tarieven</h3>
-                    <label for="" class="inactive">Energie kosten:
-                    <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly>
-                    </label>
-                    <label for="" class="inactive">Terugleverkosten:
-                    <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly>
-                    </label>
-                    <label for="" class="inactive">Terugleververgoeding:
-                    <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly>
-                    </label>
-                    <label for="">Buurtstroom kosten:
-                    <input type="text" id="tariefbuurtstr" name="" class="inputresult" value="483.00" readonly>
-                    </label>
-                    <label for="">Terugleverkosten buurtstroom:
-                    <input type="text" id="terugleverbuurtm" name="" class="inputresult" value="16.20" readonly>
-                    </label>
-                    <label for="">Korting inkomstenbelasting:
-                    <input type="text" id="inkomstbelast" name="" class="inputresult" value="-162.00" readonly>
-                    </label>
-                    <h3>Lidmaatschap</h3>
-                    <label for="">Lidmaatschapskosten:
-                    <input type="text" id="participkostm" name="" class="inputresult" value="24.00" readonly>
-                    </label>
-                    <hr>
-                    <label for="" class="totaal">Totaal per jaar:
-                    <input type="text" id="totaalm" name="" class="inputresult" value="401.20" readonly>
-                    </label>
-
-                    
-                    <div style="padding-top: 50px;">
-                      <hr>
-                      <h3>Verschil met niets doen:
-                      <input type="" min="0" id="verschil" value="294.30" name="" onclick="" onkeyup="" readonly class="inputno verschil" style="font-weight: bold;font-size: 20px;float:right;">
-                        </h3>
-                        <hr>
-                    </div>
-                </div>
-                <div class="mySlides fade"><!--2027 met-->
-                    <div style="display: block;background-color: white;float: right; border-radius: 5px; position: absolute;top:-50px;right:0;border:solid;border-width: 5px;border-color: #ff7716;">
-                      <h3 style="color: #ff7716;padding: 10px;;"> Thuisbatterij </h3>
-                    </div>
-
-                    <h3 style="display: none;">Opwek en verbruik</h3>
-
-                    <h3>Tarieven</h3>
-                    <label for="">Energie kosten:
-                    <input type="text" id="jaarverbth" name="" class="inputresult" value="0.00" readonly>
-                    </label>
-                    <label for="">Terugleverkosten:
-                    <input type="text" id="terugleverkostth" name="" class="inputresult" value="0.00" readonly>
-                    </label>
-                    <label for="">Terugleververgoeding:
-                    <input type="text" id="terugleververgth" name="" class="inputresult" value="0.00" readonly>
-                    </label>
-                    <label for="" class="inactive">Buurtstroom kosten:
-                    <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly>
-                    </label>
-                    <label for="" class="inactive">Terugleverkosten buurtstroom:
-                    <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly>
-                    </label>
-                    <label for="" class="inactive">Korting inkomstenbelasting:
-                    <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly>
-                    </label>
-                    <h3>Lidmaatschap</h3>
-                    <label for="" class="inactive">Lidmaatschapskosten:
-                    <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly>
-                    </label>
-                    <hr>
-                    <label for="" class="totaal">Totaal per jaar:
-                    <input type="text" id="totaalthuis" name="" class="inputresult" value="0.00" readonly>
-                    </label>
-
-                    <div style="padding-top: 50px;">
-                      <hr>
-                      <h3>Verschil met niets doen:
-                      <input type="" min="0" id="verschil1" value="294.30" name="" onclick="" onkeyup="" readonly class="inputno verschil" style="font-weight: bold;font-size: 20px;float:right;">
-                        </h3>
-                        <hr>
-                    </div>
-                </div>
-                
-            </div>
-            <button onclick="displayverschilbottom();currentSlide(2);" id="watkanikdoen">Wat kan ik hier aan doen?</button>
-            <br><br>
-            <div id="verschilbottom" style="display: none;">
-            <div style="text-align:center">
-                <span class="dot" onclick="currentSlide(1)"></span> 
-                <span class="dot" onclick="currentSlide(2)"></span> 
-                <span class="dot" onclick="currentSlide(3)"></span> 
-            </div>
-            <div style="display: none;">
+            
+            <div>
               Sanity check
               <p>Met delen, met panelen</p>
               <label for="" class="totaal">Gelijktijdigverbr:
@@ -495,165 +411,13 @@ summary::-webkit-details-marker {
           </div>
         </div> 
       </div>
-    <section id="js-comparison" class="js-side-comparison c-comparison pt+ palm-pv">
-<input type="checkbox" id="js-highlight-differences" class="c-comparison__highlight-checkbox c-inputfields__input--checkbox">
-<div class="layout ph">
-
-
-<button>Terug naar invullen</button>
-<div class="layout__item u-1/4 u-1/2-lap u-1/1-palm">
-<div class="c-comparison__filter js-comparison__filter">
-
-<div class="js-coverage-filter-count u-text-color-white u-text-align--right u-palm-text-align--left zeta mb- mt--"></div>
-</div>
-<div class="c-comparison__filter-dummy-placeholder"></div>
-</div>
-</div>
-<div class="c-comparison__scrollwrapper-outer">
-<div class="c-comparison__scrollwrapper js-comparison__scrollwrapper">
-<button class="c-comparison__shade-left js-comparison__shade-left"><svg width="14" height="8" viewBox="0 0 14 8" xmlns="http://www.w3.org/2000/svg"><path d="M7 0c.112 0 .238.055.323.137l6.537 6.406a.47.47 0 0 1 .14.316.47.47 0 0 1-.14.316l-.702.688a.488.488 0 0 1-.322.137.488.488 0 0 1-.323-.137L7 2.46 1.487 7.863A.488.488 0 0 1 1.164 8a.461.461 0 0 1-.322-.137L.14 7.175A.47.47 0 0 1 0 6.86a.47.47 0 0 1 .14-.316L6.677.137A.488.488 0 0 1 7 0z" fill="#3D3D3D" class="u-svg-fill" fill-rule="evenodd"></path></svg></button>
-<button class="c-comparison__shade-right js-comparison__shade-right"><svg width="14" height="8" viewBox="0 0 14 8" xmlns="http://www.w3.org/2000/svg"><path d="M7 0c.112 0 .238.055.323.137l6.537 6.406a.47.47 0 0 1 .14.316.47.47 0 0 1-.14.316l-.702.688a.488.488 0 0 1-.322.137.488.488 0 0 1-.323-.137L7 2.46 1.487 7.863A.488.488 0 0 1 1.164 8a.461.461 0 0 1-.322-.137L.14 7.175A.47.47 0 0 1 0 6.86a.47.47 0 0 1 .14-.316L6.677.137A.488.488 0 0 1 7 0z" fill="#3D3D3D" class="u-svg-fill" fill-rule="evenodd"></path></svg></button>
-<div class="js-comparison__scrollcontainer c-comparison__scrollcontainer pb++" data-packagecount="3">
-<section class="c-comparison__coverage-section js-comparison__coverage-section--header c-comparison__coverage-section--header c-comparison-head headroom--not-bottom c-comparison-head--up c-comparison-head--not-floating" style="transform: translateX(0px);">
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category js-comparison__category--header c-comparison__category--header">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label c-comparison__coverage-cell--header u-palm-visuallyhidden palm-pt0 pt">
-<h4 class="u-text-color-white default-font-size">Keuze voor 2027</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white u-border-radius u-border-radius--top c-comparison__coverage-cell palm-pt0 js-comparison-list__item js-auto-navigate" data-comparison-id="4850">
-<div class="zeta u-text-align--center">
-<div class="pt">
-<a class="u-1/3 u-display--inline-block" title="Eneco Hollandse Wind&amp;Zon en Aardgas 1 jaar" href="https://www.gaslicht.com/energie-vergelijken/eneco/hollandse-wind-en-zon-en-aardgas-1-jaar-vast-4850?positionType=sidebyside">
-<img src="Pakketten%20vergelijken_files/eneco.svg" title="Eneco" alt="Eneco">
-</a>
-</div>
-</div>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white u-border-radius u-border-radius--top c-comparison__coverage-cell palm-pt0 js-comparison-list__item js-auto-navigate" data-comparison-id="4932">
-<div class="zeta u-text-align--center">
-<div class="pt">
-<a class="u-1/3 u-display--inline-block" title="Vattenfall Nederlandse Groene Stroom en Aardgas tot 1 jaar Actie" href="https://www.gaslicht.com/energie-vergelijken/vattenfall/nederlandse-groene-stroom-en-aardgas-tot-1-jaar-vast-4932?positionType=sidebyside">
-<img src="Pakketten%20vergelijken_files/vattenfall.svg" title="Vattenfall" alt="Vattenfall">
-</a>
-</div>
-</div>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white u-border-radius u-border-radius--top c-comparison__coverage-cell palm-pt0 js-comparison-list__item js-auto-navigate" data-comparison-id="5205">
-<div class="zeta u-text-align--center">
-<div class="pt">
-<a class="u-1/3 u-display--inline-block" title="ENGIE Nederlandse Groene Stroom en Aardgas 1 jaar" href="https://www.gaslicht.com/energie-vergelijken/engie/nederlandse-groene-stroom-en-gas-1-jaar-vast-5205?positionType=sidebyside">
-<img src="Pakketten%20vergelijken_files/engie.svg" title="ENGIE" alt="ENGIE">
-</a>
-</div>
-</div>
-</div>
-</div>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label u-palm-visuallyhidden palm-pt0 pt">
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell palm-pt0 js-comparison-list__item js-auto-navigate" data-comparison-id="4850">
-<div class="zeta u-text-align--center">
-<div class="c-comparison__detailname">
-<a class="c-link c-link--hover-underline" title="Eneco Hollandse Wind&amp;Zon en Aardgas 1 jaar" href="https://www.gaslicht.com/energie-vergelijken/eneco/hollandse-wind-en-zon-en-aardgas-1-jaar-vast-4850?positionType=sidebyside">
-
-Eneco Hollandse Wind&amp;Zon en Aardgas 1 jaar
-</a>
-</div>
-</div>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell palm-pt0 js-comparison-list__item js-auto-navigate" data-comparison-id="4932">
-<div class="zeta u-text-align--center">
-<div class="c-comparison__detailname">
-<a class="c-link c-link--hover-underline" title="Vattenfall Nederlandse Groene Stroom en Aardgas tot 1 jaar Actie" href="https://www.gaslicht.com/energie-vergelijken/vattenfall/nederlandse-groene-stroom-en-aardgas-tot-1-jaar-vast-4932?positionType=sidebyside">
-
-Vattenfall Nederlandse Groene Stroom en Aardgas tot 1 jaar Actie
-</a>
-</div>
-</div>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell palm-pt0 js-comparison-list__item js-auto-navigate" data-comparison-id="5205">
-<div class="zeta u-text-align--center">
-<div class="c-comparison__detailname">
-<a class="c-link c-link--hover-underline" title="ENGIE Nederlandse Groene Stroom en Aardgas 1 jaar" href="https://www.gaslicht.com/energie-vergelijken/engie/nederlandse-groene-stroom-en-gas-1-jaar-vast-5205?positionType=sidebyside">
-
-ENGIE Nederlandse Groene Stroom en Aardgas 1 jaar
-</a>
-</div>
-</div>
-</div>
-</div>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category js-comparison__category--header c-comparison__category--header">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label c-comparison__coverage-cell--header u-palm-visuallyhidden palm-pt0 pt-">
-<h4 class="u-text-color-white default-font-size">Totale jaarkosten (incl.&nbsp;btw)</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell c-comparison__coverage-cell--header palm-pt0 js-comparison-list__item js-auto-navigate" data-comparison-id="4850">
-<div class="c-spec c-spec--amount u-text-align--center">
-
-€&nbsp;3535<span class="c-spec__decimals">,16</span>
-</div>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell c-comparison__coverage-cell--header palm-pt0 js-comparison-list__item js-auto-navigate" data-comparison-id="4932">
-<div class="c-spec c-spec--amount u-text-align--center">
-
-€&nbsp;3146<span class="c-spec__decimals">,92</span>
-</div>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell c-comparison__coverage-cell--header palm-pt0 js-comparison-list__item js-auto-navigate" data-comparison-id="5205">
-<div class="c-spec c-spec--amount u-text-align--center">
-
-€&nbsp;3363<span class="c-spec__decimals">,96</span>
-</div>
-</div>
-</div>
-</section>
-<section class="c-comparison__coverage-section mt0">
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label u-palm-visuallyhidden palm-pt0 pt">
-<h4 class="u-text-color-white default-font-size">Korting</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell palm-pt0 js-comparison-list__item js-auto-navigate" data-comparison-id="4850">
-<div class="u-text-align--center u-text-color-status--green c-spec">
-
-€&nbsp;465
-</div>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell palm-pt0 js-comparison-list__item js-auto-navigate" data-comparison-id="4932">
-<div class="u-text-align--center u-text-color-status--green c-spec">
-
-€&nbsp;385
-</div>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell palm-pt0 js-comparison-list__item js-auto-navigate" data-comparison-id="5205">
-<div class="u-text-align--center u-text-color-status--green c-spec">
-
-€&nbsp;429
-</div>
-</div>
-</div>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label u-palm-visuallyhidden palm-pt0 pt">
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell palm-pt0 js-comparison-list__item js-auto-navigate" data-comparison-id="4850">
-<div class="zeta u-text-align--center">
-
-</div>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell palm-pt0 js-comparison-list__item js-auto-navigate" data-comparison-id="4932">
-<div class="zeta u-text-align--center">
-
-</div>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell palm-pt0 js-comparison-list__item js-auto-navigate" data-comparison-id="5205">
-<div class="zeta u-text-align--center">
-
-</div>
-</div>
-</div>
-</section>
+      <div id="vergelijking"></div>
+      <button type="button">Terug naar invullen</button>
 <section class="js-comparison__coverage-section c-comparison__coverage-section">
 <input type="checkbox" class="js-comparison__category-checkbox c-comparison__category-checkbox u-visuallyhidden" id="comparison__category1" checked="checked">
 <label class="layout layout--flex layout--flush js-comparison__category c-comparison__category js-comparison__category--header c-comparison__category--header" for="comparison__category1">
 <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label c-comparison__coverage-cell--header">
-<h3 class="epsilon palm-default-font-size u-weight--normal u-text-color-white palm-pv--">Totale pakketscore</h3>
+<h3 class="epsilon palm-default-font-size u-weight--normal u-text-color-white palm-pv--" id="title3">Totale pakketscore</h3>
 </div>
 <div class="layout__item u-1/4 u-1/3-palm u-bg-color-white c-comparison__coverage-cell c-comparison__coverage-cell--header u-palm-visuallyhidden"></div>
 <div class="layout__item u-1/4 u-1/3-palm u-bg-color-white c-comparison__coverage-cell c-comparison__coverage-cell--header u-palm-visuallyhidden"></div>
@@ -661,7 +425,7 @@ ENGIE Nederlandse Groene Stroom en Aardgas 1 jaar
 </label>
 <div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
 <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size js-tooltip-trigger tooltipstered">
+<h4 class="u-text-color-white default-font-size js-tooltip-trigger tooltipstered" id="title3">
 
 Totale pakketscore
 <!--<span class="u-display--inline-block ml-"><svg width="5" height="11" viewBox="0 0 5 11" xmlns="http://www.w3.org/2000/svg"><path d="M5 9.5c0-.273-.227-.5-.5-.5H4V4.5c0-.273-.227-.5-.5-.5h-3c-.273 0-.5.227-.5.5V2c0 .273.227.5.5.5H1v3H.5c-.273 0-.5.227-.5.5v1c0 .273.227.5.5.5h4c.273 0 .5-.227.5-.5v-1zm-1-9c0-.273-.227-.5-.5-.5h-2c-.273 0-.5.227-.5.5V2c0 .273.227.5.5.5h2c.273 0 .5-.227.5-.5V.5z" fill="#9B9B9B" class="u-svg-fill" fill-rule="evenodd"></path></svg></span>-->
@@ -704,7 +468,7 @@ Totale pakketscore
 </div>
 <div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
 <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size">
+<h4 class="u-text-color-white default-font-size" id="title4">
 
 Klantwaardering
 </h4>
@@ -742,7 +506,7 @@ Klantwaardering
 </div>
 <div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
 <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size">
+<h4 class="u-text-color-white default-font-size" id="title5">
 
 Leverancierswaardering
 </h4>
@@ -780,7 +544,7 @@ Leverancierswaardering
 </div>
 <div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
 <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size">
+<h4 class="u-text-color-white default-font-size" id="title6">
 
 Pakketwaardering
 </h4>
@@ -816,688 +580,12 @@ Pakketwaardering
 </div>
 </div>
 </div>
-</section>
-<section class="js-comparison__coverage-section c-comparison__coverage-section">
-<input type="checkbox" class="js-comparison__category-checkbox c-comparison__category-checkbox u-visuallyhidden" id="comparison__category2" checked="checked">
-<label class="layout layout--flex layout--flush js-comparison__category c-comparison__category js-comparison__category--header c-comparison__category--header" for="comparison__category2">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label c-comparison__coverage-cell--header">
-<h3 class="epsilon palm-default-font-size u-weight--normal u-text-color-white palm-pv--">Prijsdetails</h3>
-</div>
-<div class="layout__item u-1/4 u-1/3-palm u-bg-color-white c-comparison__coverage-cell c-comparison__coverage-cell--header u-palm-visuallyhidden"></div>
-<div class="layout__item u-1/4 u-1/3-palm u-bg-color-white c-comparison__coverage-cell c-comparison__coverage-cell--header u-palm-visuallyhidden"></div>
-<div class="layout__item u-1/4 u-1/3-palm u-bg-color-white c-comparison__coverage-cell c-comparison__coverage-cell--header u-palm-visuallyhidden"></div>
-</label>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size">
-
-Tarief stroom
-</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<span class="c-comparison__highlight">€&nbsp;0,2980 /kWh Leveringskosten normaaltarief <small class="u-text-color-grey">0 - 10000 kWh</small><br>€&nbsp;0,2904 /kWh Leveringskosten daltarief <small class="u-text-color-grey">0 - 10000 kWh</small><br></span>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<span class="c-comparison__highlight">€&nbsp;0,2545 /kWh Leveringskosten normaaltarief <small class="u-text-color-grey">0 - 10000 kWh</small><br>€&nbsp;0,2545 /kWh Leveringskosten daltarief <small class="u-text-color-grey">0 - 10000 kWh</small><br></span>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<span class="c-comparison__highlight">€&nbsp;0,2690 /kWh Leveringskosten normaaltarief <small class="u-text-color-grey">0 - 10000 kWh</small><br>€&nbsp;0,2690 /kWh Leveringskosten daltarief <small class="u-text-color-grey">0 - 10000 kWh</small><br></span>
-</div>
-</div>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size">
-
-Vaste leveringskosten stroom
-</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<span class="c-comparison__highlight">€&nbsp;119,88 per jaar</span>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<span class="c-comparison__highlight">€&nbsp;107,88 per jaar</span>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<span class="c-comparison__highlight">€&nbsp;134,46 per jaar</span>
-</div>
-</div>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size">
-
-Tarief gas
-</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<span class="c-comparison__highlight">€&nbsp;1,5762 /m³ Leveringskosten tarief <small class="u-text-color-grey">0 - 5000 m³</small><br></span>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<span class="c-comparison__highlight">€&nbsp;1,3952 /m³ Leveringskosten tarief <small class="u-text-color-grey">0 - 5000 m³</small><br></span>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<span class="c-comparison__highlight">€&nbsp;1,4976 /m³ Leveringskosten tarief <small class="u-text-color-grey">0 - 5000 m³</small><br></span>
-</div>
-</div>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size">
-
-Vaste leveringskosten gas
-</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<span class="c-comparison__highlight">€&nbsp;95,88 per jaar</span>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<span class="c-comparison__highlight">€&nbsp;95,83 per jaar</span>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<span class="c-comparison__highlight">€&nbsp;112,68 per jaar</span>
-</div>
-</div>
-</section>
-<section class="js-comparison__coverage-section c-comparison__coverage-section">
-<input type="checkbox" class="js-comparison__category-checkbox c-comparison__category-checkbox u-visuallyhidden" id="comparison__category3" checked="checked">
-<label class="layout layout--flex layout--flush js-comparison__category c-comparison__category js-comparison__category--header c-comparison__category--header" for="comparison__category3">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label c-comparison__coverage-cell--header">
-<h3 class="epsilon palm-default-font-size u-weight--normal u-text-color-white palm-pv--">Stroom</h3>
-</div>
-<div class="layout__item u-1/4 u-1/3-palm u-bg-color-white c-comparison__coverage-cell c-comparison__coverage-cell--header u-palm-visuallyhidden"></div>
-<div class="layout__item u-1/4 u-1/3-palm u-bg-color-white c-comparison__coverage-cell c-comparison__coverage-cell--header u-palm-visuallyhidden"></div>
-<div class="layout__item u-1/4 u-1/3-palm u-bg-color-white c-comparison__coverage-cell c-comparison__coverage-cell--header u-palm-visuallyhidden"></div>
-</label>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features c-comparison__category--no-differences">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size">
-
-Soort stroom
-</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-Groen uit Nederland
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-Groen uit Nederland
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-Groen uit Nederland
-</div>
-</div>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features c-comparison__category--no-differences">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size">
-
-Tarieven
-</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-Vast
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-Vast
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-Vast
-</div>
-</div>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size">
-
-Toelichting tarieven
-</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-12 maanden vaste tarieven. Voor zonnepaneelbezitters gelden er er 2 
-tariefsperiodes voor de terugleverkosten en terugleververgoeding: 
-tarieven tot 1-1-2027 en tarieven vanaf 1-1-2027. Na 12 maanden krijgt u
- geleverd tegen variabele tarieven.
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<span class="c-comparison__highlight">Vaste tarieven t/m 30-04-2027. 
-Hierna krijgt u geleverd tegen variabele tarieven. De looptijd van dit 
-contract is soms korter dan één jaar. Dit is het geval als u nog een 
-lopend contract heeft en dit duurt nog 60 dagen, of korter. Vattenfall 
-wacht dan de door u opgegeven einddatum af. Pas dan gaat uw contract in.
- De looptijd van uw nieuwe contract is dan op zijn hoogst 60 dagen 
-korter dan één jaar.</span>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-12 maanden vaste tarieven. Voor zonnepaneelbezitters gelden er er 2 
-tariefsperiodes voor de terugleverkosten en terugleververgoeding: 
-tarieven tot 1-1-2027 en tarieven vanaf 1-1-2027. Na 12 maanden krijgt u
- geleverd tegen variabele tarieven.
-</div>
-</div>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size">
-
-Terugleverkosten
-</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<span class="c-comparison__highlight">Eneco rekent terugleverkosten 
-indien u beschikt over zonnepanelen. Deze kosten worden in rekening 
-gebracht zodra teruglevering van stroom op uw aansluiting wordt 
-geregistreerd, ook als dat tijdens de looptijd van dit contract is. Deze
- terugleverkosten bestaan uit een bedrag per kWh. Dit tarief zal op 
-1-1-2027 veranderen. De hoogte van de terugleverkosten vindt u terug in 
-uw contract en bij de prijsdetails. Ook kunt u in de prijsdetails een 
-indicatie zien van de hoogte van de terugleverkosten op basis van de 
-door u opgegeven teruglevering. De definitieve kosten worden berekend op
- uw jaar- of eindafrekening.</span>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<span class="c-comparison__highlight">Vattenfall rekent terugleverkosten
- indien u beschikt over zonnepanelen. Deze kosten worden in rekening 
-gebracht zodra teruglevering van stroom op uw aansluiting wordt 
-geregistreerd, ook als dat tijdens de looptijd van dit contract is. De 
-kosten bestaan uit een vast bedrag per dag waarvan de hoogte afhankelijk
- is van de hoeveelheid daadwerkelijk teruggeleverde stroom per jaar. Dit
- tarief zal op 1-1-2027 veranderen in een bedrag per kWh. De hoogte van 
-de terugleverkosten vindt u terug in uw contract en bij de prijsdetails.
- Ook kunt u in de prijsdetails een indicatie zien van de hoogte van de 
-terugleverkosten op basis van de door u opgegeven teruglevering. De 
-definitieve kosten worden berekend op uw jaar- of eindafrekening.</span>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<span class="c-comparison__highlight">ENGIE rekent terugleverkosten 
-indien u beschikt over zonnepanelen. Deze kosten worden in rekening 
-gebracht zodra teruglevering van stroom op uw aansluiting wordt 
-geregistreerd, ook als dat tijdens de looptijd van dit contract is. Deze
- terugleverkosten bestaan uit een bedrag per kWh. Dit tarief zal op 
-1-1-2027 veranderen. De hoogte van de terugleverkosten vindt u terug in 
-uw contract en bij de prijsdetails. Ook kunt u in de prijsdetails een 
-indicatie zien van de hoogte van de terugleverkosten op basis van de 
-door u opgegeven teruglevering. De definitieve kosten worden berekend op
- uw jaar- of eindafrekening.</span>
-</div>
-</div>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features c-comparison__category--no-differences">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size">
-
-Terugleververgoeding
-</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-Vaste vergoeding die per contract verschilt. Per 1-1-2027 eindigt de 
-salderingsregeling. Per die datum verandert ook de terugleververgoeding.
- Bij de prijsdetails vindt u de terugleververgoedingen.
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-Vaste vergoeding die per contract verschilt. Per 1-1-2027 eindigt de 
-salderingsregeling. Per die datum verandert ook de terugleververgoeding.
- Bij de prijsdetails vindt u de terugleververgoedingen.
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-Vaste vergoeding die per contract verschilt. Per 1-1-2027 eindigt de 
-salderingsregeling. Per die datum verandert ook de terugleververgoeding.
- Bij de prijsdetails vindt u de terugleververgoedingen.
-</div>
-</div>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size">
-
-Saldeerwijze
-</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<span class="c-comparison__highlight">Opwekking wordt bij elkaar opgeteld, eerst tegen het normaalverbruik gesaldeerd, de rest tegen dalverbruik</span>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<span class="c-comparison__highlight">Resterend aantal kWh in normaaluren wordt gesaldeerd tegen dalverbruik</span>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<span class="c-comparison__highlight">Restant per telwerk berekend tegen
- terugleververgoeding. De energiebelasting van het totale verbruik wordt
- gesaldeerd met de energiebelasting van de totaal opgewekte energie.</span>
-</div>
-</div>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features c-comparison__category--no-differences">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size">
-
-Einde contract
-</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-Aan het eind van de contractperiode wordt het contract automatisch voor 
-onbepaalde tijd verlengd tegen de op dat moment geldende variabele 
-tarieven.
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-Aan het eind van de contractperiode wordt het contract automatisch voor 
-onbepaalde tijd verlengd tegen de op dat moment geldende variabele 
-tarieven.
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-Aan het eind van de contractperiode wordt het contract automatisch voor 
-onbepaalde tijd verlengd tegen de op dat moment geldende variabele 
-tarieven.
-</div>
-</div>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size">
-
-Contractduur
-</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-12 maanden
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<span class="c-comparison__highlight">t/m 30-04-2027</span>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-12 maanden
-</div>
-</div>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features c-comparison__category--no-differences">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size">
-
-Stilzwijgende verlenging
-</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-Onbepaalde tijd
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-Onbepaalde tijd
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-Onbepaalde tijd
-</div>
-</div>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size">
-
-Contract beëindigen
-</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-Opzegging dient schriftelijk te geschieden met inachtneming van een 
-opzegtermijn van 5 dagen. Indien u dit niet doet, wordt het contract 
-automatisch voor onbepaalde tijd verlengd tegen dan geldende variabele 
-tarieven.
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-Opzegging dient schriftelijk te geschieden met inachtneming van een 
-opzegtermijn van 5 dagen. Indien u dit niet doet, wordt het contract 
-automatisch voor onbepaalde tijd verlengd tegen dan geldende variabele 
-tarieven.
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<span class="c-comparison__highlight">Opzegging dient te geschieden met 
-inachtneming van een opzegtermijn van 30 dagen. Indien u dit niet doet, 
-wordt het contract automatisch voor onbepaalde tijd verlengd tegen dan 
-geldende variabele tarieven.</span>
-</div>
-</div>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size">
-
-Opzegtermijn
-</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-5 dagen
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-5 dagen
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<span class="c-comparison__highlight">30 dagen</span>
-</div>
-</div>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features c-comparison__category--no-differences">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size">
-
-Maximale kosten bij tussentijdse opzegging
-</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-De hoogte wordt bepaald op basis van het verschil tussen de 
-contracttarieven, de huidige markttarieven en het resterend 
-(standaardjaar)verbruik voor de contractperiode. Het is dus afhankelijk 
-van uw situatie en per welk moment u de overeenkomst opzegt.
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-De hoogte wordt bepaald op basis van het verschil tussen de 
-contracttarieven, de huidige markttarieven en het resterend 
-(standaardjaar)verbruik voor de contractperiode. Het is dus afhankelijk 
-van uw situatie en per welk moment u de overeenkomst opzegt.
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-De hoogte wordt bepaald op basis van het verschil tussen de 
-contracttarieven, de huidige markttarieven en het resterend 
-(standaardjaar)verbruik voor de contractperiode. Het is dus afhankelijk 
-van uw situatie en per welk moment u de overeenkomst opzegt.
-</div>
-</div>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size">
-
-Stroometiket
-</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<script type="text/javascript">
-
-if (!chartData) {
-
-var chartData = [];
-
-}
-
-chartData['chart_eb5c7231-cc4f-4983-9e62-57723c1f505c'] =
-
-function () {
-
-var data = new google.visualization.arrayToDataTable([
-
-['Type', 'Percentage']
-
-, ['Kolen 0%', 0.00]
-
-, ['Aardgas 0%', 0.00]
-
-, ['Kernenergie 0%', 0.00]
-
-, ['Overige 0%', 0.00]
-
-, ['Wind 83,2%', 83.20]
-
-, ['Zon 16,8%', 16.80]
-
-, ['Waterkracht 0%', 0.00]
-
-, ['Biomassa 0%', 0.00]
-
-, ['Overige (groen) 0%', 0.00]
-
-]);
-
-var options = {
-
-tooltip: {
-
-text: 'none',
-
-showColorCode: true
-
-},
-
-legend: {
-
-position: 'left'
-
-},
-
-pieSliceText: 'none',
-
-sliceVisibilityThreshold: 0.00001,
-
-colors: ['333', 'ccc', 'd63232', 'eee', '76b8eb', 'ffd700', '3f51b5', '4aad01', 'adff2f'],
-
-chartArea: { width: '90%', height: '90%' }
-
-};
-
-var chart = new google.visualization.PieChart(document.getElementById('chart_eb5c7231-cc4f-4983-9e62-57723c1f505c'));
-
-chart.draw(data, options);
-
-}
-
-</script>
-<div id="chart_eb5c7231-cc4f-4983-9e62-57723c1f505c" class=""><div style="position: relative;"><div style="position: relative; width: 415px; height: 200px;" dir="ltr"><div style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;" aria-label="A chart."><svg width="415" height="200" style="overflow: hidden;" aria-label="A chart."><defs id="_ABSTRACT_RENDERER_ID_0"></defs><rect x="0" y="0" width="415" height="200" stroke="none" stroke-width="0" fill="#ffffff"></rect><g><rect x="21" y="10" width="125" height="29" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g column-id="Wind 83,2%"><rect x="21" y="10" width="125" height="11" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="36" y="19.35" font-family="Arial" font-size="11" stroke="none" stroke-width="0" fill="#222222">Wind 83,2%</text></g><circle cx="26.5" cy="15.5" r="5.5" stroke="none" stroke-width="0" fill="#76b8eb"></circle></g><g column-id="Zon 16,8%"><rect x="21" y="28" width="125" height="11" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="36" y="37.35" font-family="Arial" font-size="11" stroke="none" stroke-width="0" fill="#222222">Zon 16,8%</text></g><circle cx="26.5" cy="33.5" r="5.5" stroke="none" stroke-width="0" fill="#ffd700"></circle></g></g><g><path d="M280,100L201.6834620797427,55.65453926065374A90,90,0,0,1,280,10L280,100A0,0,0,0,0,280,100" stroke="#ffffff" stroke-width="1" fill="#ffd700"></path></g><g><path d="M280,100L280,10A90,90,0,1,1,201.6834620797427,55.65453926065374L280,100A0,0,0,1,0,280,100" stroke="#ffffff" stroke-width="1" fill="#76b8eb"></path></g><g></g></svg><div aria-label="A tabular representation of the data in the chart." style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;"><table><thead><tr><th>Type</th><th>Percentage</th></tr></thead><tbody><tr><td>Kolen 0%</td><td>0</td></tr><tr><td>Aardgas 0%</td><td>0</td></tr><tr><td>Kernenergie 0%</td><td>0</td></tr><tr><td>Overige 0%</td><td>0</td></tr><tr><td>Wind 83,2%</td><td>83.2</td></tr><tr><td>Zon 16,8%</td><td>16.8</td></tr><tr><td>Waterkracht 0%</td><td>0</td></tr><tr><td>Biomassa 0%</td><td>0</td></tr><tr><td>Overige (groen) 0%</td><td>0</td></tr></tbody></table></div></div></div><div style="display: none; position: absolute; top: 210px; left: 425px; white-space: nowrap; font-family: Arial; font-size: 11px;" aria-hidden="true">Zon 16,8%</div><div></div></div></div>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<script type="text/javascript">
-
-if (!chartData) {
-
-var chartData = [];
-
-}
-
-chartData['chart_5076aa35-b8f3-4398-83cc-954622b97d5c'] =
-
-function () {
-
-var data = new google.visualization.arrayToDataTable([
-
-['Type', 'Percentage']
-
-, ['Kolen 0%', 0.00]
-
-, ['Aardgas 0%', 0.00]
-
-, ['Kernenergie 0%', 0.00]
-
-, ['Overige 0%', 0.00]
-
-, ['Wind 94,1%', 94.10]
-
-, ['Zon 5,9%', 5.90]
-
-, ['Waterkracht 0%', 0.00]
-
-, ['Biomassa 0%', 0.00]
-
-, ['Overige (groen) 0%', 0.00]
-
-]);
-
-var options = {
-
-tooltip: {
-
-text: 'none',
-
-showColorCode: true
-
-},
-
-legend: {
-
-position: 'left'
-
-},
-
-pieSliceText: 'none',
-
-sliceVisibilityThreshold: 0.00001,
-
-colors: ['333', 'ccc', 'd63232', 'eee', '76b8eb', 'ffd700', '3f51b5', '4aad01', 'adff2f'],
-
-chartArea: { width: '90%', height: '90%' }
-
-};
-
-var chart = new google.visualization.PieChart(document.getElementById('chart_5076aa35-b8f3-4398-83cc-954622b97d5c'));
-
-chart.draw(data, options);
-
-}
-
-</script>
-<div id="chart_5076aa35-b8f3-4398-83cc-954622b97d5c" class=""><div style="position: relative;"><div style="position: relative; width: 415px; height: 200px;" dir="ltr"><div style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;" aria-label="A chart."><svg width="415" height="200" style="overflow: hidden;" aria-label="A chart."><defs id="_ABSTRACT_RENDERER_ID_1"></defs><rect x="0" y="0" width="415" height="200" stroke="none" stroke-width="0" fill="#ffffff"></rect><g><rect x="21" y="10" width="125" height="29" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g column-id="Wind 94,1%"><rect x="21" y="10" width="125" height="11" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="36" y="19.35" font-family="Arial" font-size="11" stroke="none" stroke-width="0" fill="#222222">Wind 94,1%</text></g><circle cx="26.5" cy="15.5" r="5.5" stroke="none" stroke-width="0" fill="#76b8eb"></circle></g><g column-id="Zon 5,9%"><rect x="21" y="28" width="125" height="11" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="36" y="37.35" font-family="Arial" font-size="11" stroke="none" stroke-width="0" fill="#222222">Zon 5,9%</text></g><circle cx="26.5" cy="33.5" r="5.5" stroke="none" stroke-width="0" fill="#ffd700"></circle></g></g><g><path d="M280,100L247.39521699659088,16.113599878761022A90,90,0,0,1,280,10L280,100A0,0,0,0,0,280,100" stroke="#ffffff" stroke-width="1" fill="#ffd700"></path></g><g><path d="M280,100L280,10A90,90,0,1,1,247.39521699659088,16.113599878761022L280,100A0,0,0,1,0,280,100" stroke="#ffffff" stroke-width="1" fill="#76b8eb"></path></g><g></g></svg><div aria-label="A tabular representation of the data in the chart." style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;"><table><thead><tr><th>Type</th><th>Percentage</th></tr></thead><tbody><tr><td>Kolen 0%</td><td>0</td></tr><tr><td>Aardgas 0%</td><td>0</td></tr><tr><td>Kernenergie 0%</td><td>0</td></tr><tr><td>Overige 0%</td><td>0</td></tr><tr><td>Wind 94,1%</td><td>94.1</td></tr><tr><td>Zon 5,9%</td><td>5.9</td></tr><tr><td>Waterkracht 0%</td><td>0</td></tr><tr><td>Biomassa 0%</td><td>0</td></tr><tr><td>Overige (groen) 0%</td><td>0</td></tr></tbody></table></div></div></div><div style="display: none; position: absolute; top: 210px; left: 425px; white-space: nowrap; font-family: Arial; font-size: 11px;" aria-hidden="true">Zon 5,9%</div><div></div></div></div>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<script type="text/javascript">
-
-if (!chartData) {
-
-var chartData = [];
-
-}
-
-chartData['chart_e2a25aed-b037-4fa8-bfd0-7814be7b90c9'] =
-
-function () {
-
-var data = new google.visualization.arrayToDataTable([
-
-['Type', 'Percentage']
-
-, ['Kolen 0%', 0.00]
-
-, ['Aardgas 0%', 0.00]
-
-, ['Kernenergie 0%', 0.00]
-
-, ['Overige 0%', 0.00]
-
-, ['Wind 100%', 100.00]
-
-, ['Zon 0%', 0.00]
-
-, ['Waterkracht 0%', 0.00]
-
-, ['Biomassa 0%', 0.00]
-
-, ['Overige (groen) 0%', 0.00]
-
-]);
-
-var options = {
-
-tooltip: {
-
-text: 'none',
-
-showColorCode: true
-
-},
-
-legend: {
-
-position: 'left'
-
-},
-
-pieSliceText: 'none',
-
-sliceVisibilityThreshold: 0.00001,
-
-colors: ['333', 'ccc', 'd63232', 'eee', '76b8eb', 'ffd700', '3f51b5', '4aad01', 'adff2f'],
-
-chartArea: { width: '90%', height: '90%' }
-
-};
-
-var chart = new google.visualization.PieChart(document.getElementById('chart_e2a25aed-b037-4fa8-bfd0-7814be7b90c9'));
-
-chart.draw(data, options);
-
-}
-
-</script>
-<div id="chart_e2a25aed-b037-4fa8-bfd0-7814be7b90c9" class=""><div style="position: relative;"><div style="position: relative; width: 415px; height: 200px;" dir="ltr"><div style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;" aria-label="A chart."><svg width="415" height="200" style="overflow: hidden;" aria-label="A chart."><defs id="_ABSTRACT_RENDERER_ID_2"></defs><rect x="0" y="0" width="415" height="200" stroke="none" stroke-width="0" fill="#ffffff"></rect><g><rect x="21" y="10" width="125" height="11" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g column-id="Wind 100%"><rect x="21" y="10" width="125" height="11" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="36" y="19.35" font-family="Arial" font-size="11" stroke="none" stroke-width="0" fill="#222222">Wind 100%</text></g><circle cx="26.5" cy="15.5" r="5.5" stroke="none" stroke-width="0" fill="#76b8eb"></circle></g></g><g><ellipse cx="280" cy="100" rx="90" ry="90" stroke="#ffffff" stroke-width="1" fill="#76b8eb"></ellipse></g><g></g></svg><div aria-label="A tabular representation of the data in the chart." style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;"><table><thead><tr><th>Type</th><th>Percentage</th></tr></thead><tbody><tr><td>Kolen 0%</td><td>0</td></tr><tr><td>Aardgas 0%</td><td>0</td></tr><tr><td>Kernenergie 0%</td><td>0</td></tr><tr><td>Overige 0%</td><td>0</td></tr><tr><td>Wind 100%</td><td>100</td></tr><tr><td>Zon 0%</td><td>0</td></tr><tr><td>Waterkracht 0%</td><td>0</td></tr><tr><td>Biomassa 0%</td><td>0</td></tr><tr><td>Overige (groen) 0%</td><td>0</td></tr></tbody></table></div></div></div><div style="display: none; position: absolute; top: 210px; left: 425px; white-space: nowrap; font-family: Arial; font-size: 11px;" aria-hidden="true">Wind 100%</div><div></div></div></div>
-</div>
-</div>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features c-comparison__category--no-differences">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size">
-
-Percentage groen/grijs
-</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-Grijs: 0,0%<br>Groen: 100,0%
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-Grijs: 0,0%<br>Groen: 100,0%
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-Grijs: 0,0%<br>Groen: 100,0%
-</div>
-</div>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features c-comparison__category--no-differences">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size">
-
-Max. leveringsgrens
-</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-Een stroomaansluiting tot en met 3x80 Ampère.
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-Een stroomaansluiting tot en met 3x80 Ampère.
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-Een stroomaansluiting tot en met 3x80 Ampère.
-</div>
-</div>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features c-comparison__category--no-differences">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size">
-
-Doelgroep
-</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-Huishoudelijk
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-Huishoudelijk
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-Huishoudelijk
-</div>
-</div>
-</section>
+</section>    
 <section class="js-comparison__coverage-section c-comparison__coverage-section">
 <input type="checkbox" class="js-comparison__category-checkbox c-comparison__category-checkbox u-visuallyhidden" id="comparison__category4" checked="checked">
 <label class="layout layout--flex layout--flush js-comparison__category c-comparison__category js-comparison__category--header c-comparison__category--header" for="comparison__category4">
 <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label c-comparison__coverage-cell--header">
-<h3 class="epsilon palm-default-font-size u-weight--normal u-text-color-white palm-pv--">Gas</h3>
+<h3 class="epsilon palm-default-font-size u-weight--normal u-text-color-white palm-pv--">Overzicht</h3>
 </div>
 <div class="layout__item u-1/4 u-1/3-palm u-bg-color-white c-comparison__coverage-cell c-comparison__coverage-cell--header u-palm-visuallyhidden"></div>
 <div class="layout__item u-1/4 u-1/3-palm u-bg-color-white c-comparison__coverage-cell c-comparison__coverage-cell--header u-palm-visuallyhidden"></div>
@@ -1507,93 +595,548 @@ Huishoudelijk
 <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
 <h4 class="u-text-color-white default-font-size">
 
-Soort gas
+Keuzes voor 2027
 </h4>
 </div>
 <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
 
-Grijs
+Niets doen
 </div>
 <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
 
-Grijs
+Buurtbatterij
 </div>
 <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
 
-Grijs
+Thuisbatterij
 </div>
 </div>
 <div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
 <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
 <h4 class="u-text-color-white default-font-size">
 
-Toelichting tarieven
+Totale jaarkosten<br>
+(incl. btw)
 </h4>
 </div>
 <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
 
-12 maanden vaste tarieven. Voor zonnepaneelbezitters gelden er er 2 
-tariefsperiodes voor de terugleverkosten en terugleververgoeding: 
-tarieven tot 1-1-2027 en tarieven vanaf 1-1-2027. Na 12 maanden krijgt u
- geleverd tegen variabele tarieven.
+<label for="" class="totaal">Totaal per jaar:
+                    <input type="text" id="totaalz" name="" class="inputresult" value="695.50" readonly>
+                    </label>
 </div>
 <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<span class="c-comparison__highlight">Vaste tarieven t/m 30-04-2027. 
-Hierna krijgt u geleverd tegen variabele tarieven. De looptijd van dit 
-contract is soms korter dan één jaar. Dit is het geval als u nog een 
-lopend contract heeft en dit duurt nog 60 dagen, of korter. Vattenfall 
-wacht dan de door u opgegeven einddatum af. Pas dan gaat uw contract in.
- De looptijd van uw nieuwe contract is dan op zijn hoogst 60 dagen 
-korter dan één jaar.</span>
+<label for="" class="totaal">Totaal per jaar:
+                    <input type="text" id="totaalm" name="" class="inputresult" value="401.20" readonly>
+                    </label>
 </div>
 <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
 
-12 maanden vaste tarieven. Voor zonnepaneelbezitters gelden er er 2 
-tariefsperiodes voor de terugleverkosten en terugleververgoeding: 
-tarieven tot 1-1-2027 en tarieven vanaf 1-1-2027. Na 12 maanden krijgt u
- geleverd tegen variabele tarieven.
+<label for="" class="totaal">Totaal per jaar:
+                    <input type="text" id="totaalthuis" name="" class="inputresult" value="0.00" readonly>
+                    </label>
 </div>
 </div>
 <div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
 <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
 <h4 class="u-text-color-white default-font-size">
 
-Contractduur
+Uitwerking kosten
 </h4>
 </div>
 <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
 
-12 maanden
+<h3>Tarieven</h3>
+                    <label for="">Energie kosten:
+                    <input type="text" id="jaarverbrz" name="" class="inputresult" value="676.00" readonly>
+                    </label>
+                    <label for="">Terugleverkosten:
+                    <input type="text" id="terugleverkostz" name="" class="inputresult" value="94.50" readonly>
+                    </label>
+                    <label for="">Terugleververgoeding:
+                    <input type="text" id="terugleververgz" name="" class="inputresult" value="-105.00" readonly>
+                    </label>
+                    <label for="" class="inactive">Buurtstroom kosten:
+                    <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly>
+                    </label>
+                    <label for="" class="inactive">Terugleverkosten buurtstroom:
+                    <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly>
+                    </label>
+                    <label for="" class="inactive">Korting inkomstenbelasting:
+                    <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly>
+                    </label>
+                    <h3>Lidmaatschap</h3>
+                    <label for="" class="inactive">Lidmaatschapskosten:
+                    <input type="text" id="participkost" name="" class="inputresult inactive" value="0.00" readonly>
+                    </label>
+                    
 </div>
 <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<span class="c-comparison__highlight">t/m 30-04-2027</span>
+<h3 style="display: none;">Opwek en verbruik</h3>
+                    <label for="" style="display: none;">Gemiddeld gelijktijdig verbruik:
+                    <input type="text" id="gelijkt" name="" class="inputresult" value="40 %" readonly>
+                    </label>
+
+                    <h3>Tarieven</h3>
+                    <label for="" class="inactive">Energie kosten:
+                    <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly>
+                    </label>
+                    <label for="" class="inactive">Terugleverkosten:
+                    <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly>
+                    </label>
+                    <label for="" class="inactive">Terugleververgoeding:
+                    <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly>
+                    </label>
+                    <label for="">Buurtstroom kosten:
+                    <input type="text" id="tariefbuurtstr" name="" class="inputresult" value="483.00" readonly>
+                    </label>
+                    <label for="">Terugleverkosten buurtstroom:
+                    <input type="text" id="terugleverbuurtm" name="" class="inputresult" value="16.20" readonly>
+                    </label>
+                    <label for="">Korting inkomstenbelasting:
+                    <input type="text" id="inkomstbelast" name="" class="inputresult" value="-162.00" readonly>
+                    </label>
+                    <h3>Lidmaatschap</h3>
+                    <label for="">Lidmaatschapskosten:
+                    <input type="text" id="participkostm" name="" class="inputresult" value="24.00" readonly>
+                    </label>
+                    
 </div>
 <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
 
-12 maanden
+<h3 style="display: none;">Opwek en verbruik</h3>
+
+                    <h3>Tarieven</h3>
+                    <label for="">Energie kosten:
+                    <input type="text" id="jaarverbth" name="" class="inputresult" value="0.00" readonly>
+                    </label>
+                    <label for="">Terugleverkosten:
+                    <input type="text" id="terugleverkostth" name="" class="inputresult" value="0.00" readonly>
+                    </label>
+                    <label for="">Terugleververgoeding:
+                    <input type="text" id="terugleververgth" name="" class="inputresult" value="0.00" readonly>
+                    </label>
+                    <label for="" class="inactive">Buurtstroom kosten:
+                    <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly>
+                    </label>
+                    <label for="" class="inactive">Terugleverkosten buurtstroom:
+                    <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly>
+                    </label>
+                    <label for="" class="inactive">Korting inkomstenbelasting:
+                    <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly>
+                    </label>
+                    <h3>Lidmaatschap</h3>
+                    <label for="" class="inactive">Lidmaatschapskosten:
+                    <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly>
+                    </label>
+                    
+</div>
+</div>
+<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
+<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
+<h4 class="u-text-color-white default-font-size">
+
+Toelichting keuze
+</h4>
+</div>
+<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+<b>Wat betekent dit?</b>
+Je verandert niets aan je huidige situatie. De stroom die je niet direct zelf gebruikt, gaat terug het net op.
+<p>
+<b>Gevolgen vanaf 2027</b>
+<ul>
+  <li>Het salderen stopt: je betaalt voor afname en krijgt minder terug voor teruglevering.</li>
+  <li>Terugleverkosten kunnen flink oplopen.</li>
+  <li>Je hebt weinig grip op je energierekening.</li>
+</ul>
+</p>
+<b>Voor wie passend?</b>
+Voor huishoudens die (nog) niets willen of kunnen aanpassen, maar wel de hogere kosten accepteren.
+</div>
+<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+
+  <b>Wat betekent dit?</b>
+Je deelt lokaal opgewekte stroom met je buurt, met hulp van een buurtbatterij en slimme meterkasten. Overschotten worden opgeslagen of direct in de wijk gebruikt.
+<p>
+<b>Voordelen</b>
+<ul>
+  <li>Je benut lokaal opgewekte energie optimaal.</li>
+  <li>Minder teruglevering aan het net = lagere kosten.</li>
+  <li>Je krijgt belastingvoordeel via energie delen.</li>
+  <li>Iedereen in de buurt profiteert mee.</li>
+</ul>
+</p>
+<b>Waarom dit past bij de stichting</b>
+Stichting Oranje Advies 2051 ziet energie als een ecosysteemdienst: lokaal, eerlijk en sociaal georganiseerd, waarbij bewoners samen sterker staan.
+
+<p><b>Voor wie passend?</b>
+Voor bewoners die samen willen investeren in een eerlijke energietransitie, zonder zelf alles individueel te hoeven regelen.</p>
+</div>
+<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+
+<b>Wat betekent dit?</b>
+Je slaat opgewekte stroom op in een batterij in je eigen woning en gebruikt deze later zelf.
+<p><b>Voordelen</b>
+<ul>
+<li>Meer eigen verbruik van zonne-energie.</li>
+<li>Minder teruglevering aan het net.</li>
+</ul>
+<b>Aandachtspunten</b>
+<ul>
+  <li>Hoge aanschafkosten.</li>
+  <li>Beperkte capaciteit: niet alle overschotten zijn op te slaan.</li>
+  <li>Het voordeel is volledig individueel; de buurt profiteert niet mee.</li>
+</ul>
+</p>
+<b>Voor wie passend?</b>
+Voor huishoudens die individueel willen optimaliseren en bereid zijn daarin zelf te investeren.
+</div>
+</div>
+
+<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features c-comparison__category--no-differences">
+<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
+<h4 class="u-text-color-white default-font-size">
+
+Investering
+</h4>
+</div>
+<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+
+<b>Investering</b>
+Geen investering.
+<p><b>Afbetaaltermijn</b>
+Niet van toepassing.</p>
+<b>Toelichting</b>
+Je maakt geen kosten vooraf, maar blijft volledig afhankelijk van energietarieven en terugleverkosten na het stoppen van salderen.
+</div>
+<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+
+<b>Investering</b>
+Indicatief €3.000 per woning via deelname aan het energieschap.
+<p><b>Afbetaaltermijn</b>
+
+20% eigen inleg bij start
+Resterend bedrag via maandelijkse afbetaling
+Aflossing loopt via het lidmaatschap van het energieschap</p>
+
+<b>Toelichting</b>
+De investering is collectief georganiseerd. Bewoners profiteren direct van lagere energiekosten en belastingvoordeel terwijl de kosten gespreid worden over de looptijd.
+</div>
+<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+
+<b>Investering</b>
+Hoge eenmalige investering, volledig voor eigen rekening.
+
+<p><b>Afbetaaltermijn</b>
+Geen standaard afbetaalregeling; kosten worden vooraf of via externe financiering betaald.</p>
+<b>Toelichting</b>
+De investering en het financiële voordeel zijn volledig individueel. Onderhoud, vervanging en risico’s liggen bij de bewoner zelf.
+</div>
+</div>
+<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
+<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
+<h4 class="u-text-color-white default-font-size">
+
+Gebruik van zonne-energie
+</h4>
+</div>
+<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+
+
+Zonne‑energie wordt eerst in huis gebruikt; het overschot gaat direct terug naar het elektriciteitsnet.<p>
+<b>Gevolg</b>
+<ul>
+  <li>Een groot deel van de opgewekte stroom wordt niet direct benut.</li>
+  <li>Teruglevering aan het net wordt steeds minder aantrekkelijk.</li>
+  <li>Je bent afhankelijk van terugleververgoedingen en -kosten.</li>
+</ul></p>
+
+</div>
+<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+
+Zonne‑energie wordt eerst in huis gebruikt. Het overschot blijft lokaal in de buurt en wordt opgeslagen in een buurtbatterij of direct gedeeld met andere bewoners.<p>
+<b>Gevolg</b>
+<ul>
+  <li>Meer lokaal en gelijktijdig gebruik van opgewekte stroom.</li>
+  <li>Minder stroom terug naar het net.</li>
+  <li>Ook bewoners zonder zonnepanelen profiteren van lokaal opgewekte energie.</li>
+</ul></p>
+
+</div>
+<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+Zonne‑energie wordt eerst in huis gebruikt en daarna opgeslagen in een eigen thuisbatterij voor later gebruik.<p>
+<b>Gevolg</b>
+<ul>
+  <li>Meer eigen verbruik dan bij niets doen.</li>
+  <li>Overschotten die niet in de batterij passen, gaan alsnog terug naar het net.</li>
+  <li>Het voordeel blijft volledig individueel.</li>
+</ul></p>
+
+</div>
+</div>
+<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
+<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
+<h4 class="u-text-color-white default-font-size">
+
+Omgang met stroomoverschot
+</h4>
+</div>
+<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+
+
+<strong>Wat gebeurt er met overtollige zonne‑energie?</strong>
+<ul>
+  <li>Stroom die je niet direct gebruikt, gaat terug naar het elektriciteitsnet.</li>
+  <li>Je ontvangt een terugleververgoeding of betaalt terugleverkosten.</li>
+  <li>Het overschot verlaat de buurt en wordt niet lokaal benut.</li>
+</ul>
+
+
+</div>
+<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+
+<strong>Wat gebeurt er met overtollige zonne‑energie?</strong>
+<ul>
+  <li>Stroom die je niet direct gebruikt, blijft in de buurt.</li>
+  <li>Het overschot wordt opgeslagen in een buurtbatterij of direct gedeeld met andere bewoners.</li>
+  <li>De energie wordt later gebruikt als buurtstroom.</li>
+  <li>Minder teruglevering aan het net en lagere terugleverkosten.</li>
+</ul>
+
+</div>
+<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+<strong>Wat gebeurt er met overtollige zonne‑energie?</strong>
+<ul>
+  <li>Stroom die je niet direct gebruikt, wordt opgeslagen in je eigen thuisbatterij.</li>
+  <li>Is de batterij vol, dan gaat het resterende overschot alsnog terug naar het net.</li>
+  <li>Het gebruik en voordeel zijn volledig individueel.</li>
+</ul>
+
+</div>
+</div>
+<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
+<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
+<h4 class="u-text-color-white default-font-size">
+
+Techniek & beheer
+</h4>
+</div>
+<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+
+<strong>Techniek</strong>
+<ul>
+  <li>Geen aanvullende techniek naast de bestaande meterkast.</li>
+  <li>Zonnepanelen leveren stroom terug aan het net.</li>
+</ul>
+
+<strong>Beheer</strong>
+<ul>
+  <li>Geen extra beheer of onderhoud.</li>
+  <li>Je bent volledig afhankelijk van energieleverancier en netbeheerder.</li>
+</ul>
+
+</div>
+<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+
+
+
+<strong>Techniek</strong>
+<ul>
+  <li>Buurtbatterij in de wijk voor opslag van lokale zonne‑energie.</li>
+  <li>Slimme meterkast of meetmodule in huis.</li>
+  <li>Software stuurt verdeling van buurtstroom automatisch aan.</li>
+</ul>
+
+<strong>Beheer</strong>
+<ul>
+  <li>Beheer en onderhoud zijn collectief georganiseerd.</li>
+  <li>Bewoners hoeven zelf niets technisch te bedienen.</li>
+  <li>Monitoring en ondersteuning gebeuren op afstand.</li>
+</ul>
+
+
+</div>
+<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+
+
+<strong>Techniek</strong>
+<ul>
+  <li>Een batterij in of bij de woning voor eigen opslag.</li>
+  <li>Aansturing via omvormer en bijbehorende software.</li>
+</ul>
+
+<strong>Beheer</strong>
+<ul>
+  <li>Onderhoud en beheer zijn de verantwoordelijkheid van de bewoner.</li>
+  <li>Vervanging en storingen zijn individueel geregeld.</li>
+</ul>
+
+</div>
+
+</div>
+<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features c-comparison__category--no-differences">
+<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
+<h4 class="u-text-color-white default-font-size">
+
+Individueel vs collectief
+</h4>
+</div>
+<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+
+<strong>Individueel</strong>
+<ul>
+  <li>Iedereen regelt zijn eigen energiecontract en kosten.</li>
+  <li>Voordelen en nadelen zijn volledig persoonlijk.</li>
+</ul>
+
+<strong>Collectief</strong>
+<ul>
+  <li>Er is geen samenwerking met de buurt.</li>
+  <li>Opgewekte energie wordt niet lokaal gedeeld.</li>
+</ul>
+
+</div>
+<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+
+<strong>Individueel</strong>
+<ul>
+  <li>Je gebruikt stroom zoals je gewend bent.</li>
+  <li>Je profiteert persoonlijk van lagere kosten en stabielere tarieven.</li>
+</ul>
+
+<strong>Collectief</strong>
+<ul>
+  <li>Opgewekte energie wordt samen met de buurt benut.</li>
+  <li>Bewoners met en zonder zonnepanelen doen mee.</li>
+  <li>Kosten, voordelen en techniek zijn collectief georganiseerd.</li>
+  <li>De buurt wordt minder afhankelijk van het elektriciteitsnet.</li>
+</ul>
+
+</div>
+<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+
+<strong>Individueel</strong>
+<ul>
+  <li>De batterij en het voordeel zijn volledig voor eigen gebruik.</li>
+  <li>Je regelt investering, onderhoud en vervanging zelf.</li>
+</ul>
+
+<strong>Collectief</strong>
+<ul>
+  <li>Er is geen directe samenwerking met de buurt.</li>
+  <li>Andere bewoners profiteren niet mee van het systeem.</li>
+</ul>
+</div>
+</div>
+<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
+<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
+<h4 class="u-text-color-white default-font-size">
+
+Duurzaamheid & netbelasting
+</h4>
+</div>
+<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+
+<strong>Duurzaamheid</strong>
+<ul>
+  <li>Een groot deel van de zonne‑energie verlaat de buurt via het elektriciteitsnet.</li>
+  <li>Lokaal opgewekte stroom wordt niet optimaal benut.</li>
+</ul>
+
+<strong>Netbelasting</strong>
+<ul>
+  <li>Teruglevering zorgt voor extra druk op het elektriciteitsnet.</li>
+  <li>Bij piekproductie kan dit leiden tot hogere kosten en beperkingen.</li>
+</ul>
+
+</div>
+<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+
+<strong>Duurzaamheid</strong>
+<ul>
+  <li>Lokaal opgewekte zonne‑energie blijft in de buurt.</li>
+  <li>Meer directe en nuttige inzet van duurzame stroom.</li>
+  <li>Ook bewoners zonder zonnepanelen profiteren van groene energie.</li>
+</ul>
+
+<strong>Netbelasting</strong>
+<ul>
+  <li>Minder teruglevering aan het elektriciteitsnet.</li>
+  <li>Pieken worden afgevlakt door lokale opslag en verdeling.</li>
+  <li>Het net wordt ontlast, wat bijdraagt aan toekomstbestendigheid.</li>
+</ul>
+</div>
+<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+
+<strong>Duurzaamheid</strong>
+<ul>
+  <li>Meer eigen gebruik van zonne‑energie dan bij niets doen.</li>
+  <li>Overschotten die niet opgeslagen kunnen worden, gaan alsnog terug naar het net.</li>
+</ul>
+
+<strong>Netbelasting</strong>
+<ul>
+  <li>De belasting van het net neemt beperkt af.</li>
+  <li>Effect blijft afhankelijk van de grootte van de batterij.</li>
+</ul>
+
 </div>
 </div>
 <div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features c-comparison__category--no-differences">
 <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
 <h4 class="u-text-color-white default-font-size">
 
-Stilzwijgende verlenging
+Voor wie geschikt
 </h4>
 </div>
 <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
 
-Onbepaalde tijd
+
+<strong>Past vooral bij</strong>
+<ul>
+  <li>Huishoudens die geen veranderingen willen of kunnen doorvoeren.</li>
+  <li>Bewoners die geen investering willen doen.</li>
+</ul>
+
+<strong>Minder geschikt als</strong>
+<ul>
+  <li>Je grip wilt krijgen op je energiekosten na 2027.</li>
+  <li>Je lokaal opgewekte zonne‑energie beter wilt benutten.</li>
+</ul>
+
 </div>
 <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
 
-Onbepaalde tijd
+<strong>Past vooral bij</strong>
+<ul>
+  <li>Bewoners die samen met de buurt energie willen delen.</li>
+  <li>Huishoudens met én zonder zonnepanelen.</li>
+  <li>Mensen die willen profiteren zonder zelf alles te moeten regelen.</li>
+</ul>
+
+<strong>Minder geschikt als</strong>
+<ul>
+  <li>Je alleen individueel voordeel zoekt zonder samenwerking.</li>
+  <li>Je geen collectieve oplossing wilt.</li>
+</ul>
+
 </div>
 <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
 
-Onbepaalde tijd
+<strong>Past vooral bij</strong>
+<ul>
+  <li>Huishoudens die individueel hun zonne‑energie willen opslaan.</li>
+  <li>Bewoners die zelf willen investeren en beheren.</li>
+</ul>
+
+<strong>Minder geschikt als</strong>
+<ul>
+  <li>Je geen grote eenmalige investering wilt doen.</li>
+  <li>Je zoekt naar een oplossing die ook de buurt helpt.</li>
+</ul>
 </div>
 </div>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
+<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features c-comparison__category--no-differences">
 <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
 <h4 class="u-text-color-white default-font-size">
 
@@ -1602,23 +1145,51 @@ Contract beëindigen
 </div>
 <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
 
-Opzegging dient schriftelijk te geschieden met inachtneming van een 
-opzegtermijn van 5 dagen. Indien u dit niet doet, wordt het contract 
-automatisch voor onbepaalde tijd verlengd tegen dan geldende variabele 
-tarieven.
+
+<strong>Beëindigen</strong>
+<ul>
+  <li>Je kunt je energiecontract opzeggen volgens de voorwaarden van je energieleverancier.</li>
+  <li>Er zijn geen aanvullende afspraken of verplichtingen.</li>
+</ul>
+
+<strong>Gevolg</strong>
+<ul>
+  <li>Bij een nieuw contract blijven de effecten van stoppen met salderen bestaan.</li>
+</ul>
+
 </div>
 <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
 
-Opzegging dient schriftelijk te geschieden met inachtneming van een 
-opzegtermijn van 5 dagen. Indien u dit niet doet, wordt het contract 
-automatisch voor onbepaalde tijd verlengd tegen dan geldende variabele 
-tarieven.
+
+<strong>Beëindigen</strong>
+<ul>
+  <li>Deelname aan energie delen is vrijwillig.</li>
+  <li>Opzegging verloopt via het energieschap.</li>
+  <li>De collectieve installatie blijft in beheer van de buurt.</li>
+</ul>
+
+<strong>Gevolg</strong>
+<ul>
+  <li>Na beëindiging maak je geen gebruik meer van buurtstroom.</li>
+  <li>Je valt terug op je reguliere energiecontract.</li>
+</ul>
+
 </div>
 <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<span class="c-comparison__highlight">Opzegging dient te geschieden met 
-inachtneming van een opzegtermijn van 30 dagen. Indien u dit niet doet, 
-wordt het contract automatisch voor onbepaalde tijd verlengd tegen dan 
-geldende variabele tarieven.</span>
+
+
+<strong>Beëindigen</strong>
+<ul>
+  <li>Er is geen contract dat je kunt beëindigen.</li>
+  <li>De batterij blijft eigendom van de bewoner.</li>
+</ul>
+
+<strong>Gevolg</strong>
+<ul>
+  <li>Bij stoppen met gebruik blijft de investering bestaan.</li>
+  <li>Eventuele verkoop of verwijdering regel je zelf.</li>
+</ul>
+
 </div>
 </div>
 <div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
@@ -1630,286 +1201,40 @@ Opzegtermijn
 </div>
 <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
 
-5 dagen
+
+
+<strong>Opzegtermijn</strong>
+<ul>
+  <li>De opzegtermijn volgt uit de voorwaarden van je energiecontract.</li>
+  <li>Deze verschilt per energieleverancier en type contract.</li>
+</ul>
+
+
 </div>
 <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
 
-5 dagen
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<span class="c-comparison__highlight">30 dagen</span>
-</div>
-</div>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features c-comparison__category--no-differences">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size">
 
-Maximale kosten bij tussentijdse opzegging
-</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
 
-De hoogte wordt bepaald op basis van het verschil tussen de 
-contracttarieven, de huidige markttarieven en het resterend 
-(standaardjaar)verbruik voor de contractperiode. Het is dus afhankelijk 
-van uw situatie en per welk moment u de overeenkomst opzegt.
+<strong>Opzegtermijn</strong>
+<ul>
+  <li>Deelname aan energie delen kent een opzegtermijn via het energieschap.</li>
+  <li>De opzegtermijn is vastgelegd in de lidmaatschapsvoorwaarden.</li>
+  <li>De collectieve installatie blijft bestaan, ook als je stopt.</li>
+</ul>
+
+
 </div>
 <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
 
-De hoogte wordt bepaald op basis van het verschil tussen de 
-contracttarieven, de huidige markttarieven en het resterend 
-(standaardjaar)verbruik voor de contractperiode. Het is dus afhankelijk 
-van uw situatie en per welk moment u de overeenkomst opzegt.
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
 
-De hoogte wordt bepaald op basis van het verschil tussen de 
-contracttarieven, de huidige markttarieven en het resterend 
-(standaardjaar)verbruik voor de contractperiode. Het is dus afhankelijk 
-van uw situatie en per welk moment u de overeenkomst opzegt.
-</div>
-</div>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size">
 
-Gasetiket
-</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<script type="text/javascript">
+<strong>Opzegtermijn</strong>
+<ul>
+  <li>Er is geen opzegtermijn van toepassing.</li>
+  <li>De batterij is eigendom van de bewoner.</li>
+</ul>
 
-if (!chartData) {
 
-var chartData = [];
-
-}
-
-chartData['chart_e7dd4665-e172-407c-875c-9a650eaf12c6'] =
-
-function () {
-
-var data = new google.visualization.arrayToDataTable([
-
-['Type', 'Percentage']
-
-, ['(Aard)gas 100%', 100.00]
-
-, ['CO2-compensatie (aard)gas 0%', 0.00]
-
-, ['Biogas 0%', 0.00]
-
-]);
-
-var options = {
-
-tooltip: {
-
-text: 'none',
-
-showColorCode: true
-
-},
-
-legend: {
-
-position: 'left'
-
-},
-
-pieSliceText: 'none',
-
-sliceVisibilityThreshold: 0.00001,
-
-colors: ['ccc', 'ffd700', '51b53f'],
-
-chartArea: { width: '90%', height: '90%' }
-
-};
-
-var chart = new google.visualization.PieChart(document.getElementById('chart_e7dd4665-e172-407c-875c-9a650eaf12c6'));
-
-chart.draw(data, options);
-
-}
-
-</script>
-<div id="chart_e7dd4665-e172-407c-875c-9a650eaf12c6" class=""><div style="position: relative;"><div style="position: relative; width: 415px; height: 200px;" dir="ltr"><div style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;" aria-label="A chart."><svg width="415" height="200" style="overflow: hidden;" aria-label="A chart."><defs id="_ABSTRACT_RENDERER_ID_3"></defs><rect x="0" y="0" width="415" height="200" stroke="none" stroke-width="0" fill="#ffffff"></rect><g><rect x="21" y="10" width="125" height="11" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g column-id="(Aard)gas 100%"><rect x="21" y="10" width="125" height="11" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="36" y="19.35" font-family="Arial" font-size="11" stroke="none" stroke-width="0" fill="#222222">(Aard)gas 100%</text></g><circle cx="26.5" cy="15.5" r="5.5" stroke="none" stroke-width="0" fill="#cccccc"></circle></g></g><g><ellipse cx="280" cy="100" rx="90" ry="90" stroke="#ffffff" stroke-width="1" fill="#cccccc"></ellipse></g><g></g></svg><div aria-label="A tabular representation of the data in the chart." style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;"><table><thead><tr><th>Type</th><th>Percentage</th></tr></thead><tbody><tr><td>(Aard)gas 100%</td><td>100</td></tr><tr><td>CO2-compensatie (aard)gas 0%</td><td>0</td></tr><tr><td>Biogas 0%</td><td>0</td></tr></tbody></table></div></div></div><div style="display: none; position: absolute; top: 210px; left: 425px; white-space: nowrap; font-family: Arial; font-size: 11px;" aria-hidden="true">(Aard)gas 100%</div><div></div></div></div>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<script type="text/javascript">
-
-if (!chartData) {
-
-var chartData = [];
-
-}
-
-chartData['chart_8b36d55e-0abe-45a9-a74a-14ef528e98a8'] =
-
-function () {
-
-var data = new google.visualization.arrayToDataTable([
-
-['Type', 'Percentage']
-
-, ['(Aard)gas 100%', 100.00]
-
-, ['CO2-compensatie (aard)gas 0%', 0.00]
-
-, ['Biogas 0%', 0.00]
-
-]);
-
-var options = {
-
-tooltip: {
-
-text: 'none',
-
-showColorCode: true
-
-},
-
-legend: {
-
-position: 'left'
-
-},
-
-pieSliceText: 'none',
-
-sliceVisibilityThreshold: 0.00001,
-
-colors: ['ccc', 'ffd700', '51b53f'],
-
-chartArea: { width: '90%', height: '90%' }
-
-};
-
-var chart = new google.visualization.PieChart(document.getElementById('chart_8b36d55e-0abe-45a9-a74a-14ef528e98a8'));
-
-chart.draw(data, options);
-
-}
-
-</script>
-<div id="chart_8b36d55e-0abe-45a9-a74a-14ef528e98a8" class=""><div style="position: relative;"><div style="position: relative; width: 415px; height: 200px;" dir="ltr"><div style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;" aria-label="A chart."><svg width="415" height="200" style="overflow: hidden;" aria-label="A chart."><defs id="_ABSTRACT_RENDERER_ID_4"></defs><rect x="0" y="0" width="415" height="200" stroke="none" stroke-width="0" fill="#ffffff"></rect><g><rect x="21" y="10" width="125" height="11" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g column-id="(Aard)gas 100%"><rect x="21" y="10" width="125" height="11" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="36" y="19.35" font-family="Arial" font-size="11" stroke="none" stroke-width="0" fill="#222222">(Aard)gas 100%</text></g><circle cx="26.5" cy="15.5" r="5.5" stroke="none" stroke-width="0" fill="#cccccc"></circle></g></g><g><ellipse cx="280" cy="100" rx="90" ry="90" stroke="#ffffff" stroke-width="1" fill="#cccccc"></ellipse></g><g></g></svg><div aria-label="A tabular representation of the data in the chart." style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;"><table><thead><tr><th>Type</th><th>Percentage</th></tr></thead><tbody><tr><td>(Aard)gas 100%</td><td>100</td></tr><tr><td>CO2-compensatie (aard)gas 0%</td><td>0</td></tr><tr><td>Biogas 0%</td><td>0</td></tr></tbody></table></div></div></div><div style="display: none; position: absolute; top: 210px; left: 425px; white-space: nowrap; font-family: Arial; font-size: 11px;" aria-hidden="true">(Aard)gas 100%</div><div></div></div></div>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<script type="text/javascript">
-
-if (!chartData) {
-
-var chartData = [];
-
-}
-
-chartData['chart_1d25bd6f-6f7e-4a1c-a34f-edfba0831bf4'] =
-
-function () {
-
-var data = new google.visualization.arrayToDataTable([
-
-['Type', 'Percentage']
-
-, ['(Aard)gas 99%', 99.00]
-
-, ['CO2-compensatie (aard)gas 0%', 0.00]
-
-, ['Biogas 1%', 1.00]
-
-]);
-
-var options = {
-
-tooltip: {
-
-text: 'none',
-
-showColorCode: true
-
-},
-
-legend: {
-
-position: 'left'
-
-},
-
-pieSliceText: 'none',
-
-sliceVisibilityThreshold: 0.00001,
-
-colors: ['ccc', 'ffd700', '51b53f'],
-
-chartArea: { width: '90%', height: '90%' }
-
-};
-
-var chart = new google.visualization.PieChart(document.getElementById('chart_1d25bd6f-6f7e-4a1c-a34f-edfba0831bf4'));
-
-chart.draw(data, options);
-
-}
-
-</script>
-<div id="chart_1d25bd6f-6f7e-4a1c-a34f-edfba0831bf4" class=""><div style="position: relative;"><div style="position: relative; width: 415px; height: 200px;" dir="ltr"><div style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;" aria-label="A chart."><svg width="415" height="200" style="overflow: hidden;" aria-label="A chart."><defs id="_ABSTRACT_RENDERER_ID_5"></defs><rect x="0" y="0" width="415" height="200" stroke="none" stroke-width="0" fill="#ffffff"></rect><g><rect x="21" y="10" width="125" height="29" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g column-id="(Aard)gas 99%"><rect x="21" y="10" width="125" height="11" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="36" y="19.35" font-family="Arial" font-size="11" stroke="none" stroke-width="0" fill="#222222">(Aard)gas 99%</text></g><circle cx="26.5" cy="15.5" r="5.5" stroke="none" stroke-width="0" fill="#cccccc"></circle></g><g column-id="Biogas 1%"><rect x="21" y="28" width="125" height="11" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="36" y="37.35" font-family="Arial" font-size="11" stroke="none" stroke-width="0" fill="#222222">Biogas 1%</text></g><circle cx="26.5" cy="33.5" r="5.5" stroke="none" stroke-width="0" fill="#51b53f"></circle></g></g><g><path d="M280,100L274.3488532423617,10.177594441455554A90,90,0,0,1,280,10L280,100A0,0,0,0,0,280,100" stroke="#ffffff" stroke-width="1" fill="#51b53f"></path></g><g><path d="M280,100L280,10A90,90,0,1,1,274.3488532423617,10.177594441455554L280,100A0,0,0,1,0,280,100" stroke="#ffffff" stroke-width="1" fill="#cccccc"></path></g><g></g></svg><div aria-label="A tabular representation of the data in the chart." style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;"><table><thead><tr><th>Type</th><th>Percentage</th></tr></thead><tbody><tr><td>(Aard)gas 99%</td><td>99</td></tr><tr><td>CO2-compensatie (aard)gas 0%</td><td>0</td></tr><tr><td>Biogas 1%</td><td>1</td></tr></tbody></table></div></div></div><div style="display: none; position: absolute; top: 210px; left: 425px; white-space: nowrap; font-family: Arial; font-size: 11px;" aria-hidden="true">Biogas 1%</div><div></div></div></div>
-</div>
-</div>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features c-comparison__category--no-differences">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size">
-
-Max. leveringsgrens
-</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-Een gasaansluiting tot en met 40 m3 per uur.
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-Een gasaansluiting tot en met 40 m3 per uur.
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-Een gasaansluiting tot en met 40 m3 per uur.
-</div>
-</div>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features c-comparison__category--no-differences">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size">
-
-Doelgroep
-</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-Huishoudelijk
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-Huishoudelijk
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-Huishoudelijk
-</div>
-</div>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size">
-
-Herkomst grijs gas
-</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<span class="c-comparison__highlight">Een mix van 1% groen gas en 99% aardgas</span>
 </div>
 </div>
 </section>
@@ -1926,6 +1251,7 @@ Herkomst grijs gas
 </div>
 </div>
 </section>
+
 </div>
 </main>
     <footer>
@@ -1962,7 +1288,7 @@ Herkomst grijs gas
   function submitAndShow(){
     const form = document.getElementById('myForm');
     const formData = new FormData(form);
-    fetch('submit_form.php', {
+    fetch('submit.php', {
       method: 'POST',
       body: formData
     }).then(response => response.text()).then(data => {
@@ -2005,4 +1331,42 @@ function showSlides(n) {
 <script src="/js/bewonertool.js"></script>
 <script src="/js/includehtml.js"></script>
 <script>includeHTML();</script>
+<script>
+  // Load dynamic content sections on page load
+  document.addEventListener('DOMContentLoaded', function() {
+    const sections = [
+      { id: 'content-descritpion', key: 'omschrijving'},
+
+      { id: 'title1', key: 'title1'},
+      { id: 'content-a1', key: 'optie1'},
+      { id: 'content-b1', key: 'optie2'},
+      { id: 'content-c1', key: 'optie3'},
+      { id: 'title2', key: 'title2'},
+
+      { id: 'title3', key: 'title3'},
+      { id: 'content-a3', key: 'optie1'},
+      { id: 'content-b3', key: 'optie2'},
+      { id: 'content-c3', key: 'optie3'},
+      { id: 'content-a4', key: 'optie1'},
+      { id: 'content-b4', key: 'optie2'},
+      { id: 'content-c4', key: 'optie3'}
+    ];
+
+    sections.forEach(section => {
+      const element = document.getElementById(section.id);
+      if (element) {
+        fetch(`api/content.php?action=get&section=${section.key}`)
+          .then(response => response.json())
+          .then(data => {
+            if (data.success && data.content) {
+              element.innerHTML = data.content;
+            }
+          })
+          .catch(error => {
+            console.error(`Error loading content for ${section.key}:`, error);
+          });
+      }
+    });
+  });
+</script>
 </html>
