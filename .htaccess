@@ -1,0 +1,10 @@
+Options -Indexes
+ServerSignature Off
+
+<FilesMatch "\.(php|phtml)$">
+    Require all granted
+</FilesMatch>
+
+<FilesMatch "\.(env|ini|log|sql)$">
+    Require all denied
+</FilesMatch>
