@@ -1,0 +1,3 @@
+<label for="" class="totaal">Totaal per jaar:
+                    <input type="text" id="totaalthuis" name="" class="inputresult" value="0.00" readonly>
+                    </label>

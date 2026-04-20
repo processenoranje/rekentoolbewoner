@@ -1,0 +1,25 @@
+<h3 style="display: none;">Opwek en verbruik</h3>
+
+                    <h3>Tarieven</h3>
+                    <label for="">Energie kosten:
+                    <input type="text" id="jaarverbth" name="" class="inputresult" value="0.00" readonly>
+                    </label>
+                    <label for="">Terugleverkosten:
+                    <input type="text" id="terugleverkostth" name="" class="inputresult" value="0.00" readonly>
+                    </label>
+                    <label for="">Terugleververgoeding:
+                    <input type="text" id="terugleververgth" name="" class="inputresult" value="0.00" readonly>
+                    </label>
+                    <label for="" class="inactive">Buurtstroom kosten:
+                    <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly>
+                    </label>
+                    <label for="" class="inactive">Terugleverkosten buurtstroom:
+                    <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly>
+                    </label>
+                    <label for="" class="inactive">Korting inkomstenbelasting:
+                    <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly>
+                    </label>
+                    <h3>Lidmaatschap</h3>
+                    <label for="" class="inactive">Lidmaatschapskosten:
+                    <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly>
+                    </label>
