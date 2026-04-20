@@ -40,7 +40,7 @@ class ContentManager
         }
 
         // Fetch from database
-        $stmt = $this->pdo->prepare("SELECT content FROM page_content WHERE section_key = ?");
+        $stmt = $this->pdo->prepare("SELECT content FROM page_content WHERE section_key = ? AND active = 1");
         $stmt->execute([$sectionKey]);
         $result = $stmt->fetchColumn();
 
@@ -88,9 +88,21 @@ class ContentManager
 
     public function getAllContent(): array
     {
-        $stmt = $this->pdo->prepare("SELECT section_key, content, updated_at FROM page_content ORDER BY updated_at DESC");
+        $stmt = $this->pdo->prepare("SELECT section_key, content, updated_at, active FROM page_content ORDER BY updated_at DESC");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function toggleActive(string $sectionKey): bool
+    {
+        $stmt = $this->pdo->prepare("UPDATE page_content SET active = 1 - active WHERE section_key = ?");
+        $stmt->execute([$sectionKey]);
+        $success = $stmt->rowCount() > 0;
+        if ($success) {
+            // Clear cache for this section
+            $this->clearCache($sectionKey);
+        }
+        return $success;
     }
 }
 ?>

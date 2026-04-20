@@ -1,4 +1,2 @@
-mail.php
-database.php
-test.php
-create_content_table.php
+*.cache
+/cache/

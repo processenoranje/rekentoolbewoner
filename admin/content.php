@@ -33,6 +33,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['section_key'], $_POST
     }
 }
 
+// Handle toggle
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['toggle_section'])) {
+    $toggleKey = trim($_POST['toggle_section']);
+    
+    try {
+        $contentManager->toggleActive($toggleKey);
+        $message = '<div style="color: green; padding: 10px; background: #d4edda; border-left: 4px solid #28a745; margin: 10px 0; border-radius: 3px;">✓ Content toggled successfully!</div>';
+        // Refresh the content list
+        $allContent = $contentManager->getAllContent();
+    } catch (Exception $e) {
+        $message = '<div style="color: red; padding: 10px; background: #f8d7da; border-left: 4px solid #dc3545; margin: 10px 0; border-radius: 3px;">✗ Error: ' . htmlspecialchars($e->getMessage()) . '</div>';
+    }
+}
+
 // Load content for preview
 if ($sectionKey) {
     $currentContent = $contentManager->getContent($sectionKey);
@@ -244,6 +258,9 @@ if ($sectionKey) {
                     <label for="content">Content (HTML toegestaan):</label>
                     <textarea id="content" name="content" placeholder="Enter your HTML content here..." required><?php echo htmlspecialchars($currentContent); ?></textarea>
                     
+                    <label for="preview">Voorvertoning:</label>
+                    <div id="preview" style="border: 1px solid #ddd; padding: 10px; min-height: 100px; background: #f9f9f9; margin-top: 8px; border-radius: 4px;"></div>
+                    
                     <button type="submit">Aanpassingen opslaan</button>
                 </form>
             </div>
@@ -259,7 +276,7 @@ if ($sectionKey) {
                     </div>
                 <?php else: ?>
                     <label for="search_box">Zoeken:</label>
-                    <input type="search" id="search_box" placeholder="Zoek op sectie key..." class="search-box">
+                    <input type="search" id="search_box" placeholder="Zoek op content..." class="search-box">
                     
                     <table class="content-table">
                         <thead>
@@ -267,18 +284,26 @@ if ($sectionKey) {
                                 <th>Sectie Key</th>
                                 <th>Voorbeeld</th>
                                 <th>Laatst gewijzigd</th>
+                                <th>Actief</th>
                             </tr>
                         </thead>
                         <tbody id="content_table_body">
                             <?php foreach ($allContent as $item): ?>
-                                <tr class="content-row" data-section="<?php echo htmlspecialchars($item['section_key']); ?>" onclick="loadContent(this)">
+                                <tr class="content-row" data-key="<?php echo htmlspecialchars($item['section_key']); ?>" data-content="<?php echo htmlspecialchars($item['content']); ?>" onclick="loadContent(this)">
                                     <td class="key-cell"><?php echo htmlspecialchars($item['section_key']); ?></td>
                                     <td class="preview-cell" title="<?php echo htmlspecialchars(strip_tags($item['content'])); ?>"><?php echo htmlspecialchars(substr(strip_tags($item['content']), 0, 50)); ?>...</td>
-                                    <td class="updated-cell"><?php echo date('M d, H:i', strtotime($item['updated_at'])); ?></td>
-                                </tr>
+                                    <td class="updated-cell"><?php echo date('M d, H:i', strtotime($item['updated_at'])); ?></td>                                    <td>
+                                        <form method="POST" style="display: inline;" onsubmit="return confirm('Weet je zeker dat je deze sectie wilt togglen?')">
+                                            <input type="hidden" name="toggle_section" value="<?php echo htmlspecialchars($item['section_key']); ?>">
+                                            <button type="submit" style="background: <?php echo $item['active'] ? '#28a745' : '#dc3545'; ?>; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;">
+                                                <?php echo $item['active'] ? 'Aan' : 'Uit'; ?>
+                                            </button>
+                                        </form>
+                                    </td>                                </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
+                    <button id="show-more-btn" style="margin-top: 15px; background: #ff7716; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;">Meer tonen</button>
                 <?php endif; ?>
             </div>
         </div>
@@ -290,14 +315,19 @@ if ($sectionKey) {
                 <li><strong>Wijzig bestaande:</strong> Klik op een bestaan de key, vul de nieuwe inhoud in en klik op opslaan. Let op, alleen bestaande keys op de tool worden aangepast.</li>
                 <li><strong>Sectie keys:</strong> in het overzicht wordt gehanteerd: titlex - de titel in de meest linker kolom, woordx - 1 meest linker, 2 middelste, 3 meest rechter kolom.</li>
                 <li><strong>Caching:</strong> De content wordt voor 1 uur gecached voor betere prestaties.</li>
+                <li><strong>Cell uitzetten:</strong> Als je een cell wilt uitzetten (en daarmee terug gaat naar de standaard tekst) klik je op Aan en ja. Wil je hem weer aan? Klik dan op Uit en ja.</li>
+                <li><strong>Regel uitzetten:</strong> Wil je een regel uitzetten? Doe dan hetzelfde als bij cell uitzetten, maar enkel op de titel van de rij (pakketx of overzichtx; zonder a-b-c), de hele rij wordt onzichtbaar.</li>
             </ul>
         </div>
     </div>
     
     <script>
         function loadContent(row) {
-            const sectionKey = row.getAttribute('data-section');
+            const sectionKey = row.getAttribute('data-key');
+            const content = row.getAttribute('data-content');
             document.getElementById('section_key').value = sectionKey;
+            document.getElementById('content').value = content;
+            updatePreview();
             document.getElementById('section_key').focus();
             
             // Scroll form into view
@@ -312,9 +342,48 @@ if ($sectionKey) {
         document.getElementById('search_box')?.addEventListener('input', function(e) {
             const searchTerm = e.target.value.toLowerCase();
             document.querySelectorAll('.content-row').forEach(row => {
-                const sectionKey = row.getAttribute('data-section').toLowerCase();
+                const sectionKey = row.getAttribute('data-key').toLowerCase();
                 row.style.display = sectionKey.includes(searchTerm) ? '' : 'none';
             });
+        });
+
+        // Live preview
+        function updatePreview() {
+            const content = document.getElementById('content').value;
+            const preview = document.getElementById('preview');
+            preview.innerHTML = content;
+        }
+        document.getElementById('content').addEventListener('input', updatePreview);
+        // Initialize preview
+        updatePreview();
+
+        // Show more functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const rows = document.querySelectorAll('.content-row');
+            const showMoreBtn = document.getElementById('show-more-btn');
+            const initialVisible = 5;
+            let showingMore = false;
+
+            if (rows.length > initialVisible) {
+                // Hide rows beyond initial visible
+                rows.forEach((row, index) => {
+                    if (index >= initialVisible) {
+                        row.style.display = 'none';
+                    }
+                });
+
+                showMoreBtn.addEventListener('click', function() {
+                    showingMore = !showingMore;
+                    rows.forEach((row, index) => {
+                        if (index >= initialVisible) {
+                            row.style.display = showingMore ? '' : 'none';
+                        }
+                    });
+                    showMoreBtn.textContent = showingMore ? 'Minder tonen' : 'Meer tonen';
+                });
+            } else {
+                showMoreBtn.style.display = 'none';
+            }
         });
     </script>
 </body>
