@@ -9,6 +9,7 @@ $dbConfig = require BASE_PATH . '/config/database.php';
 $db = new Database($dbConfig);
 $auth = new Auth($db->getConnection());
 $auth->requireLogin();
+$auth->requirePermission('manage_users');
 
 $message = '';
 $users = $auth->getAllUsers();
@@ -58,6 +59,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $users = $auth->getAllUsers(); // Refresh the list
                 } else {
                     $message = '<div style="color: red; padding: 10px; background: #f8d7da; border-left: 4px solid #dc3545; margin: 10px 0;">Failed to update user status.</div>';
+                }
+                break;
+
+            case 'change_role':
+                $userId = (int)($_POST['user_id'] ?? 0);
+                $newRole = $_POST['role'] ?? 'viewer';
+                $allowedRoles = ['admin', 'editor', 'viewer'];
+
+                if (!in_array($newRole, $allowedRoles)) {
+                    $message = '<div style="color: red; padding: 10px; background: #f8d7da; border-left: 4px solid #dc3545; margin: 10px 0;">Invalid role.</div>';
+                } elseif ($auth->updateUser($userId, ['role' => $newRole])) {
+                    $message = '<div style="color: green; padding: 10px; background: #d4edda; border-left: 4px solid #28a745; margin: 10px 0;">User role updated successfully.</div>';
+                    $users = $auth->getAllUsers(); // Refresh the list
+                } else {
+                    $message = '<div style="color: red; padding: 10px; background: #f8d7da; border-left: 4px solid #dc3545; margin: 10px 0;">Failed to update user role.</div>';
                 }
                 break;
 
@@ -167,10 +183,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <div class="container">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
             <h1>Admin User Management</h1>
-            <div>
-                <a href="content.php" class="btn btn-secondary">← Back to Content</a>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <a href="content.php" class="btn btn-secondary">← Content Manager</a>
+                <a href="data.php" class="btn btn-secondary">📊 Gegevens</a>
                 <a href="../logout.php" class="btn btn-danger">Logout</a>
             </div>
         </div>
@@ -206,6 +223,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <td><?php echo $user['last_login'] ? htmlspecialchars($user['last_login']) : 'Never'; ?></td>
                     <td>
                         <button onclick="changePassword(<?php echo $user['id']; ?>, '<?php echo htmlspecialchars($user['username']); ?>')" class="btn">Change Password</button>
+                        <button onclick="changeRole(<?php echo $user['id']; ?>, '<?php echo htmlspecialchars($user['username']); ?>', '<?php echo htmlspecialchars($user['role']); ?>')" class="btn">Change Role</button>
                         <form method="post" style="display: inline;">
                             <input type="hidden" name="action" value="toggle_user">
                             <input type="hidden" name="user_id" value="<?php echo $user['id']; ?>">
@@ -249,8 +267,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="form-group">
                     <label>Role:</label>
                     <select name="role">
-                        <option value="admin">Admin</option>
-                        <option value="editor">Editor</option>
+                        <option value="admin">Admin (full access)</option>
+                        <option value="editor">Editor (view & export data)</option>
+                        <option value="viewer">Viewer (view data only)</option>
                     </select>
                 </div>
                 <button type="submit" class="btn btn-success">Create User</button>
@@ -293,6 +312,73 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <script>
+        function showModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
+
+        function hideModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function changePassword(userId, username) {
+            document.getElementById('changePasswordUserId').value = userId;
+            document.getElementById('changePasswordUsername').textContent = username;
+            showModal('changePasswordModal');
+        }
+
+        function deleteUser(userId, username) {
+            document.getElementById('deleteUserId').value = userId;
+            document.getElementById('deleteUsername').textContent = username;
+            showModal('deleteUserModal');
+        }
+
+        // Close modal when clicking outside
+    <!-- Change Role Modal -->
+    <div id="changeRoleModal" class="modal">
+        <div class="modal-content">
+            <h2>Change User Role</h2>
+            <form method="post">
+                <input type="hidden" name="action" value="change_role">
+                <input type="hidden" name="user_id" id="changeRoleUserId">
+                <p>Changing role for: <strong id="changeRoleUsername"></strong></p>
+                <div class="form-group">
+                    <label>New Role:</label>
+                    <select name="role" id="changeRoleSelect">
+                        <option value="admin">Admin (full access)</option>
+                        <option value="editor">Editor (view & export data)</option>
+                        <option value="viewer">Viewer (view data only)</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success">Change Role</button>
+                <button type="button" onclick="hideModal('changeRoleModal')" class="btn btn-secondary">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+        <script>
+        function loadContent(row) {
+            const sectionKey = row.getAttribute('data-key');
+            const content = row.getAttribute('data-content');
+            document.getElementById('section_key').value = sectionKey;
+            document.getElementById('content').value = content;
+            updatePreview();
+            document.getElementById('section_key').focus();
+            
+            // Scroll form into view
+            document.querySelector('.editor-panel').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            // Highlight selected row
+            document.querySelectorAll('.content-row').forEach(r => r.style.background = '');
+            row.style.background = '#fff3cd';
+        }
+
+        function changeRole(userId, username, currentRole) {
+            document.getElementById('changeRoleUserId').value = userId;
+            document.getElementById('changeRoleUsername').textContent = username;
+            document.getElementById('changeRoleSelect').value = currentRole;
+            showModal('changeRoleModal');
+        }
+
         function showModal(modalId) {
             document.getElementById(modalId).style.display = 'block';
         }

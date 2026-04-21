@@ -246,12 +246,17 @@ if ($sectionKey) {
 </head>
 <body>
     <div class="container">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
             <h1>Content Beheer - Rekentool</h1>
-            <div style="font-size: 14px; color: #666;">
-                Ingelogd als: <strong><?php echo htmlspecialchars($auth->getCurrentUser()['username']); ?></strong>
-                <a href="users.php" style="color: #007bff; text-decoration: none; margin-left: 15px;">Gebruikersbeheer</a>
-                <a href="../logout.php" style="color: #dc3545; text-decoration: none; margin-left: 15px;">Uitloggen</a>
+            <div style="font-size: 14px; color: #666; display: flex; gap: 15px; flex-wrap: wrap;">
+                Ingelogd als: <strong><?php echo htmlspecialchars($auth->getCurrentUser()['username']); ?></strong> (<?php echo htmlspecialchars($auth->getCurrentUser()['role']); ?>)
+                <?php if ($auth->canViewData()): ?>
+                <a href="data.php" style="color: #007bff; text-decoration: none;">📊 Gegevens</a>
+                <?php endif; ?>
+                <?php if ($auth->canManageUsers()): ?>
+                <a href="users.php" style="color: #007bff; text-decoration: none;">👥 Gebruikers</a>
+                <?php endif; ?>
+                <a href="../logout.php" style="color: #dc3545; text-decoration: none;">Uitloggen</a>
             </div>
         </div>
         

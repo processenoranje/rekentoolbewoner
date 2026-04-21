@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS `admin_users` (
   `password_hash` varchar(255) NOT NULL,
   `email` varchar(100) DEFAULT NULL,
   `full_name` varchar(100) DEFAULT NULL,
-  `role` enum('admin','editor') NOT NULL DEFAULT 'admin',
+  `role` enum('admin','editor','viewer') NOT NULL DEFAULT 'admin',
   `active` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `last_login` timestamp NULL DEFAULT NULL,

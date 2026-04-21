@@ -222,4 +222,46 @@ class Auth {
         ");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    // Permission checking methods
+    public function hasPermission(string $permission): bool {
+        $user = $this->getCurrentUser();
+        if (!$user) {
+            return false;
+        }
+
+        // Admins have all permissions
+        if ($user['role'] === 'admin') {
+            return true;
+        }
+
+        // For non-admin roles, check specific permissions
+        $rolePermissions = [
+            'admin' => ['view_data', 'export_data', 'manage_users'],
+            'editor' => ['view_data', 'export_data'],
+            'viewer' => ['view_data'],
+        ];
+
+        $userPermissions = $rolePermissions[$user['role']] ?? [];
+        return in_array($permission, $userPermissions);
+    }
+
+    public function canViewData(): bool {
+        return $this->hasPermission('view_data');
+    }
+
+    public function canExportData(): bool {
+        return $this->hasPermission('export_data');
+    }
+
+    public function canManageUsers(): bool {
+        return $this->hasPermission('manage_users');
+    }
+
+    public function requirePermission(string $permission): void {
+        if (!$this->hasPermission($permission)) {
+            header('HTTP/1.1 403 Forbidden');
+            die('Access denied. You do not have permission to access this resource.');
+        }
+    }
 }

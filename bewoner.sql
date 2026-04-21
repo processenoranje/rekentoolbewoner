@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2026 at 10:44 AM
+-- Generation Time: Apr 21, 2026 at 02:34 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -35,13 +35,20 @@ CREATE TABLE `admin_users` (
   `password_hash` varchar(255) NOT NULL,
   `email` varchar(100) DEFAULT NULL,
   `full_name` varchar(100) DEFAULT NULL,
-  `role` enum('admin','editor') NOT NULL DEFAULT 'admin',
+  `role` enum('admin','editor','viewer') NOT NULL DEFAULT 'admin',
   `active` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `last_login` timestamp NULL DEFAULT NULL,
   `login_attempts` int(11) NOT NULL DEFAULT 0,
   `locked_until` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `admin_users`
+--
+
+INSERT INTO `admin_users` (`id`, `username`, `password_hash`, `email`, `full_name`, `role`, `active`, `created_at`, `last_login`, `login_attempts`, `locked_until`) VALUES
+(1, 'admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin@example.com', 'Administrator', 'admin', 1, '2026-04-21 12:03:46', '2026-04-21 12:05:08', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -61,19 +68,6 @@ CREATE TABLE `household_data` (
   `data_source` enum('preset','custom') DEFAULT NULL,
   `submitted_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `household_data`
---
-
-INSERT INTO `household_data` (`id`, `postcode`, `huisnummer`, `toevoeging`, `zonnepanelen`, `preset`, `verbruik`, `opwek`, `data_source`, `submitted_at`) VALUES
-(1, '5959mm', '23', '', 1, '2', 3500, 3000, 'preset', '2026-04-14 07:37:17'),
-(2, '', '', '', 1, '4', 3500, 3000, 'preset', '2026-04-14 12:29:15'),
-(3, '', '', '', 1, '4', 3500, 3000, 'preset', '2026-04-14 12:29:26'),
-(4, '', '', '', 1, '4', 3500, 3000, 'preset', '2026-04-14 12:29:37'),
-(5, '', '', '', 1, '3', 3500, 3000, 'preset', '2026-04-21 06:58:08'),
-(6, '', '', '', 1, '3', 3500, 3000, 'preset', '2026-04-21 06:58:14'),
-(7, '', '', '', 1, '3', 3500, 3000, 'preset', '2026-04-21 06:58:19');
 
 -- --------------------------------------------------------
 
@@ -199,13 +193,13 @@ ALTER TABLE `page_content`
 -- AUTO_INCREMENT for table `admin_users`
 --
 ALTER TABLE `admin_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `household_data`
 --
 ALTER TABLE `household_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `page_content`
