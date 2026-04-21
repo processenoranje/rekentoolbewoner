@@ -43,4 +43,9 @@ class Database
             'data_source' => $data_source,
         ]);
     }
+
+    public function getConnection(): PDO
+    {
+        return $this->pdo;
+    }
 }

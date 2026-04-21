@@ -3,7 +3,13 @@ declare(strict_types=1);
 
 require __DIR__ . '/../app/bootstrap.php';
 
+$config = require BASE_PATH . '/config/config.php';
 $dbConfig = require BASE_PATH . '/config/database.php';
+
+$db = new Database($dbConfig);
+$auth = new Auth($db->getConnection());
+$auth->requireLogin();
+
 $contentManager = new ContentManager($dbConfig);
 
 $message = '';
@@ -28,6 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['section_key'], $_POST
         $message = '<div style="color: green; padding: 10px; background: #d4edda; border-left: 4px solid #28a745; margin: 10px 0; border-radius: 3px;">✓ Content saved successfully!</div>';
         // Refresh the content list
         $allContent = $contentManager->getAllContent();
+    } catch (InvalidArgumentException $e) {
+        $message = '<div style="color: red; padding: 10px; background: #f8d7da; border-left: 4px solid #dc3545; margin: 10px 0; border-radius: 3px;">✗ Security Error: ' . htmlspecialchars($e->getMessage()) . '</div>';
     } catch (Exception $e) {
         $message = '<div style="color: red; padding: 10px; background: #f8d7da; border-left: 4px solid #dc3545; margin: 10px 0; border-radius: 3px;">✗ Error: ' . htmlspecialchars($e->getMessage()) . '</div>';
     }
@@ -238,7 +246,14 @@ if ($sectionKey) {
 </head>
 <body>
     <div class="container">
-        <h1>Content Beheer - Rekentool</h1>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h1>Content Beheer - Rekentool</h1>
+            <div style="font-size: 14px; color: #666;">
+                Ingelogd als: <strong><?php echo htmlspecialchars($auth->getCurrentUser()['username']); ?></strong>
+                <a href="users.php" style="color: #007bff; text-decoration: none; margin-left: 15px;">Gebruikersbeheer</a>
+                <a href="../logout.php" style="color: #dc3545; text-decoration: none; margin-left: 15px;">Uitloggen</a>
+            </div>
+        </div>
         
         <?php if ($message): ?>
             <div class="message-box" style="color: <?php echo strpos($message, 'Error') !== false ? '#721c24' : '#155724'; ?>; background: <?php echo strpos($message, 'Error') !== false ? '#f8d7da' : '#d4edda'; ?>; border-left-color: <?php echo strpos($message, 'Error') !== false ? '#dc3545' : '#28a745'; ?>;">
@@ -317,6 +332,13 @@ if ($sectionKey) {
                 <li><strong>Caching:</strong> De content wordt voor 1 uur gecached voor betere prestaties.</li>
                 <li><strong>Cell uitzetten:</strong> Als je een cell wilt uitzetten (en daarmee terug gaat naar de standaard tekst) klik je op Aan en ja. Wil je hem weer aan? Klik dan op Uit en ja.</li>
                 <li><strong>Regel uitzetten:</strong> Wil je een regel uitzetten? Doe dan hetzelfde als bij cell uitzetten, maar enkel op de titel van de rij (pakketx of overzichtx; zonder a-b-c), de hele rij wordt onzichtbaar.</li>
+            </ul>
+            <strong>Beveiliging:</strong>
+            <ul style="margin: 10px 0; padding-left: 20px;">
+                <li><strong>HTML Sanitization:</strong> Alle ingevoerde content wordt automatisch gecontroleerd en opgeschoond om XSS-aanvallen te voorkomen.</li>
+                <li><strong>Toegestane tags:</strong> Alleen veilige HTML-tags zijn toegestaan (p, strong, em, ul, ol, li, a, img, etc.).</li>
+                <li><strong>Verboden content:</strong> Scripts, iframes, forms, en andere potentieel gevaarlijke elementen worden automatisch verwijderd.</li>
+                <li><strong>Attribute filtering:</strong> Alleen veilige attributes worden behouden (href, alt, class, etc.).</li>
             </ul>
         </div>
     </div>

@@ -10,4 +10,4 @@ require BASE_PATH . '/app/Database.php';
 require BASE_PATH . '/app/Mailer.php';
 require BASE_PATH . '/app/FormHandler.php';
 require BASE_PATH . '/app/ContentManager.php';
-// require BASE_PATH . '/app/Security.php';
+require BASE_PATH . '/app/Auth.php';

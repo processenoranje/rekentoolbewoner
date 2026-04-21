@@ -1,10 +1,45 @@
 Options -Indexes
 ServerSignature Off
 
-<FilesMatch "\.(php|phtml)$">
-    Require all granted
-</FilesMatch>
-
-<FilesMatch "\.(env|ini|log|sql)$">
+# Prevent access to sensitive files
+<FilesMatch "\.(env|ini|log|sql|htaccess|htpasswd)$">
     Require all denied
 </FilesMatch>
+
+# Prevent access to backup files
+<FilesMatch "\.(bak|backup|old|orig|tmp)$">
+    Require all denied
+</FilesMatch>
+
+# Security headers
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options DENY
+    Header always set X-Content-Type-Options nosniff
+    Header always set Referrer-Policy strict-origin-when-cross-origin
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://kit.fontawesome.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' https:; connect-src 'self';"
+</IfModule>
+
+# Rate limiting (requires mod_ratelimit)
+<IfModule mod_ratelimit.c>
+    SetOutputFilter RATE_LIMIT
+    SetEnv rate-limit 100
+</IfModule>
+
+# Prevent hotlinking
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    RewriteCond %{HTTP_REFERER} !^$
+    RewriteCond %{HTTP_REFERER} !^https?://(www\.)?localhost [NC]
+    RewriteCond %{HTTP_REFERER} !^https?://(www\.)?127\.0\.0\.1 [NC]
+    RewriteRule \.(gif|jpg|jpeg|png|svg|webp)$ - [F,L]
+</IfModule>
+
+# PHP security settings
+<IfModule mod_php.c>
+    php_flag display_errors off
+    php_flag log_errors on
+    php_value upload_max_filesize 2M
+    php_value post_max_size 8M
+    php_value max_execution_time 30
+    php_value memory_limit 128M
+</IfModule>

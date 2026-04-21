@@ -9,6 +9,8 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 DEALINGS IN THE SOFTWARE. 
  */
 
+console.log("bewonertool.js loaded successfully");
+
 let intervalId; // Store the interval ID globally
  
 function logMessage() {
@@ -17,6 +19,7 @@ function logMessage() {
  
 
 document.addEventListener('DOMContentLoaded', () => {
+  console.log("DOMContentLoaded fired");
   updateAll();
   setInterval(updateAll, 1500);
 });
@@ -51,15 +54,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 function updateAll() {
+  console.log("updateAll() called");
   const fns = [
-    updatepres,
-    inkoopz, inkoopm, inkoopth,
-    tlkz, tlkm, tlkth,
-    tlvz, tlvm, tlvth,
-    totaalz, totaalm, totaalthuis,
-    versch,
-    inkoop26, tlk26, tlv26, totaal26,
-    gelijkt26, gelijkth, gelijkm, gelijkz
+    // Step 1: Calculate kwh splits (gelijk functions must run first as they don't depend on anything)
+    gelijkz, gelijkm, gelijkth, gelijkt26,
+    // Step 2: Calculate energy costs and delivery fees (depend on gelijk* outputs)
+    inkoopz, inkoopm, inkoopth, inkoop26,
+    tlkz, tlkm, tlkth, tlk26,
+    tlvz, tlvm, tlvth, tlv26,
+    // Step 3: Calculate totals (depend on inkoop*, tlk*, tlv* outputs)
+    totaalz, totaalm, totaalthuis, totaal26,
+    // Step 4: Calculate differences (depend on totaal* outputs)
+    versch
     
   ];
 
@@ -70,6 +76,7 @@ function updateAll() {
       console.warn(`Update step failed: ${fn.name}`, e);
     }
   }
+  console.log("updated");
 }
 
 
@@ -420,6 +427,7 @@ function p1(){
     document.getElementById('defverb').innerHTML = '<i class="fa-solid fa-bolt"></i> 1500 kWh';
     document.getElementById('defgas').innerHTML = '<i class="fa-solid fa-fire-flame-simple"></i> 800 m3';
     document.getElementById('defopw').innerHTML = '<i class="fa-solid fa-solar-panel"></i> 1000 kWh';
+    updateAll();
 }
 
 function p2(){
@@ -428,6 +436,7 @@ function p2(){
     document.getElementById('defverb').innerHTML = '<i class="fa-solid fa-bolt"></i> 2500 kWh';
     document.getElementById('defgas').innerHTML = '<i class="fa-solid fa-fire-flame-simple"></i> 1000 m3';
     document.getElementById('defopw').innerHTML = '<i class="fa-solid fa-solar-panel"></i> 2000 kWh';
+    updateAll();
 }
 
 function p3(){
@@ -436,6 +445,7 @@ function p3(){
     document.getElementById('defverb').innerHTML = '<i class="fa-solid fa-bolt"></i> 3000 kWh';
     document.getElementById('defgas').innerHTML = '<i class="fa-solid fa-fire-flame-simple"></i> 1200 m3';
     document.getElementById('defopw').innerHTML = '<i class="fa-solid fa-solar-panel"></i> 2500 kWh';
+    updateAll();
 }
 
 function p4(){
@@ -443,7 +453,8 @@ function p4(){
     document.getElementById('opwek').value = 3000;
     document.getElementById('defverb').innerHTML = '<i class="fa-solid fa-bolt"></i> 3500 kWh';
     document.getElementById('defgas').innerHTML = '<i class="fa-solid fa-fire-flame-simple"></i> 1400 m3';
-    document.getElementById('defopw').innerHTML = '<i class="fa-solid fa-solar-panel"></i> 3000 kWh';  
+    document.getElementById('defopw').innerHTML = '<i class="fa-solid fa-solar-panel"></i> 3000 kWh';
+    updateAll();
 }
 
 function updatepres(){

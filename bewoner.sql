@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 20, 2026 at 04:07 PM
+-- Generation Time: Apr 21, 2026 at 10:44 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -22,6 +22,26 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `bewoner` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `bewoner`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin_users`
+--
+
+CREATE TABLE `admin_users` (
+  `id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password_hash` varchar(255) NOT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `full_name` varchar(100) DEFAULT NULL,
+  `role` enum('admin','editor') NOT NULL DEFAULT 'admin',
+  `active` tinyint(1) NOT NULL DEFAULT 1,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `last_login` timestamp NULL DEFAULT NULL,
+  `login_attempts` int(11) NOT NULL DEFAULT 0,
+  `locked_until` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -50,7 +70,10 @@ INSERT INTO `household_data` (`id`, `postcode`, `huisnummer`, `toevoeging`, `zon
 (1, '5959mm', '23', '', 1, '2', 3500, 3000, 'preset', '2026-04-14 07:37:17'),
 (2, '', '', '', 1, '4', 3500, 3000, 'preset', '2026-04-14 12:29:15'),
 (3, '', '', '', 1, '4', 3500, 3000, 'preset', '2026-04-14 12:29:26'),
-(4, '', '', '', 1, '4', 3500, 3000, 'preset', '2026-04-14 12:29:37');
+(4, '', '', '', 1, '4', 3500, 3000, 'preset', '2026-04-14 12:29:37'),
+(5, '', '', '', 1, '3', 3500, 3000, 'preset', '2026-04-21 06:58:08'),
+(6, '', '', '', 1, '3', 3500, 3000, 'preset', '2026-04-21 06:58:14'),
+(7, '', '', '', 1, '3', 3500, 3000, 'preset', '2026-04-21 06:58:19');
 
 -- --------------------------------------------------------
 
@@ -103,7 +126,7 @@ INSERT INTO `page_content` (`id`, `section_key`, `content`, `updated_at`, `activ
 (55, 'pakket4a', '<div class=\"pv-- c-comparison__highlight\">\r\n<span class=\"c-rating-circle c-spec\">\r\n\r\n8<span class=\"c-spec__decimals\">,7</span>\r\n</span>\r\n</div>', '2026-04-20 09:43:46', 1),
 (56, 'pakket4b', '<div class=\"pv--\">\r\n<span class=\"c-rating-circle c-spec\">\r\n\r\n9<span class=\"c-spec__decimals\">,0</span>\r\n</span>\r\n</div>', '2026-04-20 09:43:36', 1),
 (57, 'pakket4c', '<div class=\"pv--\">\r\n<span class=\"c-rating-circle c-spec\">\r\n\r\n9<span class=\"c-spec__decimals\">,0</span>\r\n</span>\r\n</div>', '2026-04-20 09:43:27', 1),
-(58, 'overzicht2a', '<label for=\"\" class=\"totaal\">Totaal per jaar:\r\n                    <input type=\"text\" id=\"totaalz\" name=\"\" class=\"inputresult\" value=\"695.50\" readonly>\r\n                    </label>', '2026-04-20 09:42:15', 1),
+(58, 'overzicht2a', '<label for=\"\" class=\"totaal\">Totaal per jaar:\r\n                    <input type=\"text\" id=\"totaalz\" name=\"\" class=\"inputresult\" value=\"695.50\" readonly>\r\n                    </label>', '2026-04-20 09:42:09', 1),
 (59, 'overzicht2b', '<label for=\"\" class=\"totaal\">Totaal per jaar:\r\n                    <input type=\"text\" id=\"totaalm\" name=\"\" class=\"inputresult\" value=\"401.20\" readonly>\r\n                    </label>', '2026-04-20 09:42:08', 1),
 (60, 'overzicht2c', '<label for=\"\" class=\"totaal\">Totaal per jaar:\r\n                    <input type=\"text\" id=\"totaalthuis\" name=\"\" class=\"inputresult\" value=\"0.00\" readonly>\r\n                    </label>', '2026-04-20 09:42:00', 1),
 (61, 'overzicht3a', '<h3>Tarieven</h3>\r\n                    <label for=\"\">Energie kosten:\r\n                    <input type=\"text\" id=\"jaarverbrz\" name=\"\" class=\"inputresult\" value=\"676.00\" readonly>\r\n                    </label>\r\n                    <label for=\"\">Terugleverkosten:\r\n                    <input type=\"text\" id=\"terugleverkostz\" name=\"\" class=\"inputresult\" value=\"94.50\" readonly>\r\n                    </label>\r\n                    <label for=\"\">Terugleververgoeding:\r\n                    <input type=\"text\" id=\"terugleververgz\" name=\"\" class=\"inputresult\" value=\"-105.00\" readonly>\r\n                    </label>\r\n                    <label for=\"\" class=\"inactive\">Buurtstroom kosten:\r\n                    <input type=\"text\" id=\"\" name=\"\" class=\"inputresult inactive\" value=\"0.00\" readonly>\r\n                    </label>\r\n                    <label for=\"\" class=\"inactive\">Terugleverkosten buurtstroom:\r\n                    <input type=\"text\" id=\"\" name=\"\" class=\"inputresult inactive\" value=\"0.00\" readonly>\r\n                    </label>\r\n                    <label for=\"\" class=\"inactive\">Korting inkomstenbelasting:\r\n                    <input type=\"text\" id=\"\" name=\"\" class=\"inputresult inactive\" value=\"0.00\" readonly>\r\n                    </label>\r\n                    <h3>Lidmaatschap</h3>\r\n                    <label for=\"\" class=\"inactive\">Lidmaatschapskosten:\r\n                    <input type=\"text\" id=\"participkost\" name=\"\" class=\"inputresult inactive\" value=\"0.00\" readonly>\r\n                    </label>', '2026-04-20 09:41:38', 1),
@@ -148,6 +171,14 @@ INSERT INTO `page_content` (`id`, `section_key`, `content`, `updated_at`, `activ
 --
 
 --
+-- Indexes for table `admin_users`
+--
+ALTER TABLE `admin_users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`),
+  ADD KEY `active` (`active`);
+
+--
 -- Indexes for table `household_data`
 --
 ALTER TABLE `household_data`
@@ -165,10 +196,16 @@ ALTER TABLE `page_content`
 --
 
 --
+-- AUTO_INCREMENT for table `admin_users`
+--
+ALTER TABLE `admin_users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `household_data`
 --
 ALTER TABLE `household_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `page_content`

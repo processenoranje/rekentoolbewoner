@@ -12,7 +12,7 @@ DEALINGS IN THE SOFTWARE.
 <html lang="nl">
 <head>
     <title>Rekentool Bewoner</title>
-    <link rel="icon" type="image/x-icon" href="/afbeeldingen/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="afbeeldingen/favicon.ico">
     <link rel="stylesheet" href="css/base.css">
     <meta charset="UTF-8">
     <meta name="description" content="Bekijk hier hoe lidmaatschap aan het energieschap een verschil maakt voor u.">
@@ -22,12 +22,6 @@ DEALINGS IN THE SOFTWARE.
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
     <script src="https://kit.fontawesome.com/2c8d5bea2d.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/styles_bewoner.css">
-<script src="js/loader.js"></script>
-<script src="js/jsapi_compiled_default_module.js"></script>
-<script src="js/jsapi_compiled_graphics_module.js"></script>
-<script src="js/jsapi_compiled_ui_module.js"></script>
-<script src="js/jsapi_compiled_corechart_module.js"></script>
-<script src="js/basic.min.js"></script>
     
     <style>
 * {box-sizing: border-box}
@@ -201,7 +195,7 @@ summary::-webkit-details-marker {
     </style>
 </head>
 <body>
-    <div class="topnav" w3-include-html="./topnav.html"></div> 
+    <div class="topnav" w3-include-html="topnav.html"></div> 
     <main>
       <div class="content">
       <div class="row">
@@ -255,10 +249,10 @@ summary::-webkit-details-marker {
                     <div>
                       <h2 style="margin-top: 0;">Opwek en verbruik</h2>
                       <label for="">Mijn verbruik per jaar:
-                      <input type="number" min="0" value="3500" id="gemjaarverbr" name="verbruik" onclick="inkoopz();inkoopm();totaalz();totaalm();gelijkz();gelijkm();versch();" onkeyup="inkoopz();totaalz();totaalm();gelijkz();gelijkm();versch();" step="50">
+                      <input type="number" min="0" value="3500" id="gemjaarverbr" name="verbruik" onclick="inkoopz();inkoopm();totaalz();totaalm();gelijkz();gelijkm();gelijkth();inkoopth();tlkth();tlvth();totaalthuis();versch();" onkeyup="inkoopz();inkoopth();totaalz();totaalm();totaalthuis();gelijkz();gelijkm();gelijkth();versch();" step="50">
                       </label>
                       <label for="">Mijn opwek per jaar:
-                      <input type="number" min="0" value="3000" id="opwek" name="opwek" onclick="inkoopz();inkoopm();totaalz();totaalm();tlkz();tlkm();tlvz();tlvm();gelijkz();gelijkm();versch();" onkeyup="inkoopz();inkoopm();totaalz();totaalm();tlkz();tlkm();tlvz();tlvm();gelijkz();gelijkm();versch();" step="50">
+                      <input type="number" min="0" value="3000" id="opwek" name="opwek" onclick="inkoopz();inkoopm();totaalz();totaalm();tlkz();tlkm();tlvz();tlvm();gelijkz();gelijkm();gelijkth();inkoopth();tlkth();tlvth();totaalthuis();versch();" onkeyup="inkoopz();inkoopm();totaalz();totaalm();tlkz();tlkm();tlvz();tlvm();gelijkz();gelijkm();gelijkth();inkoopth();tlkth();tlvth();totaalthuis();versch();" step="50">
                       </label>
                     </div>
                 </div> <!-- Gelijktijdigheid 30% of 40% bij delen-->
@@ -276,13 +270,13 @@ summary::-webkit-details-marker {
                     </label>
                     <h3>2027</h3>
                     <label for="">Energieprijs per kWh:
-                    <input type="number" min="0" id="energiepr" value="0.26" name="" onclick="totaalz();inkoopz();versch();" onkeyup="totaalz();inkoopz();versch();" step=".01">
+                    <input type="number" min="0" id="energiepr" value="0.26" name="" onclick="totaalz();inkoopz();totaalthuis();inkoopth();versch();" onkeyup="totaalz();inkoopz();totaalthuis();inkoopth();versch();" step=".01">
                     </label>
                     <label for="">Terugleverkosten per kWh:
-                    <input type="number" min="0" id="teruglvrkost" value="0.045" name="" onclick="totaalz();tlkz();versch();" onkeyup="totaalz();tlkz();versch();" step=".01">
+                    <input type="number" min="0" id="teruglvrkost" value="0.045" name="" onclick="totaalz();tlkz();totaalthuis();tlkth();versch();" onkeyup="totaalz();tlkz();totaalthuis();tlkth();versch();" step=".01">
                     </label>
                     <label for="">Terugleververgoeding per kWh:
-                    <input type="number" min="0" id="teruglvrverg" value="0.05" name="" onclick="totaalz();tlvz();versch();" onkeyup="totaalz();tlvz();versch();" step=".01">
+                    <input type="number" min="0" id="teruglvrverg" value="0.05" name="" onclick="totaalz();tlvz();totaalthuis();tlvth();versch();" onkeyup="totaalz();tlvz();totaalthuis();tlvth();versch();" step=".01">
                     </label>
                     <label for="">Buurtstroom per kWh:
                     <input type="" min="0" id="buurtstr" value="0.21" name="" readonly class="inputno">
@@ -293,7 +287,6 @@ summary::-webkit-details-marker {
                     <label for="">Korting inkomstenbelasting per kWh:
                     <input type="" min="0" id="kortingib" value="0.096" name="" onclick="" onkeyup="" readonly class="inputno">
                     </label>
-                    <button type="button" onclick="hidecustom();" style="background-color: #fdd3b5;color: #ec6403;">Help mij schatten</button>
                 </div>
               </div>
               <button type="button" onclick="submitAndShow();">Verstuur</button>
@@ -617,18 +610,18 @@ Totale jaarkosten<br>
 (incl. btw)
 </h4>
 </div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht2a">
+<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
 
 <label for="" class="totaal">Totaal per jaar:
                     <input type="text" id="totaalz" name="" class="inputresult" value="695.50" readonly>
                     </label>
 </div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht2b">
+<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
 <label for="" class="totaal">Totaal per jaar:
                     <input type="text" id="totaalm" name="" class="inputresult" value="401.20" readonly>
                     </label>
 </div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht2c">
+<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
 
 <label for="" class="totaal">Totaal per jaar:
                     <input type="text" id="totaalthuis" name="" class="inputresult" value="0.00" readonly>
@@ -641,7 +634,7 @@ Totale jaarkosten<br>
 Uitwerking kosten
 </h4>
 </div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht3a">
+<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
 
 <h3>Tarieven</h3>
                     <label for="">Energie kosten:
@@ -668,7 +661,7 @@ Uitwerking kosten
                     </label>
                     
 </div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht3b">
+<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
 <h3 style="display: none;">Opwek en verbruik</h3>
                     <label for="" style="display: none;">Gemiddeld gelijktijdig verbruik:
                     <input type="text" id="gelijkt" name="" class="inputresult" value="40 %" readonly>
@@ -699,7 +692,7 @@ Uitwerking kosten
                     </label>
                     
 </div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht3c">
+<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
 
 <h3 style="display: none;">Opwek en verbruik</h3>
 
@@ -1266,10 +1259,12 @@ Opzegtermijn
     document.getElementById('customview').value = 1;
   }
 
-  function hidecustom(){
+  function hidecustom(event){
+    if (event) event.preventDefault();
     document.getElementById('custom').style.display = "none";
     document.getElementById('schatten').style.display = "inline";
     document.getElementById('customview').value = 0;
+    return false;
   }
 
   function submitAndShow(){
@@ -1302,21 +1297,24 @@ function showSlides(n) {
   let i;
   let slides = document.getElementsByClassName("mySlides");
   let dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {slideIndex = 1}    
+  if (slides.length === 0) return; // No slides to show
+  if (n > slides.length) {slideIndex = 1}
   if (n < 1) {slideIndex = slides.length}
   for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";  
+    slides[i].style.display = "none";
   }
   for (i = 0; i < dots.length; i++) {
     dots[i].className = dots[i].className.replace(" active", "");
   }
-  slides[slideIndex-1].style.display = "block";  
-  dots[slideIndex-1].className += " active";
+  slides[slideIndex-1].style.display = "block";
+  if (dots.length > 0 && slideIndex-1 < dots.length) {
+    dots[slideIndex-1].className += " active";
+  }
 }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0"></script>
-<script src="/js/bewonertool.js"></script>
-<script src="/js/includehtml.js"></script>
+<script src="js/bewonertool.js"></script>
+<script src="js/includehtml.js"></script>
 <script>includeHTML();</script>
 <script>
   // Load dynamic content sections on page load

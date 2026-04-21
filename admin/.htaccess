@@ -1,0 +1,28 @@
+# Admin Directory Protection
+<FilesMatch "\.(php|phtml)$">
+    # Allow access only from localhost for development
+    Require local
+    # In production, you might want to add IP restrictions:
+    # Require ip 192.168.1.0/24
+</FilesMatch>
+
+# Prevent access to sensitive files
+<FilesMatch "\.(env|ini|log|sql|htaccess|htpasswd)$">
+    Require all denied
+</FilesMatch>
+
+# Disable directory listing
+Options -Indexes
+
+# Prevent access to backup files
+<FilesMatch "\.(bak|backup|old|orig|tmp)$">
+    Require all denied
+</FilesMatch>
+
+# Security headers
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options DENY
+    Header always set X-Content-Type-Options nosniff
+    Header always set Referrer-Policy strict-origin-when-cross-origin
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' https:;"
+</IfModule>

@@ -56,11 +56,18 @@ class ContentManager
 
     public function setContent(string $sectionKey, string $content): void
     {
+        // Sanitize and validate content
+        $sanitizedContent = $this->sanitizeContent($content);
+
+        if (!$this->validateContent($sanitizedContent)) {
+            throw new InvalidArgumentException('Content contains potentially malicious code and cannot be saved.');
+        }
+
         $stmt = $this->pdo->prepare(
             "INSERT INTO page_content (section_key, content) VALUES (?, ?)
              ON DUPLICATE KEY UPDATE content = VALUES(content)"
         );
-        $stmt->execute([$sectionKey, $content]);
+        $stmt->execute([$sectionKey, $sanitizedContent]);
 
         // Invalidate cache
         $cacheFile = $this->getCacheFilePath($sectionKey);
@@ -103,6 +110,144 @@ class ContentManager
             $this->clearCache($sectionKey);
         }
         return $success;
+    }
+
+    /**
+     * Sanitize HTML content to prevent XSS attacks
+     */
+    private function sanitizeContent(string $content): string
+    {
+        // Allow only safe HTML tags and attributes
+        $allowedTags = [
+            'p', 'br', 'strong', 'em', 'u', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+            'ul', 'ol', 'li', 'a', 'span', 'div', 'img', 'table', 'thead', 'tbody',
+            'tr', 'th', 'td', 'blockquote', 'code', 'pre'
+        ];
+
+        $allowedAttributes = [
+            'href', 'target', 'rel', 'alt', 'src', 'width', 'height', 'style',
+            'class', 'id', 'title', 'colspan', 'rowspan'
+        ];
+
+        // Use DOMDocument for proper HTML sanitization
+        $dom = new DOMDocument();
+        $dom->loadHTML('<div>' . $content . '</div>', LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+
+        $this->sanitizeDOMNode($dom->documentElement, $allowedTags, $allowedAttributes);
+
+        // Extract the inner HTML
+        $result = '';
+        foreach ($dom->documentElement->childNodes as $node) {
+            $result .= $dom->saveHTML($node);
+        }
+
+        return $result;
+    }
+
+    /**
+     * Recursively sanitize DOM nodes
+     */
+    private function sanitizeDOMNode(DOMNode $node, array $allowedTags, array $allowedAttributes): void
+    {
+        if ($node->nodeType === XML_ELEMENT_NODE) {
+            $tagName = strtolower($node->nodeName);
+
+            // Remove disallowed tags
+            if (!in_array($tagName, $allowedTags)) {
+                $node->parentNode->removeChild($node);
+                return;
+            }
+
+            // Remove disallowed attributes
+            $attributesToRemove = [];
+            foreach ($node->attributes as $attr) {
+                if (!in_array(strtolower($attr->name), $allowedAttributes)) {
+                    $attributesToRemove[] = $attr->name;
+                } else {
+                    // Sanitize attribute values
+                    $attr->value = $this->sanitizeAttributeValue($attr->name, $attr->value);
+                }
+            }
+
+            foreach ($attributesToRemove as $attrName) {
+                $node->removeAttribute($attrName);
+            }
+        }
+
+        // Recursively sanitize child nodes
+        $childNodes = [];
+        foreach ($node->childNodes as $child) {
+            $childNodes[] = $child;
+        }
+
+        foreach ($childNodes as $child) {
+            $this->sanitizeDOMNode($child, $allowedTags, $allowedAttributes);
+        }
+    }
+
+    /**
+     * Sanitize attribute values
+     */
+    private function sanitizeAttributeValue(string $attrName, string $value): string
+    {
+        switch (strtolower($attrName)) {
+            case 'href':
+                // Only allow safe URLs
+                if (preg_match('/^(https?:\/\/|mailto:|tel:)/i', $value)) {
+                    return $value;
+                }
+                return '#'; // Replace unsafe URLs with safe placeholder
+
+            case 'src':
+                // Only allow safe image sources
+                if (preg_match('/^(https?:\/\/|data:image\/(png|jpg|jpeg|gif|webp);base64,)/i', $value)) {
+                    return $value;
+                }
+                return ''; // Remove unsafe image sources
+
+            case 'style':
+                // Remove dangerous CSS properties
+                $value = preg_replace('/(expression|javascript|vbscript|on\w+)/i', '', $value);
+                return $value;
+
+            default:
+                // Remove any JavaScript event handlers or dangerous content
+                $value = preg_replace('/(javascript|vbscript|on\w+):/i', '', $value);
+                return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+        }
+    }
+
+    /**
+     * Validate content for potentially malicious patterns
+     */
+    private function validateContent(string $content): bool
+    {
+        // Check for dangerous patterns
+        $dangerousPatterns = [
+            '/<script/i',
+            '/javascript:/i',
+            '/vbscript:/i',
+            '/on\w+\s*=/i',
+            '/<iframe/i',
+            '/<object/i',
+            '/<embed/i',
+            '/<form/i',
+            '/<input/i',
+            '/<meta/i',
+            '/expression\s*\(/i',
+            '/eval\s*\(/i',
+            '/document\./i',
+            '/window\./i',
+            '/location\./i'
+        ];
+
+        foreach ($dangerousPatterns as $pattern) {
+            if (preg_match($pattern, $content)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
 ?>
