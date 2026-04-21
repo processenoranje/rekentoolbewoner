@@ -57,7 +57,7 @@ function updateAll() {
   console.log("updateAll() called");
   const fns = [
     // Step 1: Calculate kwh splits (gelijk functions must run first as they don't depend on anything)
-    gelijkz, gelijkm, gelijkth, gelijkt26,
+    gelijkz, gelijkm, gelijkth,
     // Step 2: Calculate energy costs and delivery fees (depend on gelijk* outputs)
     inkoopz, inkoopm, inkoopth, inkoop26,
     tlkz, tlkm, tlkth, tlk26,
@@ -79,18 +79,6 @@ function updateAll() {
   console.log("updated");
 }
 
-
-
-function gelijkt26(){
-    var opw = document.getElementById('opwek').value;
-    
-    if(opw >0){
-        document.getElementById('gemegl26').value = "30 %";
-    }else{
-        document.getElementById('gemegl26').value = "0 %";
-    }
-    console.log("updated");
-}
 
 
 function inkoopz(){
