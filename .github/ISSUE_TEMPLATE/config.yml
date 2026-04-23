@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: "Wiki"
+    url: "./Home.md"
+    about: "Start hier voor beheer, runbooks en deployment info."

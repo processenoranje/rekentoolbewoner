@@ -1,0 +1,31 @@
+---
+name: "Question"
+description: "Stel een vraag over gedrag/gebruik"
+labels: [question]
+body:
+  - type: input
+    id: path
+    attributes:
+      label: Betrokken pad (optioneel)
+      placeholder: "/rekentoolbewoner.html"
+    validations:
+      required: false
+  - type: textarea
+    id: question
+    attributes:
+      label: Vraag
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context / wat heb je al geprobeerd?
+    validations:
+      required: false
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: Ik heb geen secrets gedeeld
+          required: true

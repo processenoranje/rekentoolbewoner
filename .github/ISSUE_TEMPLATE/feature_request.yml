@@ -1,0 +1,40 @@
+---
+name: "💡 Feature request"
+description: "Vraag een verbetering aan"
+labels: [enhancement]
+body:
+  - type: input
+    id: area
+    attributes:
+      label: Betrokken onderdeel/pad
+      placeholder: "/admin/data.php (export)"
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Welke behoefte/probleem lost dit op?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Voorstel (wat wil je dat er gebeurt?)
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact / risico’s
+      description: "Bijv. privacy, security, performance, beheerlast."
+    validations:
+      required: false
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: Ik heb gecontroleerd of dit niet botst met ‘Wijzigen zonder breken’
+          required: false
+        - label: Ik heb geen secrets gedeeld
+          required: true

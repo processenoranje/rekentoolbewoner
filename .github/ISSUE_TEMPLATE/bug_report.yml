@@ -1,0 +1,60 @@
+---
+name: "Bug report"
+description: "Meld een bug in de Rekentool"
+labels: [bug]
+body:
+  - type: input
+    id: path
+    attributes:
+      label: Betrokken pad (vanaf htdocs)
+      placeholder: "/admin/data.php"
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Verwacht gedrag
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Feitelijk gedrag
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Stappen om te reproduceren
+      placeholder: "1. ...
+2. ...
+3. ..."
+    validations:
+      required: true
+  - type: dropdown
+    id: role
+    attributes:
+      label: Jouw rol (indien admin)
+      options:
+        - admin
+        - editor
+        - viewer
+        - n.v.t.
+    validations:
+      required: false
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevante logs / screenshots (zonder secrets)
+      description: "Plak korte logregels of screenshot. Verwijder secrets/tokens." 
+    validations:
+      required: false
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: Ik heb in de wiki gekeken (Admin-Guide/Runbooks)
+          required: false
+        - label: Ik heb geen secrets gedeeld
+          required: true
