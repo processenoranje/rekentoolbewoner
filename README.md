@@ -50,7 +50,7 @@ Startpunten:
 - **Architecture** – ontwerpkeuzes en technische context
 - **Change Safely** – wijzigingen doorvoeren zonder breken
 
-➡️ Ga naar: **Wiki tab in deze repository**
+ Ga naar: **Wiki tab in deze repository**
 
 > Padconventie: in alle documentatie worden paden vermeld **vanaf htdocs**,  
 > bijv. `/admin/data.php`.
