@@ -1,37 +1,34 @@
 /*
 Gemaakt door: Avery Vermaas
 MIT licentie:
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
-INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR 
-PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE 
-FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR 
-OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
+FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 :root {
-  --color-primary: #ff7716;
-  --color-primary-contrast: #FFFFFF;
-  --color-bg: #f2f2f2;
-  --color-bg-column: white;
-  --color-bg-footer: rgb(48, 47, 47);
-  --color-bg-nav: #00000055;
-  --color-surface: white;
-  --color-text: #0F172A;
-  --color-text-nav: #000000;
-  --radius: 8px;
+    --color-primary: #ff7716;
+    --color-primary-contrast: #FFFFFF;
+    --color-bg: #f2f2f2;
+    --color-bg-column: white;
+    --color-bg-footer: rgb(48, 47, 47);
+    --color-bg-nav: #00000055;
+    --color-surface: white;
+    --color-text: #0F172A;
+    --color-text-nav: #000000;
+    --radius: 8px;
 }
 
 /* -------------------------------------------------------------------- */
-
 html, body {
-  overflow-x: hidden;
+    overflow-x: hidden;
 }
-
 
 *, *::before, *::after {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
-
 
 body {
     margin: 0;
@@ -42,23 +39,25 @@ body {
     flex-direction: column;
 }
 
-main{ /* everything but the topnav and footer */
+main {
+    /* everything but the topnav and footer */
     margin: 50px;
     flex: 1;
     min-height: auto;
-    
 }
 
-.content{ /* The content of the page */
-    padding-bottom: 400px;;
+.content {
+    /* The content of the page */
+    padding-bottom: 0;
+    ;
 }
 
-label{
+label {
     display: block;
     margin-top: 10px;
 }
 
-input{
+input {
     position: relative;
     right: 20px;
     float: right;
@@ -66,7 +65,7 @@ input{
     z-index: 0;
 }
 
-.inputresult{
+.inputresult {
     background: transparent;
     border: none;
     outline: none;
@@ -74,48 +73,48 @@ input{
     width: 150px;
     text-align: end;
 }
-.inputno{
+
+.inputno {
     background: transparent;
     border: none;
     outline: none;
 }
 
-button{
-  width: 100%;
-  background-color: var(--color-primary);
-  font-weight: bold;
-  color: white;
-  padding: 14px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+button {
+    width: 100%;
+    background-color: var(--color-primary);
+    font-weight: bold;
+    color: white;
+    padding: 14px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 button:hover {
-  background-color: #1a4b03;
+    background-color: #1a4b03;
 }
 
-.inactive{
-    color:#949494;
+.inactive {
+    color: #949494;
 }
 
-.totaal{
+.totaal {
     font-weight: bold;
     font-size: 20px;
 }
 
-
 footer {
-  position: relative; /* or just remove position entirely */
-  height: auto;       /* let content decide height */
-  width: 100%;
-  background-color: var(--color-bg-footer);
-  color: var(--color-bg);
+    position: relative; /* or just remove position entirely */
+    height: auto; /* let content decide height */
+    width: 100%;
+    background-color: var(--color-bg-footer);
+    color: var(--color-bg);
 }
 
-.footer{
+.footer {
     margin-top: 50px;
     margin-left: 50px;
     margin-right: 50px;
@@ -125,8 +124,8 @@ footer {
     color: var(--color-primary);
 }
 
-a{
-    color:var(--color-primary);
+a {
+    color: var(--color-primary);
 }
 
 img {
@@ -172,13 +171,13 @@ img {
     color: var(--color-surface);
 }
 
-.hidex{
+.hidex {
     color: var(--color-bg);
-    cursor: pointer; 
+    cursor: pointer;
 }
 
 .row {
-  display: flex;
+    display: flex;
 }
 
 .column {
@@ -195,7 +194,7 @@ img {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.dashboard{
+.dashboard {
     float: left;
     border-radius: 25px;
     border-style: solid;
@@ -207,7 +206,7 @@ img {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.c50{
+.c50 {
     width: 40%;
     margin-left: 20px;
     margin-right: 20px;
@@ -215,97 +214,94 @@ img {
 }
 
 .left {
-  width: 40%;
+    width: 40%;
 }
-.middle{
+
+.middle {
     width: 5%;
 }
 
 .right {
-  width: 40%;
+    width: 40%;
 }
 
 @keyframes verschil {
-    from { font-size: 20px; }
-    50%{ font-size: 30px; }
-    to { font-size: 20px; }
+    from {
+        font-size: 20px;
+    }
+    50% {
+        font-size: 30px;
+    }
+    to {
+        font-size: 20px;
+    }
 }
 
 .verschil {
-    /*animation: verschil 2s ease-in-out infinite; /* remove infinite*/ 
+    /*animation: verschil 2s ease-in-out infinite; /* remove infinite*/
 }
 
-.pc{
+.pc {
     display: inline;
 }
 
-.mob{
+.mob {
     display: none;
 }
 
 @media screen and (max-width: 600px) {
-.verschil {
-    animation: none; /* remove infinite*/ 
-    font-size: 20px;
-    display: block;
-    position: absolute;
-    left: 100px;
-}
-
-    .empty{
+    .verschil {
+        animation: none; /* remove infinite*/
+        font-size: 20px;
+        display: block;
+        position: absolute;
+        left: 100px;
+    }
+    .empty {
         display: none;
     }
-
-    main{
+    main {
         margin: 25px;
     }
-
-    .formcontent{
+    .formcontent {
         margin: 25px;
         display: flex;
     }
-
-    .menu-pc{
+    .menu-pc {
         display: none;
     }
-
-    .menu-mob{
+    .menu-mob {
         display: inline;
-    } 
+    }
     .row {
         display: block;
     }
-
     .column {
         width: 100%;
         margin: 0;
     }
-    .c50{
-    width: 40%;
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 10px;
-}
-
-    footer{
+    .c50 {
+        width: 40%;
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 10px;
+    }
+    footer {
         display: none;
     }
-    .slideshow-container{
+    .slideshow-container {
         margin: 0;
     }
-
-    .pc{
-    display: none;
-}
-
-.mob{
-    display: inline;
-}
+    .pc {
+        display: none;
+    }
+    .mob {
+        display: inline;
+    }
 }
 
 @media screen and (max-width: 1200px) {
-    .empty{
+    .empty {
         display: none;
     }
 }
-

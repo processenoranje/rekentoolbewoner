@@ -10,1416 +10,1031 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 DEALINGS IN THE SOFTWARE. 
  -->
 <html lang="nl">
-<head>
-    <title>Rekentool Bewoner</title>
-    <link rel="icon" type="image/x-icon" href="afbeeldingen/favicon.ico">
-    <link rel="stylesheet" href="css/base.css">
-    <meta charset="UTF-8">
-    <meta name="description" content="Bekijk hier hoe lidmaatschap aan het energieschap een verschil maakt voor u.">
-    <meta name="keywords" content="rekentool, bewoner, salderen, energieschap">
-    <meta name="author" content="Avery Vermaas">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
-    <script src="https://kit.fontawesome.com/2c8d5bea2d.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/styles_bewoner.css">
-    
-    <style>
-* {box-sizing: border-box}
-body {font-family: Verdana, sans-serif; margin:0}
-.mySlides {display: none}
-img {vertical-align: middle;}
+    <head>
+        <title>Rekentool Bewoner</title>
+        <link rel="icon" type="image/x-icon" href="afbeeldingen/favicon.ico">
+        <link rel="stylesheet" href="css/base.css">
+        <meta charset="UTF-8">
+        <meta name="description" content="Bekijk hier hoe lidmaatschap aan het energieschap een verschil maakt voor u.">
+        <meta name="keywords" content="rekentool, bewoner, salderen, energieschap">
+        <meta name="author" content="Avery Vermaas">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+        <script src="https://kit.fontawesome.com/2c8d5bea2d.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="css/styles_bewoner.css">
+        <style>
+            * {
+                box-sizing: border-box;
+            }
 
-/* Slideshow container */
-.slideshow-container {
-  max-width: 1000px;
-  position: relative;
-  margin: auto;
-}
+            body {
+                font-family: Verdana, sans-serif;
+                margin: 0;
+            }
 
-/* Next & previous buttons */
-.prev, .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  padding: 16px;
-  margin-top: -22px;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
-}
+            .mySlides {
+                display: none;
+            }
 
-/* Position the "next button" to the right */
-.next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
-}
+            img {
+                vertical-align: middle;
+            }
 
-/* On hover, add a black background color with a little bit see-through */
-.prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
-}
+            /* Slideshow container */
+            .slideshow-container {
+                max-width: 1000px;
+                position: relative;
+                margin: auto;
+            }
 
-/* Caption text */
-.text {
-  color: #f2f2f2;
-  font-size: 15px;
-  padding: 8px 12px;
-  position: absolute;
-  bottom: 8px;
-  width: 100%;
-  text-align: center;
-}
+            /* Next & previous buttons */
+            .prev, .next {
+                cursor: pointer;
+                position: absolute;
+                top: 50%;
+                width: auto;
+                padding: 16px;
+                margin-top: -22px;
+                color: white;
+                font-weight: bold;
+                font-size: 18px;
+                transition: 0.6s ease;
+                border-radius: 0 3px 3px 0;
+                user-select: none;
+            }
 
-/* Number text (1/3 etc) */
-.numbertext {
-  color: #f2f2f2;
-  font-size: 12px;
-  padding: 8px 12px;
-  position: absolute;
-  top: 0;
-}
+            /* Position the "next button" to the right */
+            .next {
+                right: 0;
+                border-radius: 3px 0 0 3px;
+            }
 
-/* The dots/bullets/indicators */
-.dot {
-  cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
-}
+            /* On hover, add a black background color with a little bit see-through */
+            .prev:hover, .next:hover {
+                background-color: rgba(0, 0, 0, 0.8);
+            }
 
-.active, .dot:hover {
-  background-color: #717171;
-}
+            /* Caption text */
+            .text {
+                color: #f2f2f2;
+                font-size: 15px;
+                padding: 8px 12px;
+                position: absolute;
+                bottom: 8px;
+                width: 100%;
+                text-align: center;
+            }
 
-/* Fading animation */
-.fade {
-  animation-name: fade;
-  animation-duration: 1.5s;
-}
+            /* Number text (1/3 etc) */
+            .numbertext {
+                color: #f2f2f2;
+                font-size: 12px;
+                padding: 8px 12px;
+                position: absolute;
+                top: 0;
+            }
 
-@keyframes fade {
-  from {opacity: .4} 
-  to {opacity: 1}
-}
+            /* The dots/bullets/indicators */
+            .dot {
+                cursor: pointer;
+                height: 15px;
+                width: 15px;
+                margin: 0 2px;
+                background-color: #bbb;
+                border-radius: 50%;
+                display: inline-block;
+                transition: background-color 0.6s ease;
+            }
 
-/* On smaller screens, decrease text size */
-@media only screen and (max-width: 300px) {
-  .prev, .next,.text {font-size: 11px}
-}
-details {
-  user-select: none;
-}
+            .active, .dot:hover {
+                background-color: #717171;
+            }
 
-details>summary span.icon {
-  width: 24px;
-  height: 24px;
-  transition: all 0.3s;
-  margin-left: auto;
-}
+            /* Fading animation */
+            .fade {
+                animation-name: fade;
+                animation-duration: 1.5s;
+            }
 
-details[open] summary span.icon {
-  transform: rotate(180deg) translateY(-30px);
-}
+            @keyframes fade {
+                from {
+                    opacity: .4;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
 
-summary {
-  display: flex;
-  cursor: pointer;
-}
+            /* On smaller screens, decrease text size */
 
-summary::-webkit-details-marker {
-  display: none;
-}
+            @media only screen and (max-width: 300px) {
+                .prev, .next, .text {
+                    font-size: 11px;
+                }
+            }
 
-.comparison-table-wrapper {
-  margin: 20px 0;
-}
-.comparison-table-wrapper .comparison-table__button {
-  display: inline-block;
-  margin-bottom: 16px;
-  padding: 10px 16px;
-  border: none;
-  border-radius: 4px;
-  background: #fdd3b5;
-  color: #ec6403;
-  font-weight: 700;
-  cursor: pointer;
-}
-.comparison-table-wrapper .comparison-table__container {
-  overflow-x: auto;
-}
-.comparison-table {
-  width: 100%;
-  min-width: 620px;
-  border-collapse: collapse;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-  background: #fff;
-}
-.comparison-table th,
-.comparison-table td {
-  padding: 14px 16px;
-  border: 1px solid #ddd;
-  text-align: left;
-  vertical-align: top;
-}
-.comparison-table th {
-  background: #f7f7f7;
-  font-weight: 700;
-  color: #1f1f1f;
-}
-.comparison-table th:first-child,
-.comparison-table td:first-child {
-  background: #f4f4f4;
-  width: 40%;
-}
-.comparison-table tbody tr:nth-child(even) td {
-  background: #fafafa;
-}
-@media (max-width: 900px) {
-  .comparison-table {
-    min-width: auto;
-  }
-  .comparison-table th:first-child,
-  .comparison-table td:first-child {
-    width: auto;
-  }
-}
+            details {
+                user-select: none;
+            }
 
-    </style>
-</head>
-<body>
-    <div class="topnav" w3-include-html="topnav.html"></div> 
-    <main>
-      <div class="content">
-      <div class="row">
-        <div class="column left" style="border-color: #00000000; background-color: #00000000; box-shadow: none; margin-top: 0;" id="content-descritpion">
-        <h1>Rekentool Bewoner</h1>
-        <div>
-          <p>In 2027 stopt het salderen. Dit betekent dat je moet betalen voor de stroom die je opwekt, maar niet zelf gebruikt. Daardoor kunnen je energiekosten met honderden euro’s per jaar stijgen. </p>
- 
-          <p>Wij bieden hiervoor een oplossing: energie delen. De stroom die je zelf niet gebruikt, kun je doneren aan het Energieschap. In ruil daarvoor krijg je belastingvoordeel op je inkomstenbelasting en help je tegelijkertijd je buurman. Zo voorkom je dat je rekening hoog oploopt.</p>
- 
-          <p>Wil je weten wat het stoppen van het salderen voor jou betekent? Gebruik dan de tool hiernaast.</p>
+            details>summary span.icon {
+                width: 24px;
+                height: 24px;
+                transition: all 0.3s;
+                margin-left: auto;
+            }
 
-          <p>* Let op, deze tool geeft een indicatie, aan de uitkomsten kunnen geen rechten worden ontleend.</p>
+            details[open] summary span.icon {
+                transform: rotate(180deg) translateY(-30px);
+            }
+
+            summary {
+                display: flex;
+                cursor: pointer;
+            }
+
+            summary::-webkit-details-marker {
+                display: none;
+            }
+
+            .comparison-table-wrapper {
+                margin: 20px 0;
+            }
+
+            .comparison-table-wrapper .comparison-table__button {
+                display: inline-block;
+                margin-bottom: 16px;
+                padding: 10px 16px;
+                border: none;
+                border-radius: 4px;
+                background: #fdd3b5;
+                color: #ec6403;
+                font-weight: 700;
+                cursor: pointer;
+            }
+
+            .comparison-table-wrapper .comparison-table__container {
+                overflow-x: auto;
+            }
+
+            .comparison-table {
+                width: 100%;
+                min-width: 620px;
+                border-collapse: collapse;
+                box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+                background: #fff;
+            }
+
+            .comparison-table th, .comparison-table td {
+                padding: 14px 16px;
+                border: 1px solid #ddd;
+                text-align: left;
+                vertical-align: top;
+            }
+
+            .comparison-table th {
+                background: #f7f7f7;
+                font-weight: 700;
+                color: #1f1f1f;
+            }
+
+            .comparison-table th:first-child, .comparison-table td:first-child {
+                background: #f4f4f4;
+                width: 40%;
+            }
+
+            .comparison-table tbody tr:nth-child(even) td {
+                background: #fafafa;
+            }
+
+            @media (max-width: 900px) {
+                .comparison-table {
+                    min-width: auto;
+                }
+                .comparison-table th:first-child, .comparison-table td:first-child {
+                    width: auto;
+                }
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="topnav" w3-include-html="topnav.html">
         </div>
-        </div>
-        <div class="column right" style="display: inline;">
-          <form id="myForm" action="submit.php" method="post" novalidate>
-            <h2>Mijn huishouden</h2>
-              <div>
-                <label>Postcode
-                <input type="text" id="postcode" name="postcode" placeholder="0000AB" style="left:0px">
-                </label>
-                <label>Huisnummer
-                <input type="text" id="huisnummer" name="huisnummer" placeholder="00" style="left:0px">
-                </label>
-                <label>Toevoeging
-                <input type="text" id="toevoeging" name="toevoeging" style="left:0px">
-                </label><br><br>
-                <div id="schatten" style="display: inline;">
-                <label class="switch" style="font-weight: bold;">Ik heb zonnepanelen
-                  <input type="checkbox" onclick="updatepres();" checked="checked" id="zonp" name="zonnepanelen">
-                  <span class="slider round"></span>
-                </label><br>
-                <input type="radio" id="1" name="preset" value="1" onclick="hidecustom();p1();">
-                <label for="1">Een volwassene</label><br>
-                <input type="radio" id="2" name="preset" value="2" onclick="hidecustom();p2();">
-                <label for="2">Twee volwassenen</label><br>
-                <input type="radio" id="3" name="preset" value="3" onclick="hidecustom();p3();">
-                <label for="3">Twee volwassenen, een kind</label><br>
-                <input type="radio" id="4" name="preset" value="4" onclick="hidecustom();p4();" checked="checked">
-                <label for="4">Twee volwassenen, twee kinderen</label>
-                <br>
-                <label style="display: flex; float: left; padding: 10px;font-size: 12px;" id="defverb"><i class="fa-solid fa-bolt"></i> 3500 kWh</label>
-                <label style="display: flex; float: left; padding: 10px;font-size: 12px;" id="defgas"><i class="fa-solid fa-fire-flame-simple"></i> 1400 m3</label>
-                <label style="display: flex; float: left; padding: 10px;font-size: 12px;" id="defopw"><i class="fa-solid fa-solar-panel"></i> 3000 kWh</label>
-                <button onclick="showcustom();" style="background-color: #fdd3b5;color: #ec6403;">Ik wil zelf mijn gegevens invullen</button>
-              </div>
-              </div>
-              <div id="custom" style="display: none;">
-                <div>
-                    <div>
-                      <h2 style="margin-top: 0;">Opwek en verbruik</h2>
-                      <label for="">Mijn verbruik per jaar:
-                      <input type="number" min="0" value="3500" id="gemjaarverbr" name="verbruik" onclick="inkoopz();inkoopm();totaalz();totaalm();gelijkz();gelijkm();gelijkth();inkoopth();tlkth();tlvth();totaalthuis();versch();" onkeyup="inkoopz();inkoopth();totaalz();totaalm();totaalthuis();gelijkz();gelijkm();gelijkth();versch();" step="50">
-                      </label>
-                      <label for="">Mijn opwek per jaar:
-                      <input type="number" min="0" value="3000" id="opwek" name="opwek" onclick="inkoopz();inkoopm();totaalz();totaalm();tlkz();tlkm();tlvz();tlvm();gelijkz();gelijkm();gelijkth();inkoopth();tlkth();tlvth();totaalthuis();versch();" onkeyup="inkoopz();inkoopm();totaalz();totaalm();tlkz();tlkm();tlvz();tlvm();gelijkz();gelijkm();gelijkth();inkoopth();tlkth();tlvth();totaalthuis();versch();" step="50">
-                      </label>
+        <main>
+            <div class="content">
+                <div class="row" id="invoer-sectie">
+                    <div class="column left" style="border-color: #00000000; background-color: #00000000; box-shadow: none; margin-top: 0;" id="content-descritpion">
+                        <h1>Rekentool Bewoner</h1>
+                        <div>
+                            <p>In 2027 stopt het salderen. Dit betekent dat je moet betalen voor de stroom die je opwekt, maar niet zelf gebruikt. Daardoor kunnen je energiekosten met honderden euro’s per jaar stijgen. </p>
+                            <p>Wij bieden hiervoor een oplossing: energie delen. De stroom die je zelf niet gebruikt, kun je doneren aan het Energieschap. In ruil daarvoor krijg je belastingvoordeel op je inkomstenbelasting en help je tegelijkertijd je buurman. Zo voorkom je dat je rekening hoog oploopt.</p>
+                            <p>Wil je weten wat het stoppen van het salderen voor jou betekent? Gebruik dan de tool hiernaast.</p>
+                            <p>* Let op, deze tool geeft een indicatie, aan de uitkomsten kunnen geen rechten worden ontleend.</p>
+                        </div>
                     </div>
-                </div> <!-- Gelijktijdigheid 30% of 40% bij delen-->
-                <div>
-                    <h2>Tarieven</h2>
-                    <h3>2026</h3>
-                    <label for="">Energieprijs per kWh:
-                    <input type="number" min="0" id="energiepr26" value="0.26" name="" onclick="totaalz();inkoopz();versch();" onkeyup="totaalz();inkoopz();versch();" step=".01">
-                    </label>
-                    <label for="">Terugleverkosten per kWh:
-                    <input type="number" min="0" id="teruglvrkost26" value="0.045" name="" onclick="totaalz();tlkz();versch();" onkeyup="totaalz();tlkz();versch();" step=".01">
-                    </label>
-                    <label for="">Terugleververgoeding per kWh:
-                    <input type="number" min="0" id="teruglvrverg26" value="0.05" name="" onclick="totaalz();tlvz();versch();" onkeyup="totaalz();tlvz();versch();" step=".01">
-                    </label>
-                    <h3>2027</h3>
-                    <label for="">Energieprijs per kWh:
-                    <input type="number" min="0" id="energiepr" value="0.26" name="" onclick="totaalz();inkoopz();totaalthuis();inkoopth();versch();" onkeyup="totaalz();inkoopz();totaalthuis();inkoopth();versch();" step=".01">
-                    </label>
-                    <label for="">Terugleverkosten per kWh:
-                    <input type="number" min="0" id="teruglvrkost" value="0.045" name="" onclick="totaalz();tlkz();totaalthuis();tlkth();versch();" onkeyup="totaalz();tlkz();totaalthuis();tlkth();versch();" step=".01">
-                    </label>
-                    <label for="">Terugleververgoeding per kWh:
-                    <input type="number" min="0" id="teruglvrverg" value="0.05" name="" onclick="totaalz();tlvz();totaalthuis();tlvth();versch();" onkeyup="totaalz();tlvz();totaalthuis();tlvth();versch();" step=".01">
-                    </label>
-                    <label for="">Buurtstroom per kWh:
-                    <input type="" min="0" id="buurtstr" value="0.21" name="" readonly class="inputno">
-                    </label>
-                    <label for="">Terugleverkosten buurtstroom per kWh:
-                    <input type="" min="0" id="teruglvrkostbs" value="0.009" name="" onclick="" onkeyup=""  readonly class="inputno">
-                    </label>
-                    <label for="">Korting inkomstenbelasting per kWh:
-                    <input type="" min="0" id="kortingib" value="0.096" name="" onclick="" onkeyup="" readonly class="inputno">
-                    </label>
+                    <div class="column right" style="display: inline;">
+                        <form id="myForm" action="submit.php" method="post" novalidate>
+                            <h2>Mijn huishouden</h2>
+                            <div>
+                                <label>Postcode <input type="text" id="postcode" name="postcode" placeholder="0000AB" style="left:0px"> </label>
+                                <label>Huisnummer <input type="text" id="huisnummer" name="huisnummer" placeholder="00" style="left:0px"> </label>
+                                <label>Toevoeging <input type="text" id="toevoeging" name="toevoeging" style="left:0px"> </label>
+                                <br>
+                                <br>
+                                <div id="schatten" style="display: inline;">
+                                    <label class="switch" style="font-weight: bold;">Ik heb zonnepanelen <input type="checkbox" onclick="updatepres();" checked="checked" id="zonp" name="zonnepanelen"> <span class="slider round"></span> </label>
+                                    <br>
+                                    <input type="radio" id="1" name="preset" value="1" onclick="hidecustom();p1();">
+                                    <label for="1">Een volwassene</label>
+                                    <br>
+                                    <input type="radio" id="2" name="preset" value="2" onclick="hidecustom();p2();">
+                                    <label for="2">Twee volwassenen</label>
+                                    <br>
+                                    <input type="radio" id="3" name="preset" value="3" onclick="hidecustom();p3();">
+                                    <label for="3">Twee volwassenen, een kind</label>
+                                    <br>
+                                    <input type="radio" id="4" name="preset" value="4" onclick="hidecustom();p4();" checked="checked">
+                                    <label for="4">Twee volwassenen, twee kinderen</label>
+                                    <br>
+                                    <label style="display: flex; float: left; padding: 10px;font-size: 12px;" id="defverb"><i class="fa-solid fa-bolt"></i> 3500 kWh</label>
+                                    <label style="display: flex; float: left; padding: 10px;font-size: 12px;" id="defgas"><i class="fa-solid fa-fire-flame-simple"></i> 1400 m3</label>
+                                    <label style="display: flex; float: left; padding: 10px;font-size: 12px;" id="defopw"><i class="fa-solid fa-solar-panel"></i> 3000 kWh</label>
+                                    <button type="button" onclick="showcustom();" style="background-color: #fdd3b5;color: #ec6403;">Ik wil zelf mijn gegevens invullen</button>
+                                </div>
+                            </div>
+                            <div id="custom" style="display: none;">
+                                <div>
+                                    <div>
+                                        <h2 style="margin-top: 0;">Opwek en verbruik</h2>
+                                        <label for="">Mijn verbruik per jaar: <input type="number" min="0" value="3500" id="gemjaarverbr" name="verbruik" onclick="inkoopz();inkoopm();totaalz();totaalm();gelijkz();gelijkm();gelijkth();inkoopth();tlkth();tlvth();totaalthuis();versch();" onkeyup="inkoopz();inkoopth();totaalz();totaalm();totaalthuis();gelijkz();gelijkm();gelijkth();versch();" step="50"> </label>
+                                        <label for="">Mijn opwek per jaar: <input type="number" min="0" value="3000" id="opwek" name="opwek" onclick="inkoopz();inkoopm();totaalz();totaalm();tlkz();tlkm();tlvz();tlvm();gelijkz();gelijkm();gelijkth();inkoopth();tlkth();tlvth();totaalthuis();versch();" onkeyup="inkoopz();inkoopm();totaalz();totaalm();tlkz();tlkm();tlvz();tlvm();gelijkz();gelijkm();gelijkth();inkoopth();tlkth();tlvth();totaalthuis();versch();" step="50"> </label>
+                                    </div>
+                                </div>
+                                <!-- Gelijktijdigheid 30% of 40% bij delen-->
+                                <div>
+                                    <h2>Tarieven</h2>
+                                    <h3>2026</h3>
+                                    <label for="">Energieprijs per kWh: <input type="number" min="0" id="energiepr26" value="0.26" name="" onclick="totaalz();inkoopz();versch();" onkeyup="totaalz();inkoopz();versch();" step=".01"> </label>
+                                    <label for="">Terugleverkosten per kWh: <input type="number" min="0" id="teruglvrkost26" value="0.045" name="" onclick="totaalz();tlkz();versch();" onkeyup="totaalz();tlkz();versch();" step=".01"> </label>
+                                    <label for="">Terugleververgoeding per kWh: <input type="number" min="0" id="teruglvrverg26" value="0.05" name="" onclick="totaalz();tlvz();versch();" onkeyup="totaalz();tlvz();versch();" step=".01"> </label>
+                                    <h3>2027</h3>
+                                    <label for="">Energieprijs per kWh: <input type="number" min="0" id="energiepr" value="0.26" name="" onclick="totaalz();inkoopz();totaalthuis();inkoopth();versch();" onkeyup="totaalz();inkoopz();totaalthuis();inkoopth();versch();" step=".01"> </label>
+                                    <label for="">Terugleverkosten per kWh: <input type="number" min="0" id="teruglvrkost" value="0.045" name="" onclick="totaalz();tlkz();totaalthuis();tlkth();versch();" onkeyup="totaalz();tlkz();totaalthuis();tlkth();versch();" step=".01"> </label>
+                                    <label for="">Terugleververgoeding per kWh: <input type="number" min="0" id="teruglvrverg" value="0.05" name="" onclick="totaalz();tlvz();totaalthuis();tlvth();versch();" onkeyup="totaalz();tlvz();totaalthuis();tlvth();versch();" step=".01"> </label>
+                                    <label for="">Buurtstroom per kWh: <input type="" min="0" id="buurtstr" value="0.21" name="" readonly class="inputno"> </label>
+                                    <label for="">Terugleverkosten buurtstroom per kWh: <input type="" min="0" id="teruglvrkostbs" value="0.009" name="" onclick="" onkeyup="" readonly class="inputno"> </label>
+                                    <label for="">Korting inkomstenbelasting per kWh: <input type="" min="0" id="kortingib" value="0.096" name="" onclick="" onkeyup="" readonly class="inputno"> </label>
+                                </div>
+                                <button type="button" onclick="hidecustom();" style="background-color: #fdd3b5;color: #ec6403;">Kies een voorbeeld</button>
+                            </div>
+                            <button type="button" onclick="submitAndShow();">Verstuur</button>
+                        </form>
+                    </div>
                 </div>
-              </div>
-              <button type="button" onclick="submitAndShow();">Verstuur</button>
-          </form>
-        </div>
-      </div>
-    <div class="row" style="display: inline;" id="resultaat">
-        <div class="column left">
-            <h2>Kassabon 2026</h2>
-
-            <h3>Tarieven</h3>
-            <label for="">Energie kosten:
-            <input type="text" id="inkoop26" name="" class="inputresult" value="676.00" readonly>
-            </label>
-            <label for="">Terugleverkosten:
-            <input type="text" id="tlk26" name="" class="inputresult" value="94.50" readonly>
-            </label>
-            <label for="">Terugleververgoeding:
-            <input type="text" id="tlv26" name="" class="inputresult" value="-105.00" readonly>
-            </label>
-            <hr>
-            <label for="" class="totaal">Totaal per jaar:
-            <input type="text" id="tot26" name="" class="inputresult" value="695.50" readonly>
-            </label>
-            
-
-            <h2>Verschil 2026 -> 2027:</h2>
-            <input type="text" id="verschil2627" name="" class="inputresult" value="" readonly style="font-size: 30px;float:left;color:red;font-weight: bold;">
-  
-
-        </div>
-        <div class="column right" style="display: none;">
-            
-            <!-- Sanity test
+            </div>
+            <div style="display: none;">
+                <div>
+                    <div class="column left">
+                        <h2>Kassabon 2026</h2>
+                        <h3>Tarieven</h3>
+                        <label for="">Energie kosten: <input type="text" id="inkoop26" name="" class="inputresult" value="676.00" readonly> </label>
+                        <label for="">Terugleverkosten: <input type="text" id="tlk26" name="" class="inputresult" value="94.50" readonly> </label>
+                        <label for="">Terugleververgoeding: <input type="text" id="tlv26" name="" class="inputresult" value="-105.00" readonly> </label>
+                        <hr>
+                        <label for="" class="totaal">Totaal per jaar: <input type="text" id="tot26" name="" class="inputresult" value="695.50" readonly> </label>
+                        <h2>Verschil 2026 -> 2027:</h2>
+                        <input type="text" id="verschil2627" name="" class="inputresult" value="" readonly style="font-size: 30px;float:left;color:red;font-weight: bold;">
+                    </div>
+                    <div class="column right" style="display: none;">
+                        <!-- Sanity test
             <h2>Output</h2>
                 <label for="">Output 2x:</label>
             <input type="text" id="out2x" name=""> -->
-            
-            <div>
-              Sanity check
-              <p>Met delen, met panelen</p>
-              <label for="" class="totaal">Gelijktijdigverbr:
-              <input type="text" id="kwhgelijkm" name="" class="inputresult" value="1200" readonly>
-              </label>
-              <label for="" class="totaal">Ongelijktijdigverbr:
-              <input type="text" id="kwhongelijkm" name="" class="inputresult" value="1800" readonly>
-              </label>
-              <label for="" class="totaal">Restverbr:
-              <input type="text" id="kwhrestm" name="" class="inputresult" value="2300" readonly>
-              </label>
-              <label for="">Gelijktijdigheid
-              <input type="number" min="0" id="gelijktm" value="40" name="" readonly>
-              </label>
-
-              <p>Zonder delen, met panelen</p>
-              <label for="" class="totaal">Gelijktijdigverbr:
-              <input type="text" id="kwhgelijkz" name="" class="inputresult" value="900" readonly>
-              </label>
-              <label for="" class="totaal">Ongelijktijdigverbr:
-              <input type="text" id="kwhongelijkz" name="" class="inputresult" value="2100" readonly>
-              </label>
-              <label for="" class="totaal">Restverbr:
-              <input type="text" id="kwhrestz" name="" class="inputresult" value="2600" readonly>
-              </label>
-              <label for="">Gelijktijdigheid
-              <input type="number" min="0" id="gelijktz" value="30" name="" readonly>
-              </label>
-
-              <p>Zonder panelen</p>
-              <label for="" class="totaal">Gelijktijdigverbr:
-              <input type="text" id="kwhgelijk0" name="" class="inputresult" value="0" readonly>
-              </label>
-              <label for="" class="totaal">Ongelijktijdigverbr:
-              <input type="text" id="kwhongelijk0" name="" class="inputresult" value="0" readonly>
-              </label>
-              <label for="" class="totaal">Restverbr:
-              <input type="text" id="kwhrest0" name="" class="inputresult" value="3500" readonly>
-              </label>
-              <label for="">Gelijktijdigheid
-              <input type="number" min="0" id="gelijkt0" value="0" name="" readonly>
-              </label>
-
-              <p>thuisbat, met panelen</p>
-              <label for="" class="totaal">Gelijktijdigverbr:
-              <input type="text" id="kwhgelijkth" name="" class="inputresult" value="0" readonly>
-              </label>
-              <label for="" class="totaal">Ongelijktijdigverbr:
-              <input type="text" id="kwhongelijkth" name="" class="inputresult" value="0" readonly>
-              </label>
-              <label for="" class="totaal">Restverbr:
-              <input type="text" id="kwhrestth" name="" class="inputresult" value="0" readonly>
-              </label>
-              <label for="">Gelijktijdigheid
-              <input type="number" min="0" id="gelijktth" value="40" name="" readonly>
-              </label>
-              <label for="">Custom view
-                <input type="number" id="customview" value="0" readonly>
-              </label>
+                        <div> Sanity check <p>Met delen, met panelen</p> <label for="" class="totaal">Gelijktijdigverbr: <input type="text" id="kwhgelijkm" name="" class="inputresult" value="1200" readonly> </label> <label for="" class="totaal">Ongelijktijdigverbr: <input type="text" id="kwhongelijkm" name="" class="inputresult" value="1800" readonly> </label> <label for="" class="totaal">Restverbr: <input type="text" id="kwhrestm" name="" class="inputresult" value="2300" readonly> </label> <label for="">Gelijktijdigheid <input type="number" min="0" id="gelijktm" value="40" name="" readonly> </label> <p>Zonder delen, met panelen</p> <label for="" class="totaal">Gelijktijdigverbr: <input type="text" id="kwhgelijkz" name="" class="inputresult" value="900" readonly> </label> <label for="" class="totaal">Ongelijktijdigverbr: <input type="text" id="kwhongelijkz" name="" class="inputresult" value="2100" readonly> </label> <label for="" class="totaal">Restverbr: <input type="text" id="kwhrestz" name="" class="inputresult" value="2600" readonly> </label> <label for="">Gelijktijdigheid <input type="number" min="0" id="gelijktz" value="30" name="" readonly> </label> <p>Zonder panelen</p> <label for="" class="totaal">Gelijktijdigverbr: <input type="text" id="kwhgelijk0" name="" class="inputresult" value="0" readonly> </label> <label for="" class="totaal">Ongelijktijdigverbr: <input type="text" id="kwhongelijk0" name="" class="inputresult" value="0" readonly> </label> <label for="" class="totaal">Restverbr: <input type="text" id="kwhrest0" name="" class="inputresult" value="3500" readonly> </label> <label for="">Gelijktijdigheid <input type="number" min="0" id="gelijkt0" value="0" name="" readonly> </label> <p>thuisbat, met panelen</p> <label for="" class="totaal">Gelijktijdigverbr: <input type="text" id="kwhgelijkth" name="" class="inputresult" value="0" readonly> </label> <label for="" class="totaal">Ongelijktijdigverbr: <input type="text" id="kwhongelijkth" name="" class="inputresult" value="0" readonly> </label> <label for="" class="totaal">Restverbr: <input type="text" id="kwhrestth" name="" class="inputresult" value="0" readonly> </label> <label for="">Gelijktijdigheid <input type="number" min="0" id="gelijktth" value="40" name="" readonly> </label> <label for="">Custom view <input type="number" id="customview" value="0" readonly> </label> </div>
+                    </div>
+                </div>
             </div>
+            <div class="row" style="display: none;">
+                <div class="column left" style="border-color: #00000000; background-color: #00000000; box-shadow: none;">
+                </div>
+                <div class="column right" style="border-color: #00000000; background-color: #00000000; box-shadow: none; margin-top: 0;">
+                    <div class="row" style="margin-top: 0;">
+                        <div class="column left" style="margin-top: 0;"> Zonder </div>
+                        <div class="column right" style="margin-top: 0;"> Met </div>
+                    </div>
+                </div>
             </div>
-            
         </div>
     </div>
-    <div class="row" style="display: none;">
-      <div class="column left" style="border-color: #00000000; background-color: #00000000; box-shadow: none;"></div>
-          <div class="column right" style="border-color: #00000000; background-color: #00000000; box-shadow: none; margin-top: 0;">
-            <div class="row" style="margin-top: 0;">
-              <div class="column left" style="margin-top: 0;">
-                Zonder
-              </div>
-              <div class="column right" style="margin-top: 0;">
-                Met
-              </div>
+    <div id="resultaten-sectie" style="display: none;">
+        <button type="button" id="terug-btn" style="display:none;" onclick="terugnaarInvullen();">Terug naar invullen</button>
+        <section class="js-comparison__coverage-section c-comparison__coverage-section">
+            <!--<input type="checkbox" class="js-comparison__category-checkbox c-comparison__category-checkbox u-visuallyhidden" id="comparison__category1" checked="checked">-->
+            <label class="layout layout--flex layout--flush js-comparison__category c-comparison__category js-comparison__category--header c-comparison__category--header" for="comparison__category1">
+                <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label c-comparison__coverage-cell--header">
+                    <h3 class="epsilon palm-default-font-size u-weight--normal u-text-color-white palm-pv--" id="pakket0">Totale pakketscore</h3>
+                </div>
+                <div class="layout__item u-1/4 u-1/3-palm u-bg-color-white c-comparison__coverage-cell c-comparison__coverage-cell--header u-palm-visuallyhidden">
+                </div>
+                <div class="layout__item u-1/4 u-1/3-palm u-bg-color-white c-comparison__coverage-cell c-comparison__coverage-cell--header u-palm-visuallyhidden">
+                </div>
+                <div class="layout__item u-1/4 u-1/3-palm u-bg-color-white c-comparison__coverage-cell c-comparison__coverage-cell--header u-palm-visuallyhidden">
+                </div>
+            </label>
+            <div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
+                <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
+                    <h4 class="u-text-color-white default-font-size js-tooltip-trigger tooltipstered" id="pakket1">
+                        Totale pakketscore
+                        <!--<span class="u-display--inline-block ml-"><svg width="5" height="11" viewBox="0 0 5 11" xmlns="http://www.w3.org/2000/svg"><path d="M5 9.5c0-.273-.227-.5-.5-.5H4V4.5c0-.273-.227-.5-.5-.5h-3c-.273 0-.5.227-.5.5V2c0 .273.227.5.5.5H1v3H.5c-.273 0-.5.227-.5.5v1c0 .273.227.5.5.5h4c.273 0 .5-.227.5-.5v-1zm-1-9c0-.273-.227-.5-.5-.5h-2c-.273 0-.5.227-.5.5V2c0 .273.227.5.5.5h2c.273 0 .5-.227.5-.5V.5z" fill="#9B9B9B" class="u-svg-fill" fill-rule="evenodd"></path></svg></span>-->
+                    </h4>
+                </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+                    <div class="u-text-align--center" id="pakket1a">
+                        <div class="pv--">
+                            <span class="c-rating-total c-spec c-spec--rating u-display--inline-block"> 8<span class="c-spec__decimals">,6</span> <span class="c-rating-total__svg"><svg viewBox="0 0 61 61" xmlns="http://www.w3.org/2000/svg"><path d="M28.195 58.036l-1.345.559a5.354 5.354 0 01-6.175-1.522l-.93-1.12a6 6 0 00-4.083-2.143l-1.45-.13a5.354 5.354 0 01-4.76-4.217l-.304-1.424a6 6 0 00-2.619-3.794l-1.224-.789A5.354 5.354 0 013.05 37.51l.393-1.401a6 6 0 00-.556-4.577l-.717-1.267a5.354 5.354 0 01.767-6.314l1-1.059a6 6 0 001.634-4.31l-.046-1.456a5.354 5.354 0 013.613-5.234l1.377-.473a6 6 0 003.451-3.057l.635-1.31a5.354 5.354 0 015.632-2.956l1.439.221a6 6 0 004.477-1.103l1.171-.865a5.354 5.354 0 016.36 0l1.171.865a6 6 0 004.477 1.103l1.44-.221a5.354 5.354 0 015.63 2.956l.636 1.31a6 6 0 003.45 3.057l1.378.473a5.354 5.354 0 013.613 5.234l-.046 1.455a6 6 0 001.635 4.311l1 1.059a5.354 5.354 0 01.766 6.314l-.717 1.267a6 6 0 00-.556 4.577l.393 1.401a5.354 5.354 0 01-2.255 5.947l-1.224.789a6 6 0 00-2.62 3.794l-.303 1.424a5.354 5.354 0 01-4.76 4.218l-1.45.13a6 6 0 00-4.083 2.142l-.93 1.12a5.354 5.354 0 01-6.175 1.522l-1.345-.56a6 6 0 00-4.61 0z" fill="#61A38D" class="u-svg-fill"></path><circle stroke="#F7F7F7" cx="30.5" cy="30.5" r="22.961"></circle></svg></span> </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+                    <div class="u-text-align--center" id="pakket1b">
+                        <div class="pv-- c-comparison__highlight">
+                            <span class="c-rating-total c-spec c-spec--rating u-display--inline-block"> 8<span class="c-spec__decimals">,7</span> <span class="c-rating-total__svg"><svg viewBox="0 0 61 61" xmlns="http://www.w3.org/2000/svg"><path d="M28.195 58.036l-1.345.559a5.354 5.354 0 01-6.175-1.522l-.93-1.12a6 6 0 00-4.083-2.143l-1.45-.13a5.354 5.354 0 01-4.76-4.217l-.304-1.424a6 6 0 00-2.619-3.794l-1.224-.789A5.354 5.354 0 013.05 37.51l.393-1.401a6 6 0 00-.556-4.577l-.717-1.267a5.354 5.354 0 01.767-6.314l1-1.059a6 6 0 001.634-4.31l-.046-1.456a5.354 5.354 0 013.613-5.234l1.377-.473a6 6 0 003.451-3.057l.635-1.31a5.354 5.354 0 015.632-2.956l1.439.221a6 6 0 004.477-1.103l1.171-.865a5.354 5.354 0 016.36 0l1.171.865a6 6 0 004.477 1.103l1.44-.221a5.354 5.354 0 015.63 2.956l.636 1.31a6 6 0 003.45 3.057l1.378.473a5.354 5.354 0 013.613 5.234l-.046 1.455a6 6 0 001.635 4.311l1 1.059a5.354 5.354 0 01.766 6.314l-.717 1.267a6 6 0 00-.556 4.577l.393 1.401a5.354 5.354 0 01-2.255 5.947l-1.224.789a6 6 0 00-2.62 3.794l-.303 1.424a5.354 5.354 0 01-4.76 4.218l-1.45.13a6 6 0 00-4.083 2.142l-.93 1.12a5.354 5.354 0 01-6.175 1.522l-1.345-.56a6 6 0 00-4.61 0z" fill="#61A38D" class="u-svg-fill"></path><circle stroke="#F7F7F7" cx="30.5" cy="30.5" r="22.961"></circle></svg></span> </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+                    <div class="u-text-align--center" id="pakket1c">
+                        <div class="pv--">
+                            <span class="c-rating-total c-spec c-spec--rating u-display--inline-block"> 8<span class="c-spec__decimals">,6</span> <span class="c-rating-total__svg"><svg viewBox="0 0 61 61" xmlns="http://www.w3.org/2000/svg"><path d="M28.195 58.036l-1.345.559a5.354 5.354 0 01-6.175-1.522l-.93-1.12a6 6 0 00-4.083-2.143l-1.45-.13a5.354 5.354 0 01-4.76-4.217l-.304-1.424a6 6 0 00-2.619-3.794l-1.224-.789A5.354 5.354 0 013.05 37.51l.393-1.401a6 6 0 00-.556-4.577l-.717-1.267a5.354 5.354 0 01.767-6.314l1-1.059a6 6 0 001.634-4.31l-.046-1.456a5.354 5.354 0 013.613-5.234l1.377-.473a6 6 0 003.451-3.057l.635-1.31a5.354 5.354 0 015.632-2.956l1.439.221a6 6 0 004.477-1.103l1.171-.865a5.354 5.354 0 016.36 0l1.171.865a6 6 0 004.477 1.103l1.44-.221a5.354 5.354 0 015.63 2.956l.636 1.31a6 6 0 003.45 3.057l1.378.473a5.354 5.354 0 013.613 5.234l-.046 1.455a6 6 0 001.635 4.311l1 1.059a5.354 5.354 0 01.766 6.314l-.717 1.267a6 6 0 00-.556 4.577l.393 1.401a5.354 5.354 0 01-2.255 5.947l-1.224.789a6 6 0 00-2.62 3.794l-.303 1.424a5.354 5.354 0 01-4.76 4.218l-1.45.13a6 6 0 00-4.083 2.142l-.93 1.12a5.354 5.354 0 01-6.175 1.522l-1.345-.56a6 6 0 00-4.61 0z" fill="#61A38D" class="u-svg-fill"></path><circle stroke="#F7F7F7" cx="30.5" cy="30.5" r="22.961"></circle></svg></span> </span>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div> 
-      </div>
-      <div id="vergelijking"></div>
-      <button type="button">Terug naar invullen</button>
-<section class="js-comparison__coverage-section c-comparison__coverage-section">
-<input type="checkbox" class="js-comparison__category-checkbox c-comparison__category-checkbox u-visuallyhidden" id="comparison__category1" checked="checked">
-<label class="layout layout--flex layout--flush js-comparison__category c-comparison__category js-comparison__category--header c-comparison__category--header" for="comparison__category1">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label c-comparison__coverage-cell--header">
-<h3 class="epsilon palm-default-font-size u-weight--normal u-text-color-white palm-pv--" id="pakket0">Totale pakketscore</h3>
-</div>
-<div class="layout__item u-1/4 u-1/3-palm u-bg-color-white c-comparison__coverage-cell c-comparison__coverage-cell--header u-palm-visuallyhidden"></div>
-<div class="layout__item u-1/4 u-1/3-palm u-bg-color-white c-comparison__coverage-cell c-comparison__coverage-cell--header u-palm-visuallyhidden"></div>
-<div class="layout__item u-1/4 u-1/3-palm u-bg-color-white c-comparison__coverage-cell c-comparison__coverage-cell--header u-palm-visuallyhidden"></div>
-</label>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size js-tooltip-trigger tooltipstered" id="pakket1">
-
-Totale pakketscore
-<!--<span class="u-display--inline-block ml-"><svg width="5" height="11" viewBox="0 0 5 11" xmlns="http://www.w3.org/2000/svg"><path d="M5 9.5c0-.273-.227-.5-.5-.5H4V4.5c0-.273-.227-.5-.5-.5h-3c-.273 0-.5.227-.5.5V2c0 .273.227.5.5.5H1v3H.5c-.273 0-.5.227-.5.5v1c0 .273.227.5.5.5h4c.273 0 .5-.227.5-.5v-1zm-1-9c0-.273-.227-.5-.5-.5h-2c-.273 0-.5.227-.5.5V2c0 .273.227.5.5.5h2c.273 0 .5-.227.5-.5V.5z" fill="#9B9B9B" class="u-svg-fill" fill-rule="evenodd"></path></svg></span>-->
-</h4>
-
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<div class="u-text-align--center" id="pakket1a">
-<div class="pv--">
-<span class="c-rating-total c-spec c-spec--rating u-display--inline-block">
-
-8<span class="c-spec__decimals">,6</span>
-<span class="c-rating-total__svg"><svg viewBox="0 0 61 61" xmlns="http://www.w3.org/2000/svg"><path d="M28.195 58.036l-1.345.559a5.354 5.354 0 01-6.175-1.522l-.93-1.12a6 6 0 00-4.083-2.143l-1.45-.13a5.354 5.354 0 01-4.76-4.217l-.304-1.424a6 6 0 00-2.619-3.794l-1.224-.789A5.354 5.354 0 013.05 37.51l.393-1.401a6 6 0 00-.556-4.577l-.717-1.267a5.354 5.354 0 01.767-6.314l1-1.059a6 6 0 001.634-4.31l-.046-1.456a5.354 5.354 0 013.613-5.234l1.377-.473a6 6 0 003.451-3.057l.635-1.31a5.354 5.354 0 015.632-2.956l1.439.221a6 6 0 004.477-1.103l1.171-.865a5.354 5.354 0 016.36 0l1.171.865a6 6 0 004.477 1.103l1.44-.221a5.354 5.354 0 015.63 2.956l.636 1.31a6 6 0 003.45 3.057l1.378.473a5.354 5.354 0 013.613 5.234l-.046 1.455a6 6 0 001.635 4.311l1 1.059a5.354 5.354 0 01.766 6.314l-.717 1.267a6 6 0 00-.556 4.577l.393 1.401a5.354 5.354 0 01-2.255 5.947l-1.224.789a6 6 0 00-2.62 3.794l-.303 1.424a5.354 5.354 0 01-4.76 4.218l-1.45.13a6 6 0 00-4.083 2.142l-.93 1.12a5.354 5.354 0 01-6.175 1.522l-1.345-.56a6 6 0 00-4.61 0z" fill="#61A38D" class="u-svg-fill"></path><circle stroke="#F7F7F7" cx="30.5" cy="30.5" r="22.961"></circle></svg></span>
-</span>
-</div>
-</div>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<div class="u-text-align--center" id="pakket1b">
-<div class="pv-- c-comparison__highlight">
-<span class="c-rating-total c-spec c-spec--rating u-display--inline-block">
-
-8<span class="c-spec__decimals">,7</span>
-<span class="c-rating-total__svg"><svg viewBox="0 0 61 61" xmlns="http://www.w3.org/2000/svg"><path d="M28.195 58.036l-1.345.559a5.354 5.354 0 01-6.175-1.522l-.93-1.12a6 6 0 00-4.083-2.143l-1.45-.13a5.354 5.354 0 01-4.76-4.217l-.304-1.424a6 6 0 00-2.619-3.794l-1.224-.789A5.354 5.354 0 013.05 37.51l.393-1.401a6 6 0 00-.556-4.577l-.717-1.267a5.354 5.354 0 01.767-6.314l1-1.059a6 6 0 001.634-4.31l-.046-1.456a5.354 5.354 0 013.613-5.234l1.377-.473a6 6 0 003.451-3.057l.635-1.31a5.354 5.354 0 015.632-2.956l1.439.221a6 6 0 004.477-1.103l1.171-.865a5.354 5.354 0 016.36 0l1.171.865a6 6 0 004.477 1.103l1.44-.221a5.354 5.354 0 015.63 2.956l.636 1.31a6 6 0 003.45 3.057l1.378.473a5.354 5.354 0 013.613 5.234l-.046 1.455a6 6 0 001.635 4.311l1 1.059a5.354 5.354 0 01.766 6.314l-.717 1.267a6 6 0 00-.556 4.577l.393 1.401a5.354 5.354 0 01-2.255 5.947l-1.224.789a6 6 0 00-2.62 3.794l-.303 1.424a5.354 5.354 0 01-4.76 4.218l-1.45.13a6 6 0 00-4.083 2.142l-.93 1.12a5.354 5.354 0 01-6.175 1.522l-1.345-.56a6 6 0 00-4.61 0z" fill="#61A38D" class="u-svg-fill"></path><circle stroke="#F7F7F7" cx="30.5" cy="30.5" r="22.961"></circle></svg></span>
-</span>
-</div>
-</div>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<div class="u-text-align--center" id="pakket1c">
-<div class="pv--">
-<span class="c-rating-total c-spec c-spec--rating u-display--inline-block">
-
-8<span class="c-spec__decimals">,6</span>
-<span class="c-rating-total__svg"><svg viewBox="0 0 61 61" xmlns="http://www.w3.org/2000/svg"><path d="M28.195 58.036l-1.345.559a5.354 5.354 0 01-6.175-1.522l-.93-1.12a6 6 0 00-4.083-2.143l-1.45-.13a5.354 5.354 0 01-4.76-4.217l-.304-1.424a6 6 0 00-2.619-3.794l-1.224-.789A5.354 5.354 0 013.05 37.51l.393-1.401a6 6 0 00-.556-4.577l-.717-1.267a5.354 5.354 0 01.767-6.314l1-1.059a6 6 0 001.634-4.31l-.046-1.456a5.354 5.354 0 013.613-5.234l1.377-.473a6 6 0 003.451-3.057l.635-1.31a5.354 5.354 0 015.632-2.956l1.439.221a6 6 0 004.477-1.103l1.171-.865a5.354 5.354 0 016.36 0l1.171.865a6 6 0 004.477 1.103l1.44-.221a5.354 5.354 0 015.63 2.956l.636 1.31a6 6 0 003.45 3.057l1.378.473a5.354 5.354 0 013.613 5.234l-.046 1.455a6 6 0 001.635 4.311l1 1.059a5.354 5.354 0 01.766 6.314l-.717 1.267a6 6 0 00-.556 4.577l.393 1.401a5.354 5.354 0 01-2.255 5.947l-1.224.789a6 6 0 00-2.62 3.794l-.303 1.424a5.354 5.354 0 01-4.76 4.218l-1.45.13a6 6 0 00-4.083 2.142l-.93 1.12a5.354 5.354 0 01-6.175 1.522l-1.345-.56a6 6 0 00-4.61 0z" fill="#61A38D" class="u-svg-fill"></path><circle stroke="#F7F7F7" cx="30.5" cy="30.5" r="22.961"></circle></svg></span>
-</span>
-</div>
-</div>
-</div>
-</div>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size" id="pakket2">
-
-Klantwaardering
-</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<div class="u-text-align--center" id="pakket2a">
-<div class="pv-- c-comparison__highlight">
-<span class="c-rating-circle c-spec">
-
-7<span class="c-spec__decimals">,7</span>
-</span>
-</div>
-</div>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<div class="u-text-align--center" id="pakket2b">
-<div class="pv-- c-comparison__highlight">
-<span class="c-rating-circle c-spec">
-
-7<span class="c-spec__decimals">,9</span>
-</span>
-</div>
-</div>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<div class="u-text-align--center" id="pakket2c">
-<div class="pv-- c-comparison__highlight">
-<span class="c-rating-circle c-spec">
-
-7<span class="c-spec__decimals">,4</span>
-</span>
-</div>
-</div>
-</div>
-</div>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size" id="pakket3">
-
-Leverancierswaardering
-</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<div class="u-text-align--center" id="pakket3a">
-<div class="pv-- c-comparison__highlight">
-<span class="c-rating-circle c-spec">
-
-9<span class="c-spec__decimals">,4</span>
-</span>
-</div>
-</div>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<div class="u-text-align--center" id="pakket3b">
-<div class="pv--">
-<span class="c-rating-circle c-spec">
-
-9<span class="c-spec__decimals">,3</span>
-</span>
-</div>
-</div>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<div class="u-text-align--center" id="pakket3c">
-<div class="pv--">
-<span class="c-rating-circle c-spec">
-
-9<span class="c-spec__decimals">,3</span>
-</span>
-</div>
-</div>
-</div>
-</div>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size" id="pakket4">
-
-Pakketwaardering
-</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<div class="u-text-align--center" id="pakket4a">
-<div class="pv-- c-comparison__highlight">
-<span class="c-rating-circle c-spec">
-
-8<span class="c-spec__decimals">,7</span>
-</span>
-</div>
-</div>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<div class="u-text-align--center" id="pakket4b">
-<div class="pv--">
-<span class="c-rating-circle c-spec">
-
-9<span class="c-spec__decimals">,0</span>
-</span>
-</div>
-</div>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<div class="u-text-align--center" id="pakket4c">
-<div class="pv--">
-<span class="c-rating-circle c-spec">
-
-9<span class="c-spec__decimals">,0</span>
-</span>
-</div>
-</div>
-</div>
-</div>
-</section>    
-<section class="js-comparison__coverage-section c-comparison__coverage-section">
-<input type="checkbox" class="js-comparison__category-checkbox c-comparison__category-checkbox u-visuallyhidden" id="comparison__category4" checked="checked">
-<label class="layout layout--flex layout--flush js-comparison__category c-comparison__category js-comparison__category--header c-comparison__category--header" for="comparison__category4">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label c-comparison__coverage-cell--header">
-<h3 class="epsilon palm-default-font-size u-weight--normal u-text-color-white palm-pv--" id="overzicht0">Overzicht</h3>
-</div>
-<div class="layout__item u-1/4 u-1/3-palm u-bg-color-white c-comparison__coverage-cell c-comparison__coverage-cell--header u-palm-visuallyhidden"></div>
-<div class="layout__item u-1/4 u-1/3-palm u-bg-color-white c-comparison__coverage-cell c-comparison__coverage-cell--header u-palm-visuallyhidden"></div>
-<div class="layout__item u-1/4 u-1/3-palm u-bg-color-white c-comparison__coverage-cell c-comparison__coverage-cell--header u-palm-visuallyhidden"></div>
-</label>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size" id="overzicht1">
-Keuzes voor 2027
-</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht1a">
-
-Niets doen
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht1b">
-
-Buurtbatterij
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht1c">
-
-Thuisbatterij
-</div>
-</div>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size" id="overzicht2">
-Totale jaarkosten<br>
-(incl. btw)
-</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-<label for="" class="totaal">Totaal per jaar:
-                    <input type="text" id="totaalz" name="" class="inputresult" value="695.50" readonly>
-                    </label>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<label for="" class="totaal">Totaal per jaar:
-                    <input type="text" id="totaalm" name="" class="inputresult" value="401.20" readonly>
-                    </label>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-<label for="" class="totaal">Totaal per jaar:
-                    <input type="text" id="totaalthuis" name="" class="inputresult" value="0.00" readonly>
-                    </label>
-</div>
-</div>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size" id="overzicht3">
-Uitwerking kosten
-</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-<h3>Tarieven</h3>
-                    <label for="">Energie kosten:
-                    <input type="text" id="jaarverbrz" name="" class="inputresult" value="676.00" readonly>
-                    </label>
-                    <label for="">Terugleverkosten:
-                    <input type="text" id="terugleverkostz" name="" class="inputresult" value="94.50" readonly>
-                    </label>
-                    <label for="">Terugleververgoeding:
-                    <input type="text" id="terugleververgz" name="" class="inputresult" value="-105.00" readonly>
-                    </label>
-                    <label for="" class="inactive">Buurtstroom kosten:
-                    <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly>
-                    </label>
-                    <label for="" class="inactive">Terugleverkosten buurtstroom:
-                    <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly>
-                    </label>
-                    <label for="" class="inactive">Korting inkomstenbelasting:
-                    <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly>
-                    </label>
-                    <h3>Lidmaatschap</h3>
-                    <label for="" class="inactive">Lidmaatschapskosten:
-                    <input type="text" id="participkost" name="" class="inputresult inactive" value="0.00" readonly>
-                    </label>
-                    
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-<h3 style="display: none;">Opwek en verbruik</h3>
-                    <label for="" style="display: none;">Gemiddeld gelijktijdig verbruik:
-                    <input type="text" id="gelijkt" name="" class="inputresult" value="40 %" readonly>
-                    </label>
-
+            <div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
+                <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
+                    <h4 class="u-text-color-white default-font-size" id="pakket2"> Klantwaardering </h4>
+                </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+                    <div class="u-text-align--center" id="pakket2a">
+                        <div class="pv-- c-comparison__highlight">
+                            <span class="c-rating-circle c-spec"> 7<span class="c-spec__decimals">,7</span> </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+                    <div class="u-text-align--center" id="pakket2b">
+                        <div class="pv-- c-comparison__highlight">
+                            <span class="c-rating-circle c-spec"> 7<span class="c-spec__decimals">,9</span> </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+                    <div class="u-text-align--center" id="pakket2c">
+                        <div class="pv-- c-comparison__highlight">
+                            <span class="c-rating-circle c-spec"> 7<span class="c-spec__decimals">,4</span> </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
+                <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
+                    <h4 class="u-text-color-white default-font-size" id="pakket3"> Leverancierswaardering </h4>
+                </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+                    <div class="u-text-align--center" id="pakket3a">
+                        <div class="pv-- c-comparison__highlight">
+                            <span class="c-rating-circle c-spec"> 9<span class="c-spec__decimals">,4</span> </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+                    <div class="u-text-align--center" id="pakket3b">
+                        <div class="pv--">
+                            <span class="c-rating-circle c-spec"> 9<span class="c-spec__decimals">,3</span> </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+                    <div class="u-text-align--center" id="pakket3c">
+                        <div class="pv--">
+                            <span class="c-rating-circle c-spec"> 9<span class="c-spec__decimals">,3</span> </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
+                <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
+                    <h4 class="u-text-color-white default-font-size" id="pakket4"> Pakketwaardering </h4>
+                </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+                    <div class="u-text-align--center" id="pakket4a">
+                        <div class="pv-- c-comparison__highlight">
+                            <span class="c-rating-circle c-spec"> 8<span class="c-spec__decimals">,7</span> </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+                    <div class="u-text-align--center" id="pakket4b">
+                        <div class="pv--">
+                            <span class="c-rating-circle c-spec"> 9<span class="c-spec__decimals">,0</span> </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+                    <div class="u-text-align--center" id="pakket4c">
+                        <div class="pv--">
+                            <span class="c-rating-circle c-spec"> 9<span class="c-spec__decimals">,0</span> </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="js-comparison__coverage-section c-comparison__coverage-section">
+            <!--<input type="checkbox" class="js-comparison__category-checkbox c-comparison__category-checkbox u-visuallyhidden" id="comparison__category4" checked="checked">-->
+            <label class="layout layout--flex layout--flush js-comparison__category c-comparison__category js-comparison__category--header c-comparison__category--header" for="comparison__category4">
+                <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label c-comparison__coverage-cell--header">
+                    <h3 class="epsilon palm-default-font-size u-weight--normal u-text-color-white palm-pv--" id="overzicht0">Overzicht</h3>
+                </div>
+                <div class="layout__item u-1/4 u-1/3-palm u-bg-color-white c-comparison__coverage-cell c-comparison__coverage-cell--header u-palm-visuallyhidden">
+                </div>
+                <div class="layout__item u-1/4 u-1/3-palm u-bg-color-white c-comparison__coverage-cell c-comparison__coverage-cell--header u-palm-visuallyhidden">
+                </div>
+                <div class="layout__item u-1/4 u-1/3-palm u-bg-color-white c-comparison__coverage-cell c-comparison__coverage-cell--header u-palm-visuallyhidden">
+                </div>
+            </label>
+            <div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
+                <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
+                    <h4 class="u-text-color-white default-font-size" id="overzicht1"> Keuzes voor 2027 </h4>
+                </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht1a"> Niets doen </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht1b"> Buurtbatterij </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht1c"> Thuisbatterij </div>
+            </div>
+            <div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
+                <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
+                    <h4 class="u-text-color-white default-font-size" id="overzicht2"> Totale jaarkosten<br> (incl. btw) </h4>
+                </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+                    <label for="" class="totaal">Totaal per jaar: <input type="text" id="totaalz" name="" class="inputresult" value="695.50" readonly> </label>
+                </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+                    <label for="" class="totaal">Totaal per jaar: <input type="text" id="totaalm" name="" class="inputresult" value="401.20" readonly> </label>
+                </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+                    <label for="" class="totaal">Totaal per jaar: <input type="text" id="totaalthuis" name="" class="inputresult" value="0.00" readonly> </label>
+                </div>
+            </div>
+            <div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
+                <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
+                    <h4 class="u-text-color-white default-font-size" id="overzicht3"> Uitwerking kosten </h4>
+                </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
                     <h3>Tarieven</h3>
-                    <label for="" class="inactive">Energie kosten:
-                    <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly>
-                    </label>
-                    <label for="" class="inactive">Terugleverkosten:
-                    <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly>
-                    </label>
-                    <label for="" class="inactive">Terugleververgoeding:
-                    <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly>
-                    </label>
-                    <label for="">Buurtstroom kosten:
-                    <input type="text" id="tariefbuurtstr" name="" class="inputresult" value="483.00" readonly>
-                    </label>
-                    <label for="">Terugleverkosten buurtstroom:
-                    <input type="text" id="terugleverbuurtm" name="" class="inputresult" value="16.20" readonly>
-                    </label>
-                    <label for="">Korting inkomstenbelasting:
-                    <input type="text" id="inkomstbelast" name="" class="inputresult" value="-162.00" readonly>
-                    </label>
+                    <label for="">Energie kosten: <input type="text" id="jaarverbrz" name="" class="inputresult" value="676.00" readonly> </label>
+                    <label for="">Terugleverkosten: <input type="text" id="terugleverkostz" name="" class="inputresult" value="94.50" readonly> </label>
+                    <label for="">Terugleververgoeding: <input type="text" id="terugleververgz" name="" class="inputresult" value="-105.00" readonly> </label>
+                    <label for="" class="inactive">Buurtstroom kosten: <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly> </label>
+                    <label for="" class="inactive">Terugleverkosten buurtstroom: <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly> </label>
+                    <label for="" class="inactive">Korting inkomstenbelasting: <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly> </label>
                     <h3>Lidmaatschap</h3>
-                    <label for="">Lidmaatschapskosten:
-                    <input type="text" id="participkostm" name="" class="inputresult" value="24.00" readonly>
-                    </label>
-                    
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
-
-<h3 style="display: none;">Opwek en verbruik</h3>
-
+                    <label for="" class="inactive">Lidmaatschapskosten: <input type="text" id="participkost" name="" class="inputresult inactive" value="0.00" readonly> </label>
+                </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+                    <h3 style="display: none;">Opwek en verbruik</h3>
+                    <label for="" style="display: none;">Gemiddeld gelijktijdig verbruik: <input type="text" id="gelijkt" name="" class="inputresult" value="40 %" readonly> </label>
                     <h3>Tarieven</h3>
-                    <label for="">Energie kosten:
-                    <input type="text" id="jaarverbth" name="" class="inputresult" value="0.00" readonly>
-                    </label>
-                    <label for="">Terugleverkosten:
-                    <input type="text" id="terugleverkostth" name="" class="inputresult" value="0.00" readonly>
-                    </label>
-                    <label for="">Terugleververgoeding:
-                    <input type="text" id="terugleververgth" name="" class="inputresult" value="0.00" readonly>
-                    </label>
-                    <label for="" class="inactive">Buurtstroom kosten:
-                    <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly>
-                    </label>
-                    <label for="" class="inactive">Terugleverkosten buurtstroom:
-                    <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly>
-                    </label>
-                    <label for="" class="inactive">Korting inkomstenbelasting:
-                    <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly>
-                    </label>
+                    <label for="" class="inactive">Energie kosten: <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly> </label>
+                    <label for="" class="inactive">Terugleverkosten: <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly> </label>
+                    <label for="" class="inactive">Terugleververgoeding: <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly> </label>
+                    <label for="">Buurtstroom kosten: <input type="text" id="tariefbuurtstr" name="" class="inputresult" value="483.00" readonly> </label>
+                    <label for="">Terugleverkosten buurtstroom: <input type="text" id="terugleverbuurtm" name="" class="inputresult" value="16.20" readonly> </label>
+                    <label for="">Korting inkomstenbelasting: <input type="text" id="inkomstbelast" name="" class="inputresult" value="-162.00" readonly> </label>
                     <h3>Lidmaatschap</h3>
-                    <label for="" class="inactive">Lidmaatschapskosten:
-                    <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly>
-                    </label>
-                    
-</div>
-</div>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size" id="overzicht4">
-Toelichting keuze
-</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht4a">
-<b>Wat betekent dit?</b>
-Je verandert niets aan je huidige situatie. De stroom die je niet direct zelf gebruikt, gaat terug het net op.
-<p>
-<b>Gevolgen vanaf 2027</b>
-<ul>
-  <li>Het salderen stopt: je betaalt voor afname en krijgt minder terug voor teruglevering.</li>
-  <li>Terugleverkosten kunnen flink oplopen.</li>
-  <li>Je hebt weinig grip op je energierekening.</li>
-</ul>
-</p>
-<b>Voor wie passend?</b>
-Voor huishoudens die (nog) niets willen of kunnen aanpassen, maar wel de hogere kosten accepteren.
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht4b">
-
-  <b>Wat betekent dit?</b>
-Je deelt lokaal opgewekte stroom met je buurt, met hulp van een buurtbatterij en slimme meterkasten. Overschotten worden opgeslagen of direct in de wijk gebruikt.
-<p>
-<b>Voordelen</b>
-<ul>
-  <li>Je benut lokaal opgewekte energie optimaal.</li>
-  <li>Minder teruglevering aan het net = lagere kosten.</li>
-  <li>Je krijgt belastingvoordeel via energie delen.</li>
-  <li>Iedereen in de buurt profiteert mee.</li>
-</ul>
-</p>
-<b>Waarom dit past bij de stichting</b>
-Stichting Oranje Advies 2051 ziet energie als een ecosysteemdienst: lokaal, eerlijk en sociaal georganiseerd, waarbij bewoners samen sterker staan.
-
-<p><b>Voor wie passend?</b>
-Voor bewoners die samen willen investeren in een eerlijke energietransitie, zonder zelf alles individueel te hoeven regelen.</p>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht4c">
-
-<b>Wat betekent dit?</b>
-Je slaat opgewekte stroom op in een batterij in je eigen woning en gebruikt deze later zelf.
-<p><b>Voordelen</b>
-<ul>
-<li>Meer eigen verbruik van zonne-energie.</li>
-<li>Minder teruglevering aan het net.</li>
-</ul>
-<b>Aandachtspunten</b>
-<ul>
-  <li>Hoge aanschafkosten.</li>
-  <li>Beperkte capaciteit: niet alle overschotten zijn op te slaan.</li>
-  <li>Het voordeel is volledig individueel; de buurt profiteert niet mee.</li>
-</ul>
-</p>
-<b>Voor wie passend?</b>
-Voor huishoudens die individueel willen optimaliseren en bereid zijn daarin zelf te investeren.
-</div>
-</div>
-
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features c-comparison__category--no-differences">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size" id="overzicht5">
-Investering
-</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht5a">
-
-<b>Investering</b>
-Geen investering.
-<p><b>Afbetaaltermijn</b>
-Niet van toepassing.</p>
-<b>Toelichting</b>
-Je maakt geen kosten vooraf, maar blijft volledig afhankelijk van energietarieven en terugleverkosten na het stoppen van salderen.
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht5b">
-
-<b>Investering</b>
-Indicatief €3.000 per woning via deelname aan het energieschap.
-<p><b>Afbetaaltermijn</b>
-
-20% eigen inleg bij start
-Resterend bedrag via maandelijkse afbetaling
-Aflossing loopt via het lidmaatschap van het energieschap</p>
-
-<b>Toelichting</b>
-De investering is collectief georganiseerd. Bewoners profiteren direct van lagere energiekosten en belastingvoordeel terwijl de kosten gespreid worden over de looptijd.
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht5c">
-
-<b>Investering</b>
-Hoge eenmalige investering, volledig voor eigen rekening.
-
-<p><b>Afbetaaltermijn</b>
-Geen standaard afbetaalregeling; kosten worden vooraf of via externe financiering betaald.</p>
-<b>Toelichting</b>
-De investering en het financiële voordeel zijn volledig individueel. Onderhoud, vervanging en risico’s liggen bij de bewoner zelf.
-</div>
-</div>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size"  id="overzicht6">
-Gebruik van zonne-energie
-</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht6a">
-
-
-Zonne‑energie wordt eerst in huis gebruikt; het overschot gaat direct terug naar het elektriciteitsnet.<p>
-<b>Gevolg</b>
-<ul>
-  <li>Een groot deel van de opgewekte stroom wordt niet direct benut.</li>
-  <li>Teruglevering aan het net wordt steeds minder aantrekkelijk.</li>
-  <li>Je bent afhankelijk van terugleververgoedingen en -kosten.</li>
-</ul></p>
-
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht6b">
-
-Zonne‑energie wordt eerst in huis gebruikt. Het overschot blijft lokaal in de buurt en wordt opgeslagen in een buurtbatterij of direct gedeeld met andere bewoners.<p>
-<b>Gevolg</b>
-<ul>
-  <li>Meer lokaal en gelijktijdig gebruik van opgewekte stroom.</li>
-  <li>Minder stroom terug naar het net.</li>
-  <li>Ook bewoners zonder zonnepanelen profiteren van lokaal opgewekte energie.</li>
-</ul></p>
-
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht6c">
-Zonne‑energie wordt eerst in huis gebruikt en daarna opgeslagen in een eigen thuisbatterij voor later gebruik.<p>
-<b>Gevolg</b>
-<ul>
-  <li>Meer eigen verbruik dan bij niets doen.</li>
-  <li>Overschotten die niet in de batterij passen, gaan alsnog terug naar het net.</li>
-  <li>Het voordeel blijft volledig individueel.</li>
-</ul></p>
-
-</div>
-</div>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size" id="overzicht7">
-Omgang met stroomoverschot
-</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht7a">
-
-
-<strong>Wat gebeurt er met overtollige zonne‑energie?</strong>
-<ul>
-  <li>Stroom die je niet direct gebruikt, gaat terug naar het elektriciteitsnet.</li>
-  <li>Je ontvangt een terugleververgoeding of betaalt terugleverkosten.</li>
-  <li>Het overschot verlaat de buurt en wordt niet lokaal benut.</li>
-</ul>
-
-
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht7b">
-
-<strong>Wat gebeurt er met overtollige zonne‑energie?</strong>
-<ul>
-  <li>Stroom die je niet direct gebruikt, blijft in de buurt.</li>
-  <li>Het overschot wordt opgeslagen in een buurtbatterij of direct gedeeld met andere bewoners.</li>
-  <li>De energie wordt later gebruikt als buurtstroom.</li>
-  <li>Minder teruglevering aan het net en lagere terugleverkosten.</li>
-</ul>
-
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht7c">
-<strong>Wat gebeurt er met overtollige zonne‑energie?</strong>
-<ul>
-  <li>Stroom die je niet direct gebruikt, wordt opgeslagen in je eigen thuisbatterij.</li>
-  <li>Is de batterij vol, dan gaat het resterende overschot alsnog terug naar het net.</li>
-  <li>Het gebruik en voordeel zijn volledig individueel.</li>
-</ul>
-
-</div>
-</div>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size" id="overzicht8">
-Techniek & beheer
-</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht8a">
-
-<strong>Techniek</strong>
-<ul>
-  <li>Geen aanvullende techniek naast de bestaande meterkast.</li>
-  <li>Zonnepanelen leveren stroom terug aan het net.</li>
-</ul>
-
-<strong>Beheer</strong>
-<ul>
-  <li>Geen extra beheer of onderhoud.</li>
-  <li>Je bent volledig afhankelijk van energieleverancier en netbeheerder.</li>
-</ul>
-
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht8b">
-
-
-
-<strong>Techniek</strong>
-<ul>
-  <li>Buurtbatterij in de wijk voor opslag van lokale zonne‑energie.</li>
-  <li>Slimme meterkast of meetmodule in huis.</li>
-  <li>Software stuurt verdeling van buurtstroom automatisch aan.</li>
-</ul>
-
-<strong>Beheer</strong>
-<ul>
-  <li>Beheer en onderhoud zijn collectief georganiseerd.</li>
-  <li>Bewoners hoeven zelf niets technisch te bedienen.</li>
-  <li>Monitoring en ondersteuning gebeuren op afstand.</li>
-</ul>
-
-
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht8c">
-
-
-<strong>Techniek</strong>
-<ul>
-  <li>Een batterij in of bij de woning voor eigen opslag.</li>
-  <li>Aansturing via omvormer en bijbehorende software.</li>
-</ul>
-
-<strong>Beheer</strong>
-<ul>
-  <li>Onderhoud en beheer zijn de verantwoordelijkheid van de bewoner.</li>
-  <li>Vervanging en storingen zijn individueel geregeld.</li>
-</ul>
-
-</div>
-
-</div>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features c-comparison__category--no-differences">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size" id="overzicht9">
-Individueel vs collectief
-</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht9a">
-
-<strong>Individueel</strong>
-<ul>
-  <li>Iedereen regelt zijn eigen energiecontract en kosten.</li>
-  <li>Voordelen en nadelen zijn volledig persoonlijk.</li>
-</ul>
-
-<strong>Collectief</strong>
-<ul>
-  <li>Er is geen samenwerking met de buurt.</li>
-  <li>Opgewekte energie wordt niet lokaal gedeeld.</li>
-</ul>
-
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht9b">
-
-<strong>Individueel</strong>
-<ul>
-  <li>Je gebruikt stroom zoals je gewend bent.</li>
-  <li>Je profiteert persoonlijk van lagere kosten en stabielere tarieven.</li>
-</ul>
-
-<strong>Collectief</strong>
-<ul>
-  <li>Opgewekte energie wordt samen met de buurt benut.</li>
-  <li>Bewoners met en zonder zonnepanelen doen mee.</li>
-  <li>Kosten, voordelen en techniek zijn collectief georganiseerd.</li>
-  <li>De buurt wordt minder afhankelijk van het elektriciteitsnet.</li>
-</ul>
-
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht9c">
-
-<strong>Individueel</strong>
-<ul>
-  <li>De batterij en het voordeel zijn volledig voor eigen gebruik.</li>
-  <li>Je regelt investering, onderhoud en vervanging zelf.</li>
-</ul>
-
-<strong>Collectief</strong>
-<ul>
-  <li>Er is geen directe samenwerking met de buurt.</li>
-  <li>Andere bewoners profiteren niet mee van het systeem.</li>
-</ul>
-</div>
-</div>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size" id="overzicht10">
-Duurzaamheid & netbelasting
-</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht10a">
-
-<strong>Duurzaamheid</strong>
-<ul>
-  <li>Een groot deel van de zonne‑energie verlaat de buurt via het elektriciteitsnet.</li>
-  <li>Lokaal opgewekte stroom wordt niet optimaal benut.</li>
-</ul>
-
-<strong>Netbelasting</strong>
-<ul>
-  <li>Teruglevering zorgt voor extra druk op het elektriciteitsnet.</li>
-  <li>Bij piekproductie kan dit leiden tot hogere kosten en beperkingen.</li>
-</ul>
-
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht10b">
-
-<strong>Duurzaamheid</strong>
-<ul>
-  <li>Lokaal opgewekte zonne‑energie blijft in de buurt.</li>
-  <li>Meer directe en nuttige inzet van duurzame stroom.</li>
-  <li>Ook bewoners zonder zonnepanelen profiteren van groene energie.</li>
-</ul>
-
-<strong>Netbelasting</strong>
-<ul>
-  <li>Minder teruglevering aan het elektriciteitsnet.</li>
-  <li>Pieken worden afgevlakt door lokale opslag en verdeling.</li>
-  <li>Het net wordt ontlast, wat bijdraagt aan toekomstbestendigheid.</li>
-</ul>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht10c">
-
-<strong>Duurzaamheid</strong>
-<ul>
-  <li>Meer eigen gebruik van zonne‑energie dan bij niets doen.</li>
-  <li>Overschotten die niet opgeslagen kunnen worden, gaan alsnog terug naar het net.</li>
-</ul>
-
-<strong>Netbelasting</strong>
-<ul>
-  <li>De belasting van het net neemt beperkt af.</li>
-  <li>Effect blijft afhankelijk van de grootte van de batterij.</li>
-</ul>
-
-</div>
-</div>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features c-comparison__category--no-differences">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size" id="overzicht11">
-Voor wie geschikt
-</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht11a">
-
-
-<strong>Past vooral bij</strong>
-<ul>
-  <li>Huishoudens die geen veranderingen willen of kunnen doorvoeren.</li>
-  <li>Bewoners die geen investering willen doen.</li>
-</ul>
-
-<strong>Minder geschikt als</strong>
-<ul>
-  <li>Je grip wilt krijgen op je energiekosten na 2027.</li>
-  <li>Je lokaal opgewekte zonne‑energie beter wilt benutten.</li>
-</ul>
-
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht11b">
-
-<strong>Past vooral bij</strong>
-<ul>
-  <li>Bewoners die samen met de buurt energie willen delen.</li>
-  <li>Huishoudens met én zonder zonnepanelen.</li>
-  <li>Mensen die willen profiteren zonder zelf alles te moeten regelen.</li>
-</ul>
-
-<strong>Minder geschikt als</strong>
-<ul>
-  <li>Je alleen individueel voordeel zoekt zonder samenwerking.</li>
-  <li>Je geen collectieve oplossing wilt.</li>
-</ul>
-
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht11c">
-
-<strong>Past vooral bij</strong>
-<ul>
-  <li>Huishoudens die individueel hun zonne‑energie willen opslaan.</li>
-  <li>Bewoners die zelf willen investeren en beheren.</li>
-</ul>
-
-<strong>Minder geschikt als</strong>
-<ul>
-  <li>Je geen grote eenmalige investering wilt doen.</li>
-  <li>Je zoekt naar een oplossing die ook de buurt helpt.</li>
-</ul>
-</div>
-</div>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features c-comparison__category--no-differences">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size" id="overzicht12">
-Contract beëindigen
-</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht12a">
-
-
-<strong>Beëindigen</strong>
-<ul>
-  <li>Je kunt je energiecontract opzeggen volgens de voorwaarden van je energieleverancier.</li>
-  <li>Er zijn geen aanvullende afspraken of verplichtingen.</li>
-</ul>
-
-<strong>Gevolg</strong>
-<ul>
-  <li>Bij een nieuw contract blijven de effecten van stoppen met salderen bestaan.</li>
-</ul>
-
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht12b">
-
-
-<strong>Beëindigen</strong>
-<ul>
-  <li>Deelname aan energie delen is vrijwillig.</li>
-  <li>Opzegging verloopt via het energieschap.</li>
-  <li>De collectieve installatie blijft in beheer van de buurt.</li>
-</ul>
-
-<strong>Gevolg</strong>
-<ul>
-  <li>Na beëindiging maak je geen gebruik meer van buurtstroom.</li>
-  <li>Je valt terug op je reguliere energiecontract.</li>
-</ul>
-
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht12c">
-
-
-<strong>Beëindigen</strong>
-<ul>
-  <li>Er is geen contract dat je kunt beëindigen.</li>
-  <li>De batterij blijft eigendom van de bewoner.</li>
-</ul>
-
-<strong>Gevolg</strong>
-<ul>
-  <li>Bij stoppen met gebruik blijft de investering bestaan.</li>
-  <li>Eventuele verkoop of verwijdering regel je zelf.</li>
-</ul>
-
-</div>
-</div>
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
-<h4 class="u-text-color-white default-font-size" id="overzicht13">
-Opzegtermijn
-</h4>
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht13a">
-
-
-
-<strong>Opzegtermijn</strong>
-<ul>
-  <li>De opzegtermijn volgt uit de voorwaarden van je energiecontract.</li>
-  <li>Deze verschilt per energieleverancier en type contract.</li>
-</ul>
-
-
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht13b">
-
-
-
-<strong>Opzegtermijn</strong>
-<ul>
-  <li>Deelname aan energie delen kent een opzegtermijn via het energieschap.</li>
-  <li>De opzegtermijn is vastgelegd in de lidmaatschapsvoorwaarden.</li>
-  <li>De collectieve installatie blijft bestaan, ook als je stopt.</li>
-</ul>
-
-
-</div>
-<div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht13c">
-
-
-
-<strong>Opzegtermijn</strong>
-<ul>
-  <li>Er is geen opzegtermijn van toepassing.</li>
-  <li>De batterij is eigendom van de bewoner.</li>
-</ul>
-
-
+                    <label for="">Lidmaatschapskosten: <input type="text" id="participkostm" name="" class="inputresult" value="24.00" readonly> </label>
+                </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+                    <h3 style="display: none;">Opwek en verbruik</h3>
+                    <h3>Tarieven</h3>
+                    <label for="">Energie kosten: <input type="text" id="jaarverbth" name="" class="inputresult" value="0.00" readonly> </label>
+                    <label for="">Terugleverkosten: <input type="text" id="terugleverkostth" name="" class="inputresult" value="0.00" readonly> </label>
+                    <label for="">Terugleververgoeding: <input type="text" id="terugleververgth" name="" class="inputresult" value="0.00" readonly> </label>
+                    <label for="" class="inactive">Buurtstroom kosten: <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly> </label>
+                    <label for="" class="inactive">Terugleverkosten buurtstroom: <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly> </label>
+                    <label for="" class="inactive">Korting inkomstenbelasting: <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly> </label>
+                    <h3>Lidmaatschap</h3>
+                    <label for="" class="inactive">Lidmaatschapskosten: <input type="text" id="" name="" class="inputresult inactive" value="0.00" readonly> </label>
+                </div>
+            </div>
+            <div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
+                <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
+                    <h4 class="u-text-color-white default-font-size" id="overzicht4"> Toelichting keuze </h4>
+                </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht4a"> <b>Wat betekent dit?</b> Je verandert niets aan je huidige situatie. De stroom die je niet direct zelf gebruikt, gaat terug het net op. <p> <b>Gevolgen vanaf 2027</b> <ul> <li>Het salderen stopt: je betaalt voor afname en krijgt minder terug voor teruglevering.</li> <li>Terugleverkosten kunnen flink oplopen.</li> <li>Je hebt weinig grip op je energierekening.</li> </ul> </p> <b>Voor wie passend?</b> Voor huishoudens die (nog) niets willen of kunnen aanpassen, maar wel de hogere kosten accepteren. </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht4b"> <b>Wat betekent dit?</b> Je deelt lokaal opgewekte stroom met je buurt, met hulp van een buurtbatterij en slimme meterkasten. Overschotten worden opgeslagen of direct in de wijk gebruikt. <p> <b>Voordelen</b> <ul> <li>Je benut lokaal opgewekte energie optimaal.</li> <li>Minder teruglevering aan het net = lagere kosten.</li> <li>Je krijgt belastingvoordeel via energie delen.</li> <li>Iedereen in de buurt profiteert mee.</li> </ul> </p> <b>Waarom dit past bij de stichting</b> Stichting Oranje Advies 2051 ziet energie als een ecosysteemdienst: lokaal, eerlijk en sociaal georganiseerd, waarbij bewoners samen sterker staan. <p><b>Voor wie passend?</b> Voor bewoners die samen willen investeren in een eerlijke energietransitie, zonder zelf alles individueel te hoeven regelen.</p> </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht4c"> <b>Wat betekent dit?</b> Je slaat opgewekte stroom op in een batterij in je eigen woning en gebruikt deze later zelf. <p><b>Voordelen</b> <ul> <li>Meer eigen verbruik van zonne-energie.</li> <li>Minder teruglevering aan het net.</li> </ul> <b>Aandachtspunten</b> <ul> <li>Hoge aanschafkosten.</li> <li>Beperkte capaciteit: niet alle overschotten zijn op te slaan.</li> <li>Het voordeel is volledig individueel; de buurt profiteert niet mee.</li> </ul> </p> <b>Voor wie passend?</b> Voor huishoudens die individueel willen optimaliseren en bereid zijn daarin zelf te investeren. </div>
+            </div>
+            <div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features c-comparison__category--no-differences">
+                <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
+                    <h4 class="u-text-color-white default-font-size" id="overzicht5"> Investering </h4>
+                </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht5a"> <b>Investering</b> Geen investering. <p><b>Afbetaaltermijn</b> Niet van toepassing.</p> <b>Toelichting</b> Je maakt geen kosten vooraf, maar blijft volledig afhankelijk van energietarieven en terugleverkosten na het stoppen van salderen. </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht5b"> <b>Investering</b> Indicatief €3.000 per woning via deelname aan het energieschap. <p><b>Afbetaaltermijn</b> 20% eigen inleg bij start Resterend bedrag via maandelijkse afbetaling Aflossing loopt via het lidmaatschap van het energieschap</p> <b>Toelichting</b> De investering is collectief georganiseerd. Bewoners profiteren direct van lagere energiekosten en belastingvoordeel terwijl de kosten gespreid worden over de looptijd. </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht5c"> <b>Investering</b> Hoge eenmalige investering, volledig voor eigen rekening. <p><b>Afbetaaltermijn</b> Geen standaard afbetaalregeling; kosten worden vooraf of via externe financiering betaald.</p> <b>Toelichting</b> De investering en het financiële voordeel zijn volledig individueel. Onderhoud, vervanging en risico’s liggen bij de bewoner zelf. </div>
+            </div>
+            <div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
+                <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
+                    <h4 class="u-text-color-white default-font-size"  id="overzicht6"> Gebruik van zonne-energie </h4>
+                </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht6a"> Zonne‑energie wordt eerst in huis gebruikt; het overschot gaat direct terug naar het elektriciteitsnet.<p> <b>Gevolg</b> <ul> <li>Een groot deel van de opgewekte stroom wordt niet direct benut.</li> <li>Teruglevering aan het net wordt steeds minder aantrekkelijk.</li> <li>Je bent afhankelijk van terugleververgoedingen en -kosten.</li> </ul></p> </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht6b"> Zonne‑energie wordt eerst in huis gebruikt. Het overschot blijft lokaal in de buurt en wordt opgeslagen in een buurtbatterij of direct gedeeld met andere bewoners.<p> <b>Gevolg</b> <ul> <li>Meer lokaal en gelijktijdig gebruik van opgewekte stroom.</li> <li>Minder stroom terug naar het net.</li> <li>Ook bewoners zonder zonnepanelen profiteren van lokaal opgewekte energie.</li> </ul></p> </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht6c"> Zonne‑energie wordt eerst in huis gebruikt en daarna opgeslagen in een eigen thuisbatterij voor later gebruik.<p> <b>Gevolg</b> <ul> <li>Meer eigen verbruik dan bij niets doen.</li> <li>Overschotten die niet in de batterij passen, gaan alsnog terug naar het net.</li> <li>Het voordeel blijft volledig individueel.</li> </ul></p> </div>
+            </div>
+            <div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
+                <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
+                    <h4 class="u-text-color-white default-font-size" id="overzicht7"> Omgang met stroomoverschot </h4>
+                </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht7a">
+                    <strong>Wat gebeurt er met overtollige zonne‑energie?</strong>
+                    <ul>
+                        <li>Stroom die je niet direct gebruikt, gaat terug naar het elektriciteitsnet.</li>
+                        <li>Je ontvangt een terugleververgoeding of betaalt terugleverkosten.</li>
+                        <li>Het overschot verlaat de buurt en wordt niet lokaal benut.</li>
+                    </ul>
+                </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht7b">
+                    <strong>Wat gebeurt er met overtollige zonne‑energie?</strong>
+                    <ul>
+                        <li>Stroom die je niet direct gebruikt, blijft in de buurt.</li>
+                        <li>Het overschot wordt opgeslagen in een buurtbatterij of direct gedeeld met andere bewoners.</li>
+                        <li>De energie wordt later gebruikt als buurtstroom.</li>
+                        <li>Minder teruglevering aan het net en lagere terugleverkosten.</li>
+                    </ul>
+                </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht7c">
+                    <strong>Wat gebeurt er met overtollige zonne‑energie?</strong>
+                    <ul>
+                        <li>Stroom die je niet direct gebruikt, wordt opgeslagen in je eigen thuisbatterij.</li>
+                        <li>Is de batterij vol, dan gaat het resterende overschot alsnog terug naar het net.</li>
+                        <li>Het gebruik en voordeel zijn volledig individueel.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
+                <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
+                    <h4 class="u-text-color-white default-font-size" id="overzicht8"> Techniek & beheer </h4>
+                </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht8a">
+                    <strong>Techniek</strong>
+                    <ul>
+                        <li>Geen aanvullende techniek naast de bestaande meterkast.</li>
+                        <li>Zonnepanelen leveren stroom terug aan het net.</li>
+                    </ul>
+                    <strong>Beheer</strong>
+                    <ul>
+                        <li>Geen extra beheer of onderhoud.</li>
+                        <li>Je bent volledig afhankelijk van energieleverancier en netbeheerder.</li>
+                    </ul>
+                </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht8b">
+                    <strong>Techniek</strong>
+                    <ul>
+                        <li>Buurtbatterij in de wijk voor opslag van lokale zonne‑energie.</li>
+                        <li>Slimme meterkast of meetmodule in huis.</li>
+                        <li>Software stuurt verdeling van buurtstroom automatisch aan.</li>
+                    </ul>
+                    <strong>Beheer</strong>
+                    <ul>
+                        <li>Beheer en onderhoud zijn collectief georganiseerd.</li>
+                        <li>Bewoners hoeven zelf niets technisch te bedienen.</li>
+                        <li>Monitoring en ondersteuning gebeuren op afstand.</li>
+                    </ul>
+                </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht8c">
+                    <strong>Techniek</strong>
+                    <ul>
+                        <li>Een batterij in of bij de woning voor eigen opslag.</li>
+                        <li>Aansturing via omvormer en bijbehorende software.</li>
+                    </ul>
+                    <strong>Beheer</strong>
+                    <ul>
+                        <li>Onderhoud en beheer zijn de verantwoordelijkheid van de bewoner.</li>
+                        <li>Vervanging en storingen zijn individueel geregeld.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features c-comparison__category--no-differences">
+                <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
+                    <h4 class="u-text-color-white default-font-size" id="overzicht9"> Individueel vs collectief </h4>
+                </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht9a">
+                    <strong>Individueel</strong>
+                    <ul>
+                        <li>Iedereen regelt zijn eigen energiecontract en kosten.</li>
+                        <li>Voordelen en nadelen zijn volledig persoonlijk.</li>
+                    </ul>
+                    <strong>Collectief</strong>
+                    <ul>
+                        <li>Er is geen samenwerking met de buurt.</li>
+                        <li>Opgewekte energie wordt niet lokaal gedeeld.</li>
+                    </ul>
+                </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht9b">
+                    <strong>Individueel</strong>
+                    <ul>
+                        <li>Je gebruikt stroom zoals je gewend bent.</li>
+                        <li>Je profiteert persoonlijk van lagere kosten en stabielere tarieven.</li>
+                    </ul>
+                    <strong>Collectief</strong>
+                    <ul>
+                        <li>Opgewekte energie wordt samen met de buurt benut.</li>
+                        <li>Bewoners met en zonder zonnepanelen doen mee.</li>
+                        <li>Kosten, voordelen en techniek zijn collectief georganiseerd.</li>
+                        <li>De buurt wordt minder afhankelijk van het elektriciteitsnet.</li>
+                    </ul>
+                </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht9c">
+                    <strong>Individueel</strong>
+                    <ul>
+                        <li>De batterij en het voordeel zijn volledig voor eigen gebruik.</li>
+                        <li>Je regelt investering, onderhoud en vervanging zelf.</li>
+                    </ul>
+                    <strong>Collectief</strong>
+                    <ul>
+                        <li>Er is geen directe samenwerking met de buurt.</li>
+                        <li>Andere bewoners profiteren niet mee van het systeem.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
+                <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
+                    <h4 class="u-text-color-white default-font-size" id="overzicht10"> Duurzaamheid & netbelasting </h4>
+                </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht10a">
+                    <strong>Duurzaamheid</strong>
+                    <ul>
+                        <li>Een groot deel van de zonne‑energie verlaat de buurt via het elektriciteitsnet.</li>
+                        <li>Lokaal opgewekte stroom wordt niet optimaal benut.</li>
+                    </ul>
+                    <strong>Netbelasting</strong>
+                    <ul>
+                        <li>Teruglevering zorgt voor extra druk op het elektriciteitsnet.</li>
+                        <li>Bij piekproductie kan dit leiden tot hogere kosten en beperkingen.</li>
+                    </ul>
+                </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht10b">
+                    <strong>Duurzaamheid</strong>
+                    <ul>
+                        <li>Lokaal opgewekte zonne‑energie blijft in de buurt.</li>
+                        <li>Meer directe en nuttige inzet van duurzame stroom.</li>
+                        <li>Ook bewoners zonder zonnepanelen profiteren van groene energie.</li>
+                    </ul>
+                    <strong>Netbelasting</strong>
+                    <ul>
+                        <li>Minder teruglevering aan het elektriciteitsnet.</li>
+                        <li>Pieken worden afgevlakt door lokale opslag en verdeling.</li>
+                        <li>Het net wordt ontlast, wat bijdraagt aan toekomstbestendigheid.</li>
+                    </ul>
+                </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht10c">
+                    <strong>Duurzaamheid</strong>
+                    <ul>
+                        <li>Meer eigen gebruik van zonne‑energie dan bij niets doen.</li>
+                        <li>Overschotten die niet opgeslagen kunnen worden, gaan alsnog terug naar het net.</li>
+                    </ul>
+                    <strong>Netbelasting</strong>
+                    <ul>
+                        <li>De belasting van het net neemt beperkt af.</li>
+                        <li>Effect blijft afhankelijk van de grootte van de batterij.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features c-comparison__category--no-differences">
+                <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
+                    <h4 class="u-text-color-white default-font-size" id="overzicht11"> Voor wie geschikt </h4>
+                </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht11a">
+                    <strong>Past vooral bij</strong>
+                    <ul>
+                        <li>Huishoudens die geen veranderingen willen of kunnen doorvoeren.</li>
+                        <li>Bewoners die geen investering willen doen.</li>
+                    </ul>
+                    <strong>Minder geschikt als</strong>
+                    <ul>
+                        <li>Je grip wilt krijgen op je energiekosten na 2027.</li>
+                        <li>Je lokaal opgewekte zonne‑energie beter wilt benutten.</li>
+                    </ul>
+                </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht11b">
+                    <strong>Past vooral bij</strong>
+                    <ul>
+                        <li>Bewoners die samen met de buurt energie willen delen.</li>
+                        <li>Huishoudens met én zonder zonnepanelen.</li>
+                        <li>Mensen die willen profiteren zonder zelf alles te moeten regelen.</li>
+                    </ul>
+                    <strong>Minder geschikt als</strong>
+                    <ul>
+                        <li>Je alleen individueel voordeel zoekt zonder samenwerking.</li>
+                        <li>Je geen collectieve oplossing wilt.</li>
+                    </ul>
+                </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht11c">
+                    <strong>Past vooral bij</strong>
+                    <ul>
+                        <li>Huishoudens die individueel hun zonne‑energie willen opslaan.</li>
+                        <li>Bewoners die zelf willen investeren en beheren.</li>
+                    </ul>
+                    <strong>Minder geschikt als</strong>
+                    <ul>
+                        <li>Je geen grote eenmalige investering wilt doen.</li>
+                        <li>Je zoekt naar een oplossing die ook de buurt helpt.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features c-comparison__category--no-differences">
+                <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
+                    <h4 class="u-text-color-white default-font-size" id="overzicht12"> Contract beëindigen </h4>
+                </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht12a">
+                    <strong>Beëindigen</strong>
+                    <ul>
+                        <li>Je kunt je energiecontract opzeggen volgens de voorwaarden van je energieleverancier.</li>
+                        <li>Er zijn geen aanvullende afspraken of verplichtingen.</li>
+                    </ul>
+                    <strong>Gevolg</strong>
+                    <ul>
+                        <li>Bij een nieuw contract blijven de effecten van stoppen met salderen bestaan.</li>
+                    </ul>
+                </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht12b">
+                    <strong>Beëindigen</strong>
+                    <ul>
+                        <li>Deelname aan energie delen is vrijwillig.</li>
+                        <li>Opzegging verloopt via het energieschap.</li>
+                        <li>De collectieve installatie blijft in beheer van de buurt.</li>
+                    </ul>
+                    <strong>Gevolg</strong>
+                    <ul>
+                        <li>Na beëindiging maak je geen gebruik meer van buurtstroom.</li>
+                        <li>Je valt terug op je reguliere energiecontract.</li>
+                    </ul>
+                </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht12c">
+                    <strong>Beëindigen</strong>
+                    <ul>
+                        <li>Er is geen contract dat je kunt beëindigen.</li>
+                        <li>De batterij blijft eigendom van de bewoner.</li>
+                    </ul>
+                    <strong>Gevolg</strong>
+                    <ul>
+                        <li>Bij stoppen met gebruik blijft de investering bestaan.</li>
+                        <li>Eventuele verkoop of verwijdering regel je zelf.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
+                <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
+                    <h4 class="u-text-color-white default-font-size" id="overzicht13"> Opzegtermijn </h4>
+                </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht13a">
+                    <strong>Opzegtermijn</strong>
+                    <ul>
+                        <li>De opzegtermijn volgt uit de voorwaarden van je energiecontract.</li>
+                        <li>Deze verschilt per energieleverancier en type contract.</li>
+                    </ul>
+                </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht13b">
+                    <strong>Opzegtermijn</strong>
+                    <ul>
+                        <li>Deelname aan energie delen kent een opzegtermijn via het energieschap.</li>
+                        <li>De opzegtermijn is vastgelegd in de lidmaatschapsvoorwaarden.</li>
+                        <li>De collectieve installatie blijft bestaan, ook als je stopt.</li>
+                    </ul>
+                </div>
+                <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht13c">
+                    <strong>Opzegtermijn</strong>
+                    <ul>
+                        <li>Er is geen opzegtermijn van toepassing.</li>
+                        <li>De batterij is eigendom van de bewoner.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section class="c-comparison__coverage-section">
+            <div class="layout layout--flex layout--flush js-comparison__category c-comparison__category">
+                <div class="layout__item u-1/4-default c-comparison__coverage-cell pb0 c-comparison__coverage-cell--label u-palm-visuallyhidden palm-pt0 pt0 u-bg-color-white u-border-radius mt++">
+                </div>
+            </div>
+        </section>
+    </div>
 </div>
 </div>
 </section>
-<section class="c-comparison__coverage-section">
-<div class="layout layout--flex layout--flush js-comparison__category c-comparison__category">
-<div class="layout__item u-1/4-default c-comparison__coverage-cell pb0 c-comparison__coverage-cell--label u-palm-visuallyhidden palm-pt0 pt0 u-bg-color-white u-border-radius mt++">
-
-
-</div>
-
-</div>
-</section>
-</div>
-</div>
-</div>
-</section>
-
 </div>
 </main>
-    <footer>
-        <div class="footer">
-            <div w3-include-html="./footer.html"></div>
+<footer>
+    <div class="footer">
+        <div w3-include-html="./footer.html">
         </div>
-        <element onload="myScript"></element>
-    </footer>
+    </div>
+    <element onload="myScript">
+    </element>
+</footer>
 </body>
 <script>
-  function showresult(){
-    document.getElementById('resultaat').style.display = "inline";
-    const element = document.getElementById('resultaat');
-    element.scrollIntoView();
-  }
+    function showresult(){
+      document.getElementById('resultaten-sectie').style.display = "inline";
+      document.getElementById('resultaat').style.display = "inline";
+      const element = document.getElementById('resultaat');
+      element.scrollIntoView();
+    }
 
-  function displayverschilbottom(){
-    document.getElementById('verschilbottom').style.display = "inline";
-    document.getElementById('watkanikdoen').style.display = "none";
-  }
+    function displayverschilbottom(){
+      document.getElementById('verschilbottom').style.display = "inline";
+      document.getElementById('watkanikdoen').style.display = "none";
+    }
 
-  function showcustom(){
-    document.getElementById('custom').style.display = "inline";
-    document.getElementById('schatten').style.display = "none";
-    document.getElementById('customview').value = 1;
-  }
+    function showcustom(){
+      document.getElementById('custom').style.display = "inline";
+      document.getElementById('schatten').style.display = "none";
+      document.getElementById('customview').value = 1;
+    }
 
-  function hidecustom(event){
-    if (event) event.preventDefault();
-    document.getElementById('custom').style.display = "none";
-    document.getElementById('schatten').style.display = "inline";
-    document.getElementById('customview').value = 0;
-    return false;
-  }
+    function hidecustom(event){
+      if (event) event.preventDefault();
+      document.getElementById('custom').style.display = "none";
+      document.getElementById('schatten').style.display = "inline";
+      document.getElementById('customview').value = 0;
+      return false;
+    }
 
-  function submitAndShow(){
-    const form = document.getElementById('myForm');
-    const formData = new FormData(form);
-    fetch('submit.php', {
-      method: 'POST',
-      body: formData
-    }).then(response => response.text()).then(data => {
-      console.log('Data submitted:', data);
-    }).catch(error => {
-      console.error('Error:', error);
-    });
-    showresult();
-  }
+    function submitAndShow(){
+      const form = document.getElementById('myForm');
+      const formData = new FormData(form);
+      fetch('submit.php', {
+        method: 'POST',
+        body: formData
+      }).then(response => response.text()).then(data => {
+        console.log('Data submitted:', data);
+      }).catch(error => {
+        console.error('Error:', error);
+      });
+      // Hide input section, show results and back button
+      document.getElementById('invoer-sectie').style.display = 'none';
+      document.getElementById('resultaten-sectie').style.display = 'inline';
+      document.getElementById('terug-btn').style.display = 'inline-block';
+      const element = document.getElementById('resultaat');
+      element.scrollIntoView();
+    }
+
+    function terugnaarInvullen(){
+      document.getElementById('invoer-sectie').style.display = '';
+      document.getElementById('resultaten-sectie').style.display = 'none';
+      document.getElementById('terug-btn').style.display = 'none';
+      document.getElementById('invoer-sectie').scrollIntoView();
+    }
 </script>
 <script>
-let slideIndex = 1;
-showSlides(slideIndex);
+    let slideIndex = 1;
+    showSlides(slideIndex);
 
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
 
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
 
-function showSlides(n) {
-  let i;
-  let slides = document.getElementsByClassName("mySlides");
-  let dots = document.getElementsByClassName("dot");
-  if (slides.length === 0) return; // No slides to show
-  if (n > slides.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block";
-  if (dots.length > 0 && slideIndex-1 < dots.length) {
-    dots[slideIndex-1].className += " active";
-  }
-}
+    function showSlides(n) {
+      let i;
+      let slides = document.getElementsByClassName("mySlides");
+      let dots = document.getElementsByClassName("dot");
+      if (slides.length === 0) return; // No slides to show
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slides[slideIndex-1].style.display = "block";
+      if (dots.length > 0 && slideIndex-1 < dots.length) {
+        dots[slideIndex-1].className += " active";
+      }
+    }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0"></script>
 <script src="js/bewonertool.js"></script>
 <script src="js/includehtml.js"></script>
-<script>includeHTML();</script>
 <script>
-  // Load dynamic content sections on page load
-  document.addEventListener('DOMContentLoaded', function() {
-    const sections = [
-      { id: 'content-descritpion', key: 'omschrijving'},
+    includeHTML();
+</script>
+<script>
+    // Load dynamic content sections on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      const sections = [
+        { id: 'content-descritpion', key: 'omschrijving'},
 
-      { id: 'pakket0', key: 'pakket0'},
-      { id: 'pakket1', key: 'pakket1'},
-      { id: 'pakket2', key: 'pakket2'},
-      { id: 'pakket3', key: 'pakket3'},
-      { id: 'pakket4', key: 'pakket4'},
+        { id: 'pakket0', key: 'pakket0'},
+        { id: 'pakket1', key: 'pakket1'},
+        { id: 'pakket2', key: 'pakket2'},
+        { id: 'pakket3', key: 'pakket3'},
+        { id: 'pakket4', key: 'pakket4'},
 
-      { id: 'pakket1a', key: 'pakket1a'},
-      { id: 'pakket1b', key: 'pakket1b'},
-      { id: 'pakket1c', key: 'pakket1c'},
-      { id: 'pakket2a', key: 'pakket2a'},
-      { id: 'pakket2b', key: 'pakket2b'},
-      { id: 'pakket2c', key: 'pakket2c'},
-      { id: 'pakket3a', key: 'pakket3a'},
-      { id: 'pakket3b', key: 'pakket3b'},
-      { id: 'pakket3c', key: 'pakket3c'},
-      { id: 'pakket4a', key: 'pakket4a'},
-      { id: 'pakket4b', key: 'pakket4b'},
-      { id: 'pakket4c', key: 'pakket4c'},
+        { id: 'pakket1a', key: 'pakket1a'},
+        { id: 'pakket1b', key: 'pakket1b'},
+        { id: 'pakket1c', key: 'pakket1c'},
+        { id: 'pakket2a', key: 'pakket2a'},
+        { id: 'pakket2b', key: 'pakket2b'},
+        { id: 'pakket2c', key: 'pakket2c'},
+        { id: 'pakket3a', key: 'pakket3a'},
+        { id: 'pakket3b', key: 'pakket3b'},
+        { id: 'pakket3c', key: 'pakket3c'},
+        { id: 'pakket4a', key: 'pakket4a'},
+        { id: 'pakket4b', key: 'pakket4b'},
+        { id: 'pakket4c', key: 'pakket4c'},
 
-      { id: 'overzicht0', key: 'overzicht0'},
-      { id: 'overzicht1', key: 'overzicht1'},
-      { id: 'overzicht2', key: 'overzicht2'},
-      { id: 'overzicht3', key: 'overzicht3'},
-      { id: 'overzicht4', key: 'overzicht4'},
-      { id: 'overzicht5', key: 'overzicht5'},
-      { id: 'overzicht6', key: 'overzicht6'},
-      { id: 'overzicht7', key: 'overzicht7'},
-      { id: 'overzicht8', key: 'overzicht8'},
-      { id: 'overzicht9', key: 'overzicht9'},
-      { id: 'overzicht10', key: 'overzicht10'},
-      { id: 'overzicht11', key: 'overzicht11'},
-      { id: 'overzicht12', key: 'overzicht12'},
-      { id: 'overzicht13', key: 'overzicht13'},
+        { id: 'overzicht0', key: 'overzicht0'},
+        { id: 'overzicht1', key: 'overzicht1'},
+        { id: 'overzicht2', key: 'overzicht2'},
+        { id: 'overzicht3', key: 'overzicht3'},
+        { id: 'overzicht4', key: 'overzicht4'},
+        { id: 'overzicht5', key: 'overzicht5'},
+        { id: 'overzicht6', key: 'overzicht6'},
+        { id: 'overzicht7', key: 'overzicht7'},
+        { id: 'overzicht8', key: 'overzicht8'},
+        { id: 'overzicht9', key: 'overzicht9'},
+        { id: 'overzicht10', key: 'overzicht10'},
+        { id: 'overzicht11', key: 'overzicht11'},
+        { id: 'overzicht12', key: 'overzicht12'},
+        { id: 'overzicht13', key: 'overzicht13'},
 
-      { id: 'overzicht1a', key: 'overzicht1a'},
-      { id: 'overzicht1b', key: 'overzicht1b'},
-      { id: 'overzicht1c', key: 'overzicht1c'},
-      { id: 'overzicht2a', key: 'overzicht2a'},
-      { id: 'overzicht2b', key: 'overzicht2b'},
-      { id: 'overzicht2c', key: 'overzicht2c'},
-      { id: 'overzicht3a', key: 'overzicht3a'},
-      { id: 'overzicht3b', key: 'overzicht3b'},
-      { id: 'overzicht3c', key: 'overzicht3c'},
-      { id: 'overzicht4a', key: 'overzicht4a'},
-      { id: 'overzicht4b', key: 'overzicht4b'},
-      { id: 'overzicht4c', key: 'overzicht4c'},
-      { id: 'overzicht5a', key: 'overzicht5a'},
-      { id: 'overzicht5b', key: 'overzicht5b'},
-      { id: 'overzicht5c', key: 'overzicht5c'},
-      { id: 'overzicht6a', key: 'overzicht6a'},
-      { id: 'overzicht6b', key: 'overzicht6b'},
-      { id: 'overzicht6c', key: 'overzicht6c'},
-      { id: 'overzicht7a', key: 'overzicht7a'},
-      { id: 'overzicht7b', key: 'overzicht7b'},
-      { id: 'overzicht7c', key: 'overzicht7c'},
-      { id: 'overzicht8a', key: 'overzicht8a'},
-      { id: 'overzicht8b', key: 'overzicht8b'},
-      { id: 'overzicht8c', key: 'overzicht8c'},
-      { id: 'overzicht9a', key: 'overzicht9a'},
-      { id: 'overzicht9b', key: 'overzicht9b'},
-      { id: 'overzicht9c', key: 'overzicht9c'},
-      { id: 'overzicht10a', key: 'overzicht10a'},
-      { id: 'overzicht10b', key: 'overzicht10b'},
-      { id: 'overzicht10c', key: 'overzicht10c'},
-      { id: 'overzicht11a', key: 'overzicht11a'},
-      { id: 'overzicht11b', key: 'overzicht11b'},
-      { id: 'overzicht11c', key: 'overzicht11c'},
-      { id: 'overzicht12a', key: 'overzicht12a'},
-      { id: 'overzicht12b', key: 'overzicht12b'},
-      { id: 'overzicht12c', key: 'overzicht12c'},
-      { id: 'overzicht13a', key: 'overzicht13a'},
-      { id: 'overzicht13b', key: 'overzicht13b'},
-      { id: 'overzicht13c', key: 'overzicht13c'}
-    ];
+        { id: 'overzicht1a', key: 'overzicht1a'},
+        { id: 'overzicht1b', key: 'overzicht1b'},
+        { id: 'overzicht1c', key: 'overzicht1c'},
+        { id: 'overzicht2a', key: 'overzicht2a'},
+        { id: 'overzicht2b', key: 'overzicht2b'},
+        { id: 'overzicht2c', key: 'overzicht2c'},
+        { id: 'overzicht3a', key: 'overzicht3a'},
+        { id: 'overzicht3b', key: 'overzicht3b'},
+        { id: 'overzicht3c', key: 'overzicht3c'},
+        { id: 'overzicht4a', key: 'overzicht4a'},
+        { id: 'overzicht4b', key: 'overzicht4b'},
+        { id: 'overzicht4c', key: 'overzicht4c'},
+        { id: 'overzicht5a', key: 'overzicht5a'},
+        { id: 'overzicht5b', key: 'overzicht5b'},
+        { id: 'overzicht5c', key: 'overzicht5c'},
+        { id: 'overzicht6a', key: 'overzicht6a'},
+        { id: 'overzicht6b', key: 'overzicht6b'},
+        { id: 'overzicht6c', key: 'overzicht6c'},
+        { id: 'overzicht7a', key: 'overzicht7a'},
+        { id: 'overzicht7b', key: 'overzicht7b'},
+        { id: 'overzicht7c', key: 'overzicht7c'},
+        { id: 'overzicht8a', key: 'overzicht8a'},
+        { id: 'overzicht8b', key: 'overzicht8b'},
+        { id: 'overzicht8c', key: 'overzicht8c'},
+        { id: 'overzicht9a', key: 'overzicht9a'},
+        { id: 'overzicht9b', key: 'overzicht9b'},
+        { id: 'overzicht9c', key: 'overzicht9c'},
+        { id: 'overzicht10a', key: 'overzicht10a'},
+        { id: 'overzicht10b', key: 'overzicht10b'},
+        { id: 'overzicht10c', key: 'overzicht10c'},
+        { id: 'overzicht11a', key: 'overzicht11a'},
+        { id: 'overzicht11b', key: 'overzicht11b'},
+        { id: 'overzicht11c', key: 'overzicht11c'},
+        { id: 'overzicht12a', key: 'overzicht12a'},
+        { id: 'overzicht12b', key: 'overzicht12b'},
+        { id: 'overzicht12c', key: 'overzicht12c'},
+        { id: 'overzicht13a', key: 'overzicht13a'},
+        { id: 'overzicht13b', key: 'overzicht13b'},
+        { id: 'overzicht13c', key: 'overzicht13c'}
+      ];
 
-    sections.forEach(section => {
-      const element = document.getElementById(section.id);
-      if (element) {
-        fetch(`api/content.php?action=get&section=${section.key}`)
-          .then(response => response.json())
-          .then(data => {
-            if (data.success && data.content) {
-              element.innerHTML = data.content;
-            } else {
-              element.style.display = 'none';
-              // If it's overzicht1 to overzicht13, hide the row
-              if (/^overzicht\d+$/.test(section.key)) {
-                const rowId = 'row' + section.key.match(/\d+/)[0];
-                const row = document.getElementById(rowId);
-                if (row) row.style.display = 'none';
+      sections.forEach(section => {
+        const element = document.getElementById(section.id);
+        if (element) {
+          fetch(`api/content.php?action=get&section=${section.key}`)
+            .then(response => response.json())
+            .then(data => {
+              if (data.success && data.content) {
+                element.innerHTML = data.content;
+              } else {
+                element.style.display = 'none';
+                // If it's overzicht1 to overzicht13, hide the row
+                if (/^overzicht\d+$/.test(section.key)) {
+                  const rowId = 'row' + section.key.match(/\d+/)[0];
+                  const row = document.getElementById(rowId);
+                  if (row) row.style.display = 'none';
+                }
               }
-            }
-          })
-          .catch(error => {
-            console.error(`Error loading content for ${section.key}:`, error);
-          });
-      }
+            })
+            .catch(error => {
+              console.error(`Error loading content for ${section.key}:`, error);
+            });
+        }
+      });
     });
-  });
 </script>
 </html>
