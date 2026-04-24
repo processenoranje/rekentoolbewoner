@@ -411,37 +411,77 @@ function versch(){
 /* Presets */
 function p1(){
     document.getElementById('gemjaarverbr').value = 1500;
-    document.getElementById('opwek').value = 1000;
     document.getElementById('defverb').innerHTML = '<i class="fa-solid fa-bolt"></i> 1500 kWh';
     document.getElementById('defgas').innerHTML = '<i class="fa-solid fa-fire-flame-simple"></i> 800 m3';
-    document.getElementById('defopw').innerHTML = '<i class="fa-solid fa-solar-panel"></i> 1000 kWh';
+
+    if(document.getElementById('zonp').checked){
+        console.log("zonP1");
+        document.getElementById('opwek').value = 1000;
+        document.getElementById('defopw').innerHTML = '<i class="fa-solid fa-solar-panel"></i> 1000 kWh';
+    }
+    else{
+        document.getElementById('opwek').value = 0;
+        document.getElementById('defopw').innerHTML = '<i class="fa-solid fa-solar-panel"></i> 0 kWh';
+        
+    }
+
     updateAll();
 }
 
 function p2(){
     document.getElementById('gemjaarverbr').value = 2500;
-    document.getElementById('opwek').value = 2000;
     document.getElementById('defverb').innerHTML = '<i class="fa-solid fa-bolt"></i> 2500 kWh';
     document.getElementById('defgas').innerHTML = '<i class="fa-solid fa-fire-flame-simple"></i> 1000 m3';
-    document.getElementById('defopw').innerHTML = '<i class="fa-solid fa-solar-panel"></i> 2000 kWh';
+
+    if(document.getElementById('zonp').checked){
+        console.log("zonP1");
+        document.getElementById('opwek').value = 2000;
+        document.getElementById('defopw').innerHTML = '<i class="fa-solid fa-solar-panel"></i> 2000 kWh';
+    }
+    else{
+        document.getElementById('opwek').value = 0;
+        document.getElementById('defopw').innerHTML = '<i class="fa-solid fa-solar-panel"></i> 0 kWh';
+        
+    }
+
     updateAll();
 }
 
 function p3(){
     document.getElementById('gemjaarverbr').value = 3000;
-    document.getElementById('opwek').value = 2500;
     document.getElementById('defverb').innerHTML = '<i class="fa-solid fa-bolt"></i> 3000 kWh';
-    document.getElementById('defgas').innerHTML = '<i class="fa-solid fa-fire-flame-simple"></i> 1200 m3';
-    document.getElementById('defopw').innerHTML = '<i class="fa-solid fa-solar-panel"></i> 2500 kWh';
+    document.getElementById('defgas').innerHTML = '<i class="fa-solid fa-fire-flame-simple"></i> 2500 m3';
+
+    if(document.getElementById('zonp').checked){
+        console.log("zonP1");
+        document.getElementById('opwek').value = 2500;
+        document.getElementById('defopw').innerHTML = '<i class="fa-solid fa-solar-panel"></i> 2500 kWh';
+    }
+    else{
+        document.getElementById('opwek').value = 0;
+        document.getElementById('defopw').innerHTML = '<i class="fa-solid fa-solar-panel"></i> 0 kWh';
+        
+    }
+
     updateAll();
 }
 
 function p4(){
     document.getElementById('gemjaarverbr').value = 3500;
-    document.getElementById('opwek').value = 3000;
     document.getElementById('defverb').innerHTML = '<i class="fa-solid fa-bolt"></i> 3500 kWh';
     document.getElementById('defgas').innerHTML = '<i class="fa-solid fa-fire-flame-simple"></i> 1400 m3';
-    document.getElementById('defopw').innerHTML = '<i class="fa-solid fa-solar-panel"></i> 3000 kWh';
+
+    if(document.getElementById('zonp').checked){
+        console.log("zonP1");
+        document.getElementById('opwek').value = 300;
+        document.getElementById('defopw').innerHTML = '<i class="fa-solid fa-solar-panel"></i> 300 kWh';
+    }
+    else{
+        document.getElementById('opwek').value = 0;
+        document.getElementById('defopw').innerHTML = '<i class="fa-solid fa-solar-panel"></i> 0 kWh';
+        
+    }
+
     updateAll();
 }
 
