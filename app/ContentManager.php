@@ -127,7 +127,7 @@ class ContentManager
         $allowedAttributes = [
             'href', 'target', 'rel', 'alt', 'src', 'width', 'height', 'style',
             'class', 'id', 'title', 'colspan', 'rowspan', 'type', 'min', 'value',
-            'name', 'readonly'
+            'name', 'readonly', 'onclick', 'onkeyup', 'step', 'checked'
         ];
 
         // Use DOMDocument for proper HTML sanitization
