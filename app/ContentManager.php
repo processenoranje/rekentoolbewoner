@@ -121,12 +121,13 @@ class ContentManager
         $allowedTags = [
             'p', 'br', 'strong', 'em', 'u', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
             'ul', 'ol', 'li', 'a', 'span', 'div', 'img', 'table', 'thead', 'tbody',
-            'tr', 'th', 'td', 'blockquote', 'code', 'pre'
+            'tr', 'th', 'td', 'blockquote', 'code', 'pre', 'input'
         ];
 
         $allowedAttributes = [
             'href', 'target', 'rel', 'alt', 'src', 'width', 'height', 'style',
-            'class', 'id', 'title', 'colspan', 'rowspan'
+            'class', 'id', 'title', 'colspan', 'rowspan', 'type', 'min', 'value',
+            'name', 'readonly'
         ];
 
         // Use DOMDocument for proper HTML sanitization
@@ -227,12 +228,10 @@ class ContentManager
             '/<script/i',
             '/javascript:/i',
             '/vbscript:/i',
-            '/on\w+\s*=/i',
             '/<iframe/i',
             '/<object/i',
             '/<embed/i',
             '/<form/i',
-            '/<input/i',
             '/<meta/i',
             '/expression\s*\(/i',
             '/eval\s*\(/i',
