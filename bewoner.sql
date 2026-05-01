@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2026 at 02:34 PM
+-- Generation Time: May 01, 2026 at 11:37 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -48,7 +48,7 @@ CREATE TABLE `admin_users` (
 --
 
 INSERT INTO `admin_users` (`id`, `username`, `password_hash`, `email`, `full_name`, `role`, `active`, `created_at`, `last_login`, `login_attempts`, `locked_until`) VALUES
-(1, 'admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin@example.com', 'Administrator', 'admin', 1, '2026-04-21 12:03:46', '2026-04-21 12:05:08', 0, NULL);
+(1, 'admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin@example.com', 'Administrator', 'admin', 1, '2026-04-21 12:03:46', '2026-05-01 09:13:00', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -158,7 +158,31 @@ INSERT INTO `page_content` (`id`, `section_key`, `content`, `updated_at`, `activ
 (93, 'overzicht13c', '<strong>Opzegtermijn</strong>\r\n<ul>\r\n  <li>Er is geen opzegtermijn van toepassing.</li>\r\n  <li>De batterij is eigendom van de bewoner.</li>\r\n</ul>', '2026-04-20 09:34:26', 1),
 (99, 'overzicht1a', 'Niets doen', '2026-04-20 09:42:51', 1),
 (100, 'overzicht1b', 'Buurtbatterij', '2026-04-20 09:42:43', 1),
-(101, 'overzicht1c', 'Thuisbatterij', '2026-04-20 09:42:36', 1);
+(101, 'overzicht1c', 'Thuisbatterij', '2026-04-20 09:42:36', 1),
+(175, 'verstuurknop', 'Verstuur', '2026-05-01 09:09:28', 1),
+(176, 'voorbeeldknop', 'Kies een voorbeeld', '2026-05-01 09:09:47', 1),
+(177, 'invultitel', 'Mijn huishouden', '2026-05-01 09:34:24', 1),
+(178, 'postc', 'Postcode <input type=\"text\" id=\"postcode\" name=\"postcode\" style=\"left:0px\"> ', '2026-05-01 09:34:13', 1),
+(179, 'huisnr', 'Huisnummer <input type=\"text\" id=\"huisnummer\" name=\"huisnummer\" style=\"left:0px\">', '2026-05-01 09:34:01', 1),
+(180, 'toev', 'Toevoeging <input type=\"text\" id=\"toevoeging\" name=\"toevoeging\" style=\"left:0px\">', '2026-05-01 09:33:49', 1),
+(181, 'vinkzonnepanelen', 'Ik heb zonnepanelen <input type=\"checkbox\" onclick=\"updatepres();\" checked id=\"zonp\" name=\"zonnepanelen\"> <span class=\"slider round\"></span> ', '2026-05-01 09:33:12', 1),
+(182, 'voorbeeld1', 'Een volwassene', '2026-05-01 09:32:03', 1),
+(183, 'voorbeeld2', 'Twee volwassenen', '2026-05-01 09:31:55', 1),
+(184, 'voorbeeld3', 'Twee volwassenen, een kind', '2026-05-01 09:31:47', 1),
+(185, 'voorbeeld4', 'Twee volwassenen, twee kinderen', '2026-05-01 09:31:39', 1),
+(186, 'opwverbrtitel', 'Opwek en verbruik', '2026-05-01 09:31:04', 1),
+(187, 'mijnvebruik', 'test', '2026-05-01 09:07:17', 1),
+(188, 'mijnopwek', 'Mijn opwek per jaar: <input type=\"number\" min=\"0\" value=\"3000\" id=\"opwek\" name=\"opwek\" onclick=\"inkoopz();inkoopm();totaalz();totaalm();tlkz();tlkm();tlvz();tlvm();gelijkz();gelijkm();gelijkth();inkoopth();tlkth();tlvth();totaalthuis();versch();\" onkeyup=\"inkoopz();inkoopm();totaalz();totaalm();tlkz();tlkm();tlvz();tlvm();gelijkz();gelijkm();gelijkth();inkoopth();tlkth();tlvth();totaalthuis();versch();\" step=\"50\">', '2026-05-01 09:30:29', 1),
+(189, 'tarieventitel', 'Tarieven', '2026-05-01 09:30:08', 1),
+(190, 'jaartal', '2027', '2026-05-01 09:29:55', 1),
+(191, '27kost', 'Energieprijs per kWh: <input type=\"number\" min=\"0\" id=\"energiepr\" value=\"0.26\" name=\"\" onclick=\"totaalz();inkoopz();totaalthuis();inkoopth();versch();\" onkeyup=\"totaalz();inkoopz();totaalthuis();inkoopth();versch();\" step=\".01\">', '2026-05-01 09:26:23', 1),
+(192, '27terugkost', 'Terugleverkosten per kWh: <input type=\"number\" min=\"0\" id=\"teruglvrkost\" value=\"0.045\" name=\"\" onclick=\"totaalz();tlkz();totaalthuis();tlkth();versch();\" onkeyup=\"totaalz();tlkz();totaalthuis();tlkth();versch();\" step=\".001\"> ', '2026-05-01 09:27:18', 1),
+(193, '27terugverg', 'Terugleververgoeding per kWh: <input type=\"number\" min=\"0\" id=\"teruglvrverg\" value=\"0.05\" name=\"\" onclick=\"totaalz();tlvz();totaalthuis();tlvth();versch();\" onkeyup=\"totaalz();tlvz();totaalthuis();tlvth();versch();\" step=\".01\">', '2026-05-01 09:26:54', 1),
+(194, '27buurtstr', 'Buurtstroom per kWh: <input type=\"\" min=\"0\" id=\"buurtstr\" value=\"0.21\" name=\"\" readonly class=\"inputno\">', '2026-05-01 09:23:24', 1),
+(195, '27korting', 'Korting inkomstenbelasting per kWh: <input type=\"\" min=\"0\" id=\"kortingib\" value=\"0.096\" name=\"\" readonly class=\"inputno\">', '2026-05-01 09:21:29', 1),
+(196, 'invulknop', 'Ik wil zelf mijn gegevens invullen', '2026-05-01 09:10:08', 1),
+(217, '27buurtterug', 'Terugleverkosten buurtstroom per kWh: <input type=\"\" min=\"0\" id=\"teruglvrkostbs\" value=\"0.009\" name=\"\" readonly class=\"inputno\"> ', '2026-05-01 09:23:08', 1),
+(231, 'mijnverbruik', 'Mijn verbruik per jaar: <input type=\"number\" min=\"0\" value=\"3500\" id=\"gemjaarverbr\" name=\"verbruik\" onclick=\"inkoopz();inkoopm();totaalz();totaalm();gelijkz();gelijkm();gelijkth();inkoopth();tlkth();tlvth();totaalthuis();versch();\" onkeyup=\"inkoopz();inkoopth();totaalz();totaalm();totaalthuis();gelijkz();gelijkm();gelijkth();versch();\" step=\"50\">', '2026-05-01 09:30:45', 1);
 
 --
 -- Indexes for dumped tables
@@ -205,7 +229,7 @@ ALTER TABLE `household_data`
 -- AUTO_INCREMENT for table `page_content`
 --
 ALTER TABLE `page_content`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=175;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=246;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
