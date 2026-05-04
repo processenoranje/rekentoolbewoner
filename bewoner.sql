@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 04, 2026 at 10:59 AM
+-- Generation Time: May 04, 2026 at 12:21 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -48,7 +48,7 @@ CREATE TABLE `admin_users` (
 --
 
 INSERT INTO `admin_users` (`id`, `username`, `password_hash`, `email`, `full_name`, `role`, `active`, `created_at`, `last_login`, `login_attempts`, `locked_until`) VALUES
-(1, 'admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin@example.com', 'Administrator', 'admin', 1, '2026-04-21 12:03:46', '2026-05-04 08:57:14', 0, NULL);
+(1, 'admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin@example.com', 'Administrator', 'admin', 1, '2026-04-21 12:03:46', '2026-05-04 10:12:02', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -156,9 +156,9 @@ INSERT INTO `page_content` (`id`, `section_key`, `content`, `updated_at`, `activ
 (91, 'overzicht13a', '<strong>Opzegtermijn</strong>\r\n<ul>\r\n  <li>De opzegtermijn volgt uit de voorwaarden van je energiecontract.</li>\r\n  <li>Deze verschilt per energieleverancier en type contract.</li>\r\n</ul>', '2026-04-20 09:34:46', 1),
 (92, 'overzicht13b', '<strong>Opzegtermijn</strong>\r\n<ul>\r\n  <li>Deelname aan energie delen kent een opzegtermijn via het energieschap.</li>\r\n  <li>De opzegtermijn is vastgelegd in de lidmaatschapsvoorwaarden.</li>\r\n  <li>De collectieve installatie blijft bestaan, ook als je stopt.</li>\r\n</ul>', '2026-04-20 09:34:36', 1),
 (93, 'overzicht13c', '<strong>Opzegtermijn</strong>\r\n<ul>\r\n  <li>Er is geen opzegtermijn van toepassing.</li>\r\n  <li>De batterij is eigendom van de bewoner.</li>\r\n</ul>', '2026-04-20 09:34:26', 1),
-(99, 'overzicht1a', 'Niets doen', '2026-04-20 09:42:51', 1),
-(100, 'overzicht1b', 'Buurtbatterij', '2026-04-20 09:42:43', 1),
-(101, 'overzicht1c', 'Thuisbatterij', '2026-04-20 09:42:36', 1),
+(99, 'overzicht1a', '<h3 style=\"text-align: center;\">Niets doen</h3>', '2026-04-20 09:42:57', 1),
+(100, 'overzicht1b', '<h3 style=\"text-align: center;\">Buurtbatterij</h3>', '2026-04-20 09:42:56', 1),
+(101, 'overzicht1c', '<h3 style=\"text-align: center;\">Thuisbatterij</h3>', '2026-04-20 09:42:55', 1),
 (175, 'verstuurknop', 'Verstuur', '2026-05-01 09:09:28', 1),
 (176, 'voorbeeldknop', 'Kies een voorbeeld', '2026-05-01 09:09:47', 1),
 (177, 'invultitel', 'Mijn huishouden', '2026-05-01 09:34:24', 1),
@@ -183,7 +183,10 @@ INSERT INTO `page_content` (`id`, `section_key`, `content`, `updated_at`, `activ
 (196, 'invulknop', 'Ik wil zelf mijn gegevens invullen', '2026-05-01 09:10:08', 1),
 (217, '27buurtterug', 'Terugleverkosten buurtstroom per kWh: <input type=\"\" min=\"0\" id=\"teruglvrkostbs\" value=\"0.009\" name=\"\" readonly class=\"inputno\"> ', '2026-05-01 09:23:08', 1),
 (231, 'mijnverbruik', 'Mijn verbruik per jaar: <input type=\"number\" min=\"0\" value=\"3500\" id=\"gemjaarverbr\" name=\"verbruik\" onclick=\"inkoopz();inkoopm();totaalz();totaalm();gelijkz();gelijkm();gelijkth();inkoopth();tlkth();tlvth();totaalthuis();versch();\" onkeyup=\"inkoopz();inkoopth();totaalz();totaalm();totaalthuis();gelijkz();gelijkm();gelijkth();versch();\" step=\"50\">', '2026-05-01 09:30:45', 1),
-(246, 'kleinelettertjes', ' ', '2026-05-04 08:57:56', 1);
+(246, 'kleinelettertjes', ' ', '2026-05-04 08:57:56', 1),
+(250, 'pakket0a', '<h3 style=\"text-align: center;\">Niets doen</h3>', '2026-04-20 09:46:06', 1),
+(252, 'pakket0b', '<h3 style=\"text-align: center;\">Buurtbatterij</h3>', '2026-04-20 09:46:05', 1),
+(253, 'pakket0c', '<h3 style=\"text-align: center;\">Thuisbatterij</h3>', '2026-04-20 09:46:04', 1);
 
 --
 -- Indexes for dumped tables
@@ -230,7 +233,7 @@ ALTER TABLE `household_data`
 -- AUTO_INCREMENT for table `page_content`
 --
 ALTER TABLE `page_content`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=248;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=258;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
