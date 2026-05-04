@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 01, 2026 at 11:37 AM
+-- Generation Time: May 04, 2026 at 10:59 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -48,7 +48,7 @@ CREATE TABLE `admin_users` (
 --
 
 INSERT INTO `admin_users` (`id`, `username`, `password_hash`, `email`, `full_name`, `role`, `active`, `created_at`, `last_login`, `login_attempts`, `locked_until`) VALUES
-(1, 'admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin@example.com', 'Administrator', 'admin', 1, '2026-04-21 12:03:46', '2026-05-01 09:13:00', 0, NULL);
+(1, 'admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin@example.com', 'Administrator', 'admin', 1, '2026-04-21 12:03:46', '2026-05-04 08:57:14', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -182,7 +182,8 @@ INSERT INTO `page_content` (`id`, `section_key`, `content`, `updated_at`, `activ
 (195, '27korting', 'Korting inkomstenbelasting per kWh: <input type=\"\" min=\"0\" id=\"kortingib\" value=\"0.096\" name=\"\" readonly class=\"inputno\">', '2026-05-01 09:21:29', 1),
 (196, 'invulknop', 'Ik wil zelf mijn gegevens invullen', '2026-05-01 09:10:08', 1),
 (217, '27buurtterug', 'Terugleverkosten buurtstroom per kWh: <input type=\"\" min=\"0\" id=\"teruglvrkostbs\" value=\"0.009\" name=\"\" readonly class=\"inputno\"> ', '2026-05-01 09:23:08', 1),
-(231, 'mijnverbruik', 'Mijn verbruik per jaar: <input type=\"number\" min=\"0\" value=\"3500\" id=\"gemjaarverbr\" name=\"verbruik\" onclick=\"inkoopz();inkoopm();totaalz();totaalm();gelijkz();gelijkm();gelijkth();inkoopth();tlkth();tlvth();totaalthuis();versch();\" onkeyup=\"inkoopz();inkoopth();totaalz();totaalm();totaalthuis();gelijkz();gelijkm();gelijkth();versch();\" step=\"50\">', '2026-05-01 09:30:45', 1);
+(231, 'mijnverbruik', 'Mijn verbruik per jaar: <input type=\"number\" min=\"0\" value=\"3500\" id=\"gemjaarverbr\" name=\"verbruik\" onclick=\"inkoopz();inkoopm();totaalz();totaalm();gelijkz();gelijkm();gelijkth();inkoopth();tlkth();tlvth();totaalthuis();versch();\" onkeyup=\"inkoopz();inkoopth();totaalz();totaalm();totaalthuis();gelijkz();gelijkm();gelijkth();versch();\" step=\"50\">', '2026-05-01 09:30:45', 1),
+(246, 'kleinelettertjes', ' ', '2026-05-04 08:57:56', 1);
 
 --
 -- Indexes for dumped tables
@@ -229,7 +230,7 @@ ALTER TABLE `household_data`
 -- AUTO_INCREMENT for table `page_content`
 --
 ALTER TABLE `page_content`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=246;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=248;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
