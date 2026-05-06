@@ -16,7 +16,6 @@
  *   8.  Mobiele aanpassingen (@media palm = max 750px)
  */
 
-
 /* ============================================================
    1. LAYOUT – kolommen en flex
    ============================================================
@@ -26,7 +25,6 @@
    .layout--flush  = kolommen zonder tussenruimte
    Breedtes: .u-1/4 = 25%, .u-1/3 = 33%, .u-1/3-palm = 33% op mobiel, etc.
    ============================================================ */
-
 .layout {
     display: flex;
     list-style: none;
@@ -58,10 +56,19 @@
 }
 
 /* Breedte-hulpklassen */
-.u-1\/4         { width: 25% }
-.u-1\/3         { width: 33.333% }
-.u-1\/4-default { width: 25% }   /* 25% op desktop */
+.u-1\/4 {
+    width: 25%;
+}
 
+.u-1\/3 {
+    width: 33.333%;
+}
+
+.u-1\/4-default {
+    width: 25%;
+}
+
+/* 25% op desktop */
 
 /* ============================================================
    2. TYPOGRAFIE – tekstgroottes
@@ -70,7 +77,6 @@
    .epsilon         = iets groter (20px)
    .default-font-size = standaard (16px)
    ============================================================ */
-
 .zeta {
     font-size: 14px;
     font-size: 0.875rem;
@@ -96,31 +102,49 @@
     font-weight: 400;
 }
 
-
 /* ============================================================
    3. KLEUREN, ACHTERGRONDEN EN RANDEN
    ============================================================ */
+.u-text-color-white {
+    color: #000000;
+}
 
-.u-text-color-white         { color: #000000; }   /* let op: origineel toont zwart (site-specifiek override) */
-.u-text-color-grey          { color: #767676; }
-.u-text-color-status--green { color: #008500; }
+/* let op: origineel toont zwart (site-specifiek override) */
+.u-text-color-grey {
+    color: #767676;
+}
 
-.u-bg-color-white           { background-color: #fff; }
+.u-text-color-status--green {
+    color: #008500;
+}
 
-.u-border-radius            { border-radius: 16px; }
+.u-bg-color-white {
+    background-color: #fff;
+}
+
+.u-border-radius {
+    border-radius: 16px;
+}
+
 .u-border-radius--top {
     /* ronden alleen boven, niet onder – bijv. koptabel cel */
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
 }
 
-.u-text-align--center { text-align: center; }
-.u-text-align--right  { text-align: right; }
+.u-text-align--center {
+    text-align: center;
+}
 
-.u-display--inline-block { display: inline-block; }
+.u-text-align--right {
+    text-align: right;
+}
 
-svg .u-svg-fill { fill: inherit; }
+.u-display--inline-block {
+    display: inline-block;
+}
 
+/*svg .u-svg-fill { fill: inherit; }*/
 
 /* ============================================================
    4. SPACING – padding en marge hulpklassen
@@ -129,24 +153,51 @@ svg .u-svg-fill { fill: inherit; }
                           t/b/l/r/h/v = top/bottom/left/right/horizontal/vertical
                           --  = klein (5px), - = (10px), (niets) = (20px), + = groot (40px), ++ = (80px)
    ============================================================ */
+.pt {
+    padding-top: 20px !important;
+}
 
-.pt    { padding-top:    20px !important; }
-.pt-   { padding-top:    10px !important; }
-.pt--  { padding-top:     5px !important; }
-.pt0   { padding-top:     0   !important; }
-.pb0   { padding-bottom:  0   !important; }
-.ph    { padding-right:  20px !important;
-         padding-left:   20px !important; }
+.pt- {
+    padding-top: 10px !important;
+}
+
+.pt-- {
+    padding-top: 5px !important;
+}
+
+.pt0 {
+    padding-top: 0 !important;
+}
+
+.pb0 {
+    padding-bottom: 0 !important;
+}
+
+.ph {
+    padding-right: 20px !important;
+    padding-left: 20px !important;
+}
+
 .pv-- {
-    padding-top:    5px !important;
+    padding-top: 5px !important;
     padding-bottom: 5px !important;
 }
 
-.mt--  { margin-top:     5px !important; }
-.mt0   { margin-top:     0   !important; }
-.ml-   { margin-left:   10px !important; }
-.mb-   { margin-bottom: 10px !important; }
+.mt-- {
+    margin-top: 5px !important;
+}
 
+.mt0 {
+    margin-top: 0 !important;
+}
+
+.ml- {
+    margin-left: 10px !important;
+}
+
+.mb- {
+    margin-bottom: 10px !important;
+}
 
 /* ============================================================
    5. VERGELIJKINGSTABEL (.c-comparison*)
@@ -169,8 +220,7 @@ svg .u-svg-fill { fill: inherit; }
     position: relative;
 }
 
-.c-comparison__scrollwrapper .c-comparison__shade-left,
-.c-comparison__scrollwrapper .c-comparison__shade-right {
+.c-comparison__scrollwrapper .c-comparison__shade-left, .c-comparison__scrollwrapper .c-comparison__shade-right {
     display: block;
     position: fixed;
     z-index: 10;
@@ -178,28 +228,86 @@ svg .u-svg-fill { fill: inherit; }
 }
 
 /* Minimumbreedtes: passen zich aan op het aantal pakketten (data-attribuut) */
-.c-comparison__scrollcontainer[data-packagecount="1"] { min-width: 660px; }
-.c-comparison__scrollcontainer[data-packagecount="2"] { min-width: 980px; }
-.c-comparison__scrollcontainer[data-packagecount="3"] { min-width: 1300px; }
-.c-comparison__scrollcontainer[data-packagecount="4"] { min-width: 1620px; }
-.c-comparison__scrollcontainer[data-packagecount="5"] { min-width: 1940px; }
-.c-comparison__scrollcontainer[data-packagecount="6"] { min-width: 2260px; }
-.c-comparison__scrollcontainer[data-packagecount="7"] { min-width: 2580px; }
-.c-comparison__scrollcontainer[data-packagecount="8"] { min-width: 2900px; }
-.c-comparison__scrollcontainer[data-packagecount="9"] { min-width: 3220px; }
-.c-comparison__scrollcontainer[data-packagecount="10"]{ min-width: 3540px; }
+.c-comparison__scrollcontainer[data-packagecount="1"] {
+    min-width: 660px;
+}
+
+.c-comparison__scrollcontainer[data-packagecount="2"] {
+    min-width: 980px;
+}
+
+.c-comparison__scrollcontainer[data-packagecount="3"] {
+    min-width: 1300px;
+}
+
+.c-comparison__scrollcontainer[data-packagecount="4"] {
+    min-width: 1620px;
+}
+
+.c-comparison__scrollcontainer[data-packagecount="5"] {
+    min-width: 1940px;
+}
+
+.c-comparison__scrollcontainer[data-packagecount="6"] {
+    min-width: 2260px;
+}
+
+.c-comparison__scrollcontainer[data-packagecount="7"] {
+    min-width: 2580px;
+}
+
+.c-comparison__scrollcontainer[data-packagecount="8"] {
+    min-width: 2900px;
+}
+
+.c-comparison__scrollcontainer[data-packagecount="9"] {
+    min-width: 3220px;
+}
+
+.c-comparison__scrollcontainer[data-packagecount="10"] {
+    min-width: 3540px;
+}
 
 /* Rechter marge per sectie groeit mee met het aantal pakketten */
-.c-comparison__scrollcontainer[data-packagecount="1"]  .c-comparison__coverage-section { margin-right: 20px; }
-.c-comparison__scrollcontainer[data-packagecount="2"]  .c-comparison__coverage-section { margin-right: 40px; }
-.c-comparison__scrollcontainer[data-packagecount="3"]  .c-comparison__coverage-section { margin-right: 60px; }
-.c-comparison__scrollcontainer[data-packagecount="4"]  .c-comparison__coverage-section { margin-right: 80px; }
-.c-comparison__scrollcontainer[data-packagecount="5"]  .c-comparison__coverage-section { margin-right: 100px; }
-.c-comparison__scrollcontainer[data-packagecount="6"]  .c-comparison__coverage-section { margin-right: 120px; }
-.c-comparison__scrollcontainer[data-packagecount="7"]  .c-comparison__coverage-section { margin-right: 140px; }
-.c-comparison__scrollcontainer[data-packagecount="8"]  .c-comparison__coverage-section { margin-right: 160px; }
-.c-comparison__scrollcontainer[data-packagecount="9"]  .c-comparison__coverage-section { margin-right: 180px; }
-.c-comparison__scrollcontainer[data-packagecount="10"] .c-comparison__coverage-section { margin-right: 200px; }
+.c-comparison__scrollcontainer[data-packagecount="1"] .c-comparison__coverage-section {
+    margin-right: 20px;
+}
+
+.c-comparison__scrollcontainer[data-packagecount="2"] .c-comparison__coverage-section {
+    margin-right: 40px;
+}
+
+.c-comparison__scrollcontainer[data-packagecount="3"] .c-comparison__coverage-section {
+    margin-right: 60px;
+}
+
+.c-comparison__scrollcontainer[data-packagecount="4"] .c-comparison__coverage-section {
+    margin-right: 80px;
+}
+
+.c-comparison__scrollcontainer[data-packagecount="5"] .c-comparison__coverage-section {
+    margin-right: 100px;
+}
+
+.c-comparison__scrollcontainer[data-packagecount="6"] .c-comparison__coverage-section {
+    margin-right: 120px;
+}
+
+.c-comparison__scrollcontainer[data-packagecount="7"] .c-comparison__coverage-section {
+    margin-right: 140px;
+}
+
+.c-comparison__scrollcontainer[data-packagecount="8"] .c-comparison__coverage-section {
+    margin-right: 160px;
+}
+
+.c-comparison__scrollcontainer[data-packagecount="9"] .c-comparison__coverage-section {
+    margin-right: 180px;
+}
+
+.c-comparison__scrollcontainer[data-packagecount="10"] .c-comparison__coverage-section {
+    margin-right: 200px;
+}
 
 /* Secties en rijen */
 .c-comparison__coverage-section {
@@ -218,17 +326,71 @@ svg .u-svg-fill { fill: inherit; }
 }
 
 /* Elke cel wordt horizontaal verschoven zodat ze netjes naast de labelkolom vallen */
-.c-comparison__coverage-cell:nth-child(2)  { transform: translateX(0px);   padding-left: 20px !important; padding-right: 20px; }
-.c-comparison__coverage-cell:nth-child(3)  { transform: translateX(20px);  padding-left: 20px !important; padding-right: 20px; }
-.c-comparison__coverage-cell:nth-child(4)  { transform: translateX(40px);  padding-left: 20px !important; padding-right: 20px; }
-.c-comparison__coverage-cell:nth-child(5)  { transform: translateX(60px);  padding-left: 20px !important; padding-right: 20px; }
-.c-comparison__coverage-cell:nth-child(6)  { transform: translateX(80px);  padding-left: 20px !important; padding-right: 20px; }
-.c-comparison__coverage-cell:nth-child(7)  { transform: translateX(100px); padding-left: 20px !important; padding-right: 20px; }
-.c-comparison__coverage-cell:nth-child(8)  { transform: translateX(120px); padding-left: 20px !important; padding-right: 20px; }
-.c-comparison__coverage-cell:nth-child(9)  { transform: translateX(140px); padding-left: 20px !important; padding-right: 20px; }
-.c-comparison__coverage-cell:nth-child(10) { transform: translateX(160px); padding-left: 20px !important; padding-right: 20px; }
-.c-comparison__coverage-cell:nth-child(11) { transform: translateX(180px); padding-left: 20px !important; padding-right: 20px; }
-.c-comparison__coverage-cell:nth-child(12) { transform: translateX(200px); padding-left: 20px !important; padding-right: 20px; }
+.c-comparison__coverage-cell:nth-child(2) {
+    transform: translateX(0px);
+    padding-left: 20px !important;
+    padding-right: 20px;
+}
+
+.c-comparison__coverage-cell:nth-child(3) {
+    transform: translateX(20px);
+    padding-left: 20px !important;
+    padding-right: 20px;
+}
+
+.c-comparison__coverage-cell:nth-child(4) {
+    transform: translateX(40px);
+    padding-left: 20px !important;
+    padding-right: 20px;
+}
+
+.c-comparison__coverage-cell:nth-child(5) {
+    transform: translateX(60px);
+    padding-left: 20px !important;
+    padding-right: 20px;
+}
+
+.c-comparison__coverage-cell:nth-child(6) {
+    transform: translateX(80px);
+    padding-left: 20px !important;
+    padding-right: 20px;
+}
+
+.c-comparison__coverage-cell:nth-child(7) {
+    transform: translateX(100px);
+    padding-left: 20px !important;
+    padding-right: 20px;
+}
+
+.c-comparison__coverage-cell:nth-child(8) {
+    transform: translateX(120px);
+    padding-left: 20px !important;
+    padding-right: 20px;
+}
+
+.c-comparison__coverage-cell:nth-child(9) {
+    transform: translateX(140px);
+    padding-left: 20px !important;
+    padding-right: 20px;
+}
+
+.c-comparison__coverage-cell:nth-child(10) {
+    transform: translateX(160px);
+    padding-left: 20px !important;
+    padding-right: 20px;
+}
+
+.c-comparison__coverage-cell:nth-child(11) {
+    transform: translateX(180px);
+    padding-left: 20px !important;
+    padding-right: 20px;
+}
+
+.c-comparison__coverage-cell:nth-child(12) {
+    transform: translateX(200px);
+    padding-left: 20px !important;
+    padding-right: 20px;
+}
 
 .c-comparison__coverage-cell--label {
     margin-right: 20px;
@@ -264,7 +426,10 @@ svg .u-svg-fill { fill: inherit; }
     /* gele achtergrond achter de tekst */
     content: "";
     position: absolute;
-    top: 0; left: -5px; right: -5px; bottom: -2px;
+    top: 0;
+    left: -5px;
+    right: -5px;
+    bottom: -2px;
     background-color: #ffed9e;
     z-index: -1;
     border-radius: 4px;
@@ -312,8 +477,9 @@ svg .u-svg-fill { fill: inherit; }
 }
 
 /* Filter-invulveld boven de tabel */
-.c-comparison__filter-dummy-placeholder { /* ruimtereservering voor filter */ }
-
+.c-comparison__filter-dummy-placeholder {
+    /* ruimtereservering voor filter */
+}
 
 /* ============================================================
    6. KEUZEVELDEN (.c-inputfields*)
@@ -324,9 +490,7 @@ svg .u-svg-fill { fill: inherit; }
    ============================================================ */
 
 /* Verberg het native vakje/rondje */
-.c-inputfields__input--checkbox,
-.c-inputfields__input--radio,
-.u-visuallyhidden {
+.c-inputfields__input--checkbox, .c-inputfields__input--radio, .u-visuallyhidden {
     border: 0 !important;
     clip: rect(0 0 0 0) !important;
     height: 1px !important;
@@ -338,39 +502,39 @@ svg .u-svg-fill { fill: inherit; }
 }
 
 /* Label krijgt ruimte links voor het nep-vakje */
-.c-inputfields__input--checkbox ~ .c-inputfields__label,
-.c-inputfields__input--radio ~ .c-inputfields__label {
+.c-inputfields__input--checkbox ~ .c-inputfields__label, .c-inputfields__input--radio ~ .c-inputfields__label {
     padding-left: 35px;
     display: inline-block;
     position: relative;
 }
 
 /* Het vierkantje / rondje (::before) */
-.c-inputfields__input--checkbox ~ .c-inputfields__label::before,
-.c-inputfields__input--radio ~ .c-inputfields__label::before {
+.c-inputfields__input--checkbox ~ .c-inputfields__label::before, .c-inputfields__input--radio ~ .c-inputfields__label::before {
     content: "";
     position: absolute;
-    top: -1px; left: 0;
-    height: 20px; width: 20px;
+    top: -1px;
+    left: 0;
+    height: 20px;
+    width: 20px;
     background-color: #fff;
     border: 1px solid #d5d5d5;
 }
 
 /* Het vinkje / bolletje (::after, normaal onzichtbaar) */
-.c-inputfields__input--checkbox ~ .c-inputfields__label::after,
-.c-inputfields__input--radio ~ .c-inputfields__label::after {
+.c-inputfields__input--checkbox ~ .c-inputfields__label::after, .c-inputfields__input--radio ~ .c-inputfields__label::after {
     content: "";
     position: absolute;
-    top: -1px; left: 0;
-    height: 20px; width: 20px;
+    top: -1px;
+    left: 0;
+    height: 20px;
+    width: 20px;
     opacity: 0;
     transform: scale(0);
     transition: all 0.1s cubic-bezier(.35, 0, .25, 1);
 }
 
 /* Aangevinkt: toon vinkje */
-.c-inputfields__input--checkbox:checked ~ .c-inputfields__label::after,
-.c-inputfields__input--radio:checked ~ .c-inputfields__label::after {
+.c-inputfields__input--checkbox:checked ~ .c-inputfields__label::after, .c-inputfields__input--radio:checked ~ .c-inputfields__label::after {
     opacity: 1;
     transform: scale(1);
 }
@@ -385,20 +549,15 @@ svg .u-svg-fill { fill: inherit; }
 }
 
 /* Focus-stijl */
-.c-inputfields__input--checkbox:focus ~ .c-inputfields__label::before,
-.c-inputfields__input--radio:focus ~ .c-inputfields__label::before {
+.c-inputfields__input--checkbox:focus ~ .c-inputfields__label::before, .c-inputfields__input--radio:focus ~ .c-inputfields__label::before {
     box-shadow: 0 0 4px 0 rgba(0, 74, 107, .3);
     border-color: rgba(0, 74, 107, .2);
 }
 
 /* Uitgeschakeld */
-.c-inputfields__input--checkbox:disabled,
-.c-inputfields__input--checkbox:disabled + .c-inputfields__label,
-.c-inputfields__input--radio:disabled,
-.c-inputfields__input--radio:disabled + .c-inputfields__label {
+.c-inputfields__input--checkbox:disabled, .c-inputfields__input--checkbox:disabled + .c-inputfields__label, .c-inputfields__input--radio:disabled, .c-inputfields__input--radio:disabled + .c-inputfields__label {
     opacity: 0.5;
 }
-
 
 /* ============================================================
    7. PRIJS- EN BEOORDELINGSWEERGAVE (.c-spec*, .c-rating*)
@@ -409,7 +568,6 @@ svg .u-svg-fill { fill: inherit; }
    .c-rating-circle  = ronde beoordeling-badge
    .c-rating-total   = totaalscore-badge met SVG-ring
    ============================================================ */
-
 .c-spec {
     font-size: 20px;
     font-size: 1.25rem;
@@ -444,7 +602,8 @@ svg .u-svg-fill { fill: inherit; }
     font-size: 40px;
     font-size: 2.5rem;
     display: inline-block;
-    width: 5.2rem; height: 5.2rem;
+    width: 5.2rem;
+    height: 5.2rem;
     line-height: 5.2rem;
     border-radius: 999em;
     text-align: center;
@@ -457,7 +616,30 @@ svg .u-svg-fill { fill: inherit; }
     position: relative;
     display: inline-block;
     z-index: 1;
-    width: 7rem; height: 7rem;
+    width: 7rem;
+    height: 7rem;
+    line-height: 7rem;
+    text-align: center;
+    color: #fff;
+}
+
+.c-rating-total1 {
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+    width: 7rem;
+    height: 7rem;
+    line-height: 7rem;
+    text-align: center;
+    color: #fff;
+}
+
+.c-rating-total2 {
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+    width: 7rem;
+    height: 7rem;
     line-height: 7rem;
     text-align: center;
     color: #fff;
@@ -467,24 +649,54 @@ svg .u-svg-fill { fill: inherit; }
     content: "";
     position: absolute;
     z-index: -1;
-    top: 15%; bottom: 15%; left: 15%; right: 15%;
+    top: 15%;
+    bottom: 15%;
+    left: 15%;
+    right: 15%;
+    border-radius: 999em;
+    background-color: rgb(210, 60, 60);
+}
+
+.c-rating-total1:not(.c-rating-total--transparent)::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 15%;
+    bottom: 15%;
+    left: 15%;
+    right: 15%;
     border-radius: 999em;
     background-color: #61a38d;
+}
+
+.c-rating-total2:not(.c-rating-total--transparent)::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 15%;
+    bottom: 15%;
+    left: 15%;
+    right: 15%;
+    border-radius: 999em;
+    background-color: #f9a145;
 }
 
 .c-rating-total__svg {
     display: block;
     position: absolute;
-    top: 0; right: 0; bottom: 0; left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     color: #61a38d;
     z-index: -1;
 }
 
 .c-rating-total__svg svg {
     display: block;
-    width: 100%; height: 100%;
+    width: 100%;
+    height: 100%;
 }
-
 
 /* ============================================================
    8. MOBIELE AANPASSINGEN
@@ -494,7 +706,9 @@ svg .u-svg-fill { fill: inherit; }
    ============================================================ */
 
 /* Verberg op mobiel */
-@media screen and (max-width: 46.9375em) {   /* = 750px */
+
+@media screen and (max-width: 46.9375em) {
+    /* = 750px */
     .u-palm-visuallyhidden {
         border: 0 !important;
         clip: rect(0 0 0 0) !important;
@@ -505,17 +719,30 @@ svg .u-svg-fill { fill: inherit; }
         position: absolute !important;
         width: 1px !important;
     }
-
-    .u-palm-text-align--left { text-align: left; }
+    .u-palm-text-align--left {
+        text-align: left;
+    }
 
     /* Breedte-hulpklassen op mobiel */
-    .u-1\/1-palm  { width: 100%; }
-    .u-1\/3-palm  { width: 33.333%; }
+    .u-1\/1-palm {
+        width: 100%;
+    }
+    .u-1\/3-palm {
+        width: 33.333%;
+    }
 
     /* Spacing op mobiel */
-    .palm-pt0  { padding-top:  0   !important; }
-    .palm-pv   { padding-top:  20px !important; padding-bottom: 20px !important; }
-    .palm-pv-- { padding-top:  5px  !important; padding-bottom: 5px  !important; }
+    .palm-pt0 {
+        padding-top: 0 !important;
+    }
+    .palm-pv {
+        padding-top: 20px !important;
+        padding-bottom: 20px !important;
+    }
+    .palm-pv-- {
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+    }
 
     /* Typografie op mobiel */
     .palm-default-font-size {
@@ -527,6 +754,10 @@ svg .u-svg-fill { fill: inherit; }
 }
 
 /* Breedte op tablet */
-@media screen and (min-width: 47em) and (max-width: 74.9375em) {  /* = 750px – 1199px */
-    .u-1\/2-lap { width: 50%; }
+
+@media screen and (min-width: 47em) and (max-width: 74.9375em) {
+    /* = 750px – 1199px */
+    .u-1\/2-lap {
+        width: 50%;
+    }
 }
