@@ -215,6 +215,44 @@ DEALINGS IN THE SOFTWARE.
                 }
             }
 
+            .content-wrapper {
+                position: relative;
+            }
+
+            .content-truncated {
+                display: -webkit-box;
+                -webkit-line-clamp: 5;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+
+            .content-truncated.expanded {
+                display: block;
+                -webkit-line-clamp: none;
+                -webkit-box-orient: initial;
+                overflow: visible;
+            }
+
+            .expand-btn {
+                background: #ff8800;
+                color: white;
+                border: none;
+                padding: 6px 12px;
+                border-radius: 4px;
+                cursor: pointer;
+                margin-top: 8px;
+                font-size: 12px;
+            }
+
+            .expand-btn:hover {
+                background: #e45f13;
+            }
+
+            .expand-btn.expanded {
+                background: #6c757d;
+            }
+
         </style>
     </head>
     <body>
@@ -565,293 +603,443 @@ DEALINGS IN THE SOFTWARE.
         <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
             <h4 class="u-text-color-white default-font-size" id="overzicht4"> Toelichting keuze </h4>
         </div>
-        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht4a"> <b>Wat betekent dit?</b> Je verandert niets aan je huidige situatie. De stroom die je niet direct zelf gebruikt, gaat terug het net op. <p> <b>Gevolgen vanaf 2027</b> <ul> <li>Het salderen stopt: je betaalt voor afname en krijgt minder terug voor teruglevering.</li> <li>Terugleverkosten kunnen flink oplopen.</li> <li>Je hebt weinig grip op je energierekening.</li> </ul> </p> <b>Voor wie passend?</b> Voor huishoudens die (nog) niets willen of kunnen aanpassen, maar wel de hogere kosten accepteren. </div>
-        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht4b"> <b>Wat betekent dit?</b> Je deelt lokaal opgewekte stroom met je buurt, met hulp van een buurtbatterij en slimme meterkasten. Overschotten worden opgeslagen of direct in de wijk gebruikt. <p> <b>Voordelen</b> <ul> <li>Je benut lokaal opgewekte energie optimaal.</li> <li>Minder teruglevering aan het net = lagere kosten.</li> <li>Je krijgt belastingvoordeel via energie delen.</li> <li>Iedereen in de buurt profiteert mee.</li> </ul> </p> <b>Waarom dit past bij de stichting</b> Stichting Oranje Advies 2051 ziet energie als een ecosysteemdienst: lokaal, eerlijk en sociaal georganiseerd, waarbij bewoners samen sterker staan. <p><b>Voor wie passend?</b> Voor bewoners die samen willen investeren in een eerlijke energietransitie, zonder zelf alles individueel te hoeven regelen.</p> </div>
-        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht4c"> <b>Wat betekent dit?</b> Je slaat opgewekte stroom op in een batterij in je eigen woning en gebruikt deze later zelf. <p><b>Voordelen</b> <ul> <li>Meer eigen verbruik van zonne-energie.</li> <li>Minder teruglevering aan het net.</li> </ul> <b>Aandachtspunten</b> <ul> <li>Hoge aanschafkosten.</li> <li>Beperkte capaciteit: niet alle overschotten zijn op te slaan.</li> <li>Het voordeel is volledig individueel; de buurt profiteert niet mee.</li> </ul> </p> <b>Voor wie passend?</b> Voor huishoudens die individueel willen optimaliseren en bereid zijn daarin zelf te investeren. </div>
+        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+            <div class="content-wrapper">
+                <div class="content-truncated" id="overzicht4a"> <b>Wat betekent dit?</b> Je verandert niets aan je huidige situatie. De stroom die je niet direct zelf gebruikt, gaat terug het net op. <p> <b>Gevolgen vanaf 2027</b> <ul> <li>Het salderen stopt: je betaalt voor afname en krijgt minder terug voor teruglevering.</li> <li>Terugleverkosten kunnen flink oplopen.</li> <li>Je hebt weinig grip op je energierekening.</li> </ul> </p> <b>Voor wie passend?</b> Voor huishoudens die (nog) niets willen of kunnen aanpassen, maar wel de hogere kosten accepteren. </div>
+            </div>
+            <button class="expand-btn" onclick="toggleContent(this)">Meer</button>
+        </div>
+        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+            <div class="content-wrapper">
+                <div class="content-truncated" id="overzicht4b"> <b>Wat betekent dit?</b> Je deelt lokaal opgewekte stroom met je buurt, met hulp van een buurtbatterij en slimme meterkasten. Overschotten worden opgeslagen of direct in de wijk gebruikt. <p> <b>Voordelen</b> <ul> <li>Je benut lokaal opgewekte energie optimaal.</li> <li>Minder teruglevering aan het net = lagere kosten.</li> <li>Je krijgt belastingvoordeel via energie delen.</li> <li>Iedereen in de buurt profiteert mee.</li> </ul> </p> <b>Waarom dit past bij de stichting</b> Stichting Oranje Advies 2051 ziet energie als een ecosysteemdienst: lokaal, eerlijk en sociaal georganiseerd, waarbij bewoners samen sterker staan. <p><b>Voor wie passend?</b> Voor bewoners die samen willen investeren in een eerlijke energietransitie, zonder zelf alles individueel te hoeven regelen.</p> </div>
+            </div>
+            <button class="expand-btn" onclick="toggleContent(this)">Meer</button>
+        </div>
+        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+            <div class="content-wrapper">
+                <div class="content-truncated" id="overzicht4c"> <b>Wat betekent dit?</b> Je slaat opgewekte stroom op in een batterij in je eigen woning en gebruikt deze later zelf. <p><b>Voordelen</b> <ul> <li>Meer eigen verbruik van zonne-energie.</li> <li>Minder teruglevering aan het net.</li> </ul> <b>Aandachtspunten</b> <ul> <li>Hoge aanschafkosten.</li> <li>Beperkte capaciteit: niet alle overschotten zijn op te slaan.</li> <li>Het voordeel is volledig individueel; de buurt profiteert niet mee.</li> </ul> </p> <b>Voor wie passend?</b> Voor huishoudens die individueel willen optimaliseren en bereid zijn daarin zelf te investeren. </div>
+            </div>
+            <button class="expand-btn" onclick="toggleContent(this)">Meer</button>
+        </div>
     </div>
     <div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features c-comparison__category--no-differences">
         <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
             <h4 class="u-text-color-white default-font-size" id="overzicht5"> Investering </h4>
         </div>
-        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht5a"> <b>Investering</b> Geen investering. <p><b>Afbetaaltermijn</b> Niet van toepassing.</p> <b>Toelichting</b> Je maakt geen kosten vooraf, maar blijft volledig afhankelijk van energietarieven en terugleverkosten na het stoppen van salderen. </div>
-        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht5b"> <b>Investering</b> Indicatief €3.000 per woning via deelname aan het energieschap. <p><b>Afbetaaltermijn</b> 20% eigen inleg bij start Resterend bedrag via maandelijkse afbetaling Aflossing loopt via het lidmaatschap van het energieschap</p> <b>Toelichting</b> De investering is collectief georganiseerd. Bewoners profiteren direct van lagere energiekosten en belastingvoordeel terwijl de kosten gespreid worden over de looptijd. </div>
-        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht5c"> <b>Investering</b> Hoge eenmalige investering, volledig voor eigen rekening. <p><b>Afbetaaltermijn</b> Geen standaard afbetaalregeling; kosten worden vooraf of via externe financiering betaald.</p> <b>Toelichting</b> De investering en het financiële voordeel zijn volledig individueel. Onderhoud, vervanging en risico’s liggen bij de bewoner zelf. </div>
+        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+            <div class="content-wrapper">
+                <div class="content-truncated" id="overzicht5a"> <b>Investering</b> Geen investering. <p><b>Afbetaaltermijn</b> Niet van toepassing.</p> <b>Toelichting</b> Je maakt geen kosten vooraf, maar blijft volledig afhankelijk van energietarieven en terugleverkosten na het stoppen van salderen. </div>
+            </div>
+            <button class="expand-btn" onclick="toggleContent(this)">Meer</button>
+        </div>
+        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+            <div class="content-wrapper">
+                <div class="content-truncated" id="overzicht5b"> <b>Investering</b> Indicatief €3.000 per woning via deelname aan het energieschap. <p><b>Afbetaaltermijn</b> 20% eigen inleg bij start Resterend bedrag via maandelijkse afbetaling Aflossing loopt via het lidmaatschap van het energieschap</p> <b>Toelichting</b> De investering is collectief georganiseerd. Bewoners profiteren direct van lagere energiekosten en belastingvoordeel terwijl de kosten gespreid worden over de looptijd. </div>
+            </div>
+            <button class="expand-btn" onclick="toggleContent(this)">Meer</button>
+        </div>
+        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+            <div class="content-wrapper">
+                <div class="content-truncated" id="overzicht5c"> <b>Investering</b> Hoge eenmalige investering, volledig voor eigen rekening. <p><b>Afbetaaltermijn</b> Geen standaard afbetaalregeling; kosten worden vooraf of via externe financiering betaald.</p> <b>Toelichting</b> De investering en het financiële voordeel zijn volledig individueel. Onderhoud, vervanging en risico’s liggen bij de bewoner zelf. </div>
+            </div>
+            <button class="expand-btn" onclick="toggleContent(this)">Meer</button>
+        </div>
     </div>
     <div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
         <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
             <h4 class="u-text-color-white default-font-size"  id="overzicht6"> Gebruik van zonne-energie </h4>
         </div>
-        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht6a"> Zonne‑energie wordt eerst in huis gebruikt; het overschot gaat direct terug naar het elektriciteitsnet.<p> <b>Gevolg</b> <ul> <li>Een groot deel van de opgewekte stroom wordt niet direct benut.</li> <li>Teruglevering aan het net wordt steeds minder aantrekkelijk.</li> <li>Je bent afhankelijk van terugleververgoedingen en -kosten.</li> </ul></p> </div>
-        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht6b"> Zonne‑energie wordt eerst in huis gebruikt. Het overschot blijft lokaal in de buurt en wordt opgeslagen in een buurtbatterij of direct gedeeld met andere bewoners.<p> <b>Gevolg</b> <ul> <li>Meer lokaal en gelijktijdig gebruik van opgewekte stroom.</li> <li>Minder stroom terug naar het net.</li> <li>Ook bewoners zonder zonnepanelen profiteren van lokaal opgewekte energie.</li> </ul></p> </div>
-        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht6c"> Zonne‑energie wordt eerst in huis gebruikt en daarna opgeslagen in een eigen thuisbatterij voor later gebruik.<p> <b>Gevolg</b> <ul> <li>Meer eigen verbruik dan bij niets doen.</li> <li>Overschotten die niet in de batterij passen, gaan alsnog terug naar het net.</li> <li>Het voordeel blijft volledig individueel.</li> </ul></p> </div>
+        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+            <div class="content-wrapper">
+                <div class="content-truncated" id="overzicht6a"> Zonne‑energie wordt eerst in huis gebruikt; het overschot gaat direct terug naar het elektriciteitsnet.<p> <b>Gevolg</b> <ul> <li>Een groot deel van de opgewekte stroom wordt niet direct benut.</li> <li>Teruglevering aan het net wordt steeds minder aantrekkelijk.</li> <li>Je bent afhankelijk van terugleververgoedingen en -kosten.</li> </ul></p> </div>
+            </div>
+            <button class="expand-btn" onclick="toggleContent(this)">Meer</button>
+        </div>
+        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+            <div class="content-wrapper">
+                <div class="content-truncated" id="overzicht6b"> Zonne‑energie wordt eerst in huis gebruikt. Het overschot blijft lokaal in de buurt en wordt opgeslagen in een buurtbatterij of direct gedeeld met andere bewoners.<p> <b>Gevolg</b> <ul> <li>Meer lokaal en gelijktijdig gebruik van opgewekte stroom.</li> <li>Minder stroom terug naar het net.</li> <li>Ook bewoners zonder zonnepanelen profiteren van lokaal opgewekte energie.</li> </ul></p> </div>
+            </div>
+            <button class="expand-btn" onclick="toggleContent(this)">Meer</button>
+        </div>
+        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+            <div class="content-wrapper">
+                <div class="content-truncated" id="overzicht6c"> Zonne‑energie wordt eerst in huis gebruikt en daarna opgeslagen in een eigen thuisbatterij voor later gebruik.<p> <b>Gevolg</b> <ul> <li>Meer eigen verbruik dan bij niets doen.</li> <li>Overschotten die niet in de batterij passen, gaan alsnog terug naar het net.</li> <li>Het voordeel blijft volledig individueel.</li> </ul></p> </div>
+            </div>
+            <button class="expand-btn" onclick="toggleContent(this)">Meer</button>
+        </div>
     </div>
     <div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
         <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
             <h4 class="u-text-color-white default-font-size" id="overzicht7"> Omgang met stroomoverschot </h4>
         </div>
-        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht7a">
-            <strong>Wat gebeurt er met overtollige zonne‑energie?</strong>
-            <ul>
-                <li>Stroom die je niet direct gebruikt, gaat terug naar het elektriciteitsnet.</li>
-                <li>Je ontvangt een terugleververgoeding of betaalt terugleverkosten.</li>
-                <li>Het overschot verlaat de buurt en wordt niet lokaal benut.</li>
-            </ul>
+        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+            <div class="content-wrapper">
+                <div class="content-truncated" id="overzicht7a">
+                    <strong>Wat gebeurt er met overtollige zonne‑energie?</strong>
+                    <ul>
+                        <li>Stroom die je niet direct gebruikt, gaat terug naar het elektriciteitsnet.</li>
+                        <li>Je ontvangt een terugleververgoeding of betaalt terugleverkosten.</li>
+                        <li>Het overschot verlaat de buurt en wordt niet lokaal benut.</li>
+                    </ul>
+                </div>
+            </div>
+            <button class="expand-btn" onclick="toggleContent(this)">Meer</button>
         </div>
-        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht7b">
-            <strong>Wat gebeurt er met overtollige zonne‑energie?</strong>
-            <ul>
-                <li>Stroom die je niet direct gebruikt, blijft in de buurt.</li>
-                <li>Het overschot wordt opgeslagen in een buurtbatterij of direct gedeeld met andere bewoners.</li>
-                <li>De energie wordt later gebruikt als buurtstroom.</li>
-                <li>Minder teruglevering aan het net en lagere terugleverkosten.</li>
-            </ul>
+        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+            <div class="content-wrapper">
+                <div class="content-truncated" id="overzicht7b">
+                    <strong>Wat gebeurt er met overtollige zonne‑energie?</strong>
+                    <ul>
+                        <li>Stroom die je niet direct gebruikt, blijft in de buurt.</li>
+                        <li>Het overschot wordt opgeslagen in een buurtbatterij of direct gedeeld met andere bewoners.</li>
+                        <li>De energie wordt later gebruikt als buurtstroom.</li>
+                        <li>Minder teruglevering aan het net en lagere terugleverkosten.</li>
+                    </ul>
+                </div>
+            </div>
+            <button class="expand-btn" onclick="toggleContent(this)">Meer</button>
         </div>
-        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht7c">
-            <strong>Wat gebeurt er met overtollige zonne‑energie?</strong>
-            <ul>
-                <li>Stroom die je niet direct gebruikt, wordt opgeslagen in je eigen thuisbatterij.</li>
-                <li>Is de batterij vol, dan gaat het resterende overschot alsnog terug naar het net.</li>
-                <li>Het gebruik en voordeel zijn volledig individueel.</li>
-            </ul>
+        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+            <div class="content-wrapper">
+                <div class="content-truncated" id="overzicht7c">
+                    <strong>Wat gebeurt er met overtollige zonne‑energie?</strong>
+                    <ul>
+                        <li>Stroom die je niet direct gebruikt, wordt opgeslagen in je eigen thuisbatterij.</li>
+                        <li>Is de batterij vol, dan gaat het resterende overschot alsnog terug naar het net.</li>
+                        <li>Het gebruik en voordeel zijn volledig individueel.</li>
+                    </ul>
+                </div>
+            </div>
+            <button class="expand-btn" onclick="toggleContent(this)">Meer</button>
         </div>
     </div>
     <div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
         <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
             <h4 class="u-text-color-white default-font-size" id="overzicht8"> Techniek & beheer </h4>
         </div>
-        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht8a">
-            <strong>Techniek</strong>
-            <ul>
-                <li>Geen aanvullende techniek naast de bestaande meterkast.</li>
-                <li>Zonnepanelen leveren stroom terug aan het net.</li>
-            </ul>
-            <strong>Beheer</strong>
-            <ul>
-                <li>Geen extra beheer of onderhoud.</li>
-                <li>Je bent volledig afhankelijk van energieleverancier en netbeheerder.</li>
-            </ul>
+        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+            <div class="content-wrapper">
+                <div class="content-truncated" id="overzicht8a">
+                    <strong>Techniek</strong>
+                    <ul>
+                        <li>Geen aanvullende techniek naast de bestaande meterkast.</li>
+                        <li>Zonnepanelen leveren stroom terug aan het net.</li>
+                    </ul>
+                    <strong>Beheer</strong>
+                    <ul>
+                        <li>Geen extra beheer of onderhoud.</li>
+                        <li>Je bent volledig afhankelijk van energieleverancier en netbeheerder.</li>
+                    </ul>
+                </div>
+            </div>
+            <button class="expand-btn" onclick="toggleContent(this)">Meer</button>
         </div>
-        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht8b">
-            <strong>Techniek</strong>
-            <ul>
-                <li>Buurtbatterij in de wijk voor opslag van lokale zonne‑energie.</li>
-                <li>Slimme meterkast of meetmodule in huis.</li>
-                <li>Software stuurt verdeling van buurtstroom automatisch aan.</li>
-            </ul>
-            <strong>Beheer</strong>
-            <ul>
-                <li>Beheer en onderhoud zijn collectief georganiseerd.</li>
-                <li>Bewoners hoeven zelf niets technisch te bedienen.</li>
-                <li>Monitoring en ondersteuning gebeuren op afstand.</li>
-            </ul>
+        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+            <div class="content-wrapper">
+                <div class="content-truncated" id="overzicht8b">
+                    <strong>Techniek</strong>
+                    <ul>
+                        <li>Buurtbatterij in de wijk voor opslag van lokale zonne‑energie.</li>
+                        <li>Slimme meterkast of meetmodule in huis.</li>
+                        <li>Software stuurt verdeling van buurtstroom automatisch aan.</li>
+                    </ul>
+                    <strong>Beheer</strong>
+                    <ul>
+                        <li>Beheer en onderhoud zijn collectief georganiseerd.</li>
+                        <li>Bewoners hoeven zelf niets technisch te bedienen.</li>
+                        <li>Monitoring en ondersteuning gebeuren op afstand.</li>
+                    </ul>
+                </div>
+            </div>
+            <button class="expand-btn" onclick="toggleContent(this)">Meer</button>
         </div>
-        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht8c">
-            <strong>Techniek</strong>
-            <ul>
-                <li>Een batterij in of bij de woning voor eigen opslag.</li>
-                <li>Aansturing via omvormer en bijbehorende software.</li>
-            </ul>
-            <strong>Beheer</strong>
-            <ul>
-                <li>Onderhoud en beheer zijn de verantwoordelijkheid van de bewoner.</li>
-                <li>Vervanging en storingen zijn individueel geregeld.</li>
-            </ul>
+        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+            <div class="content-wrapper">
+                <div class="content-truncated" id="overzicht8c">
+                    <strong>Techniek</strong>
+                    <ul>
+                        <li>Een batterij in of bij de woning voor eigen opslag.</li>
+                        <li>Aansturing via omvormer en bijbehorende software.</li>
+                    </ul>
+                    <strong>Beheer</strong>
+                    <ul>
+                        <li>Onderhoud en beheer zijn de verantwoordelijkheid van de bewoner.</li>
+                        <li>Vervanging en storingen zijn individueel geregeld.</li>
+                    </ul>
+                </div>
+            </div>
+            <button class="expand-btn" onclick="toggleContent(this)">Meer</button>
         </div>
     </div>
     <div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features c-comparison__category--no-differences">
         <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
             <h4 class="u-text-color-white default-font-size" id="overzicht9"> Individueel vs collectief </h4>
         </div>
-        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht9a">
-            <strong>Individueel</strong>
-            <ul>
-                <li>Iedereen regelt zijn eigen energiecontract en kosten.</li>
-                <li>Voordelen en nadelen zijn volledig persoonlijk.</li>
-            </ul>
-            <strong>Collectief</strong>
-            <ul>
-                <li>Er is geen samenwerking met de buurt.</li>
-                <li>Opgewekte energie wordt niet lokaal gedeeld.</li>
-            </ul>
+        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+            <div class="content-wrapper">
+                <div class="content-truncated" id="overzicht9a">
+                    <strong>Individueel</strong>
+                    <ul>
+                        <li>Iedereen regelt zijn eigen energiecontract en kosten.</li>
+                        <li>Voordelen en nadelen zijn volledig persoonlijk.</li>
+                    </ul>
+                    <strong>Collectief</strong>
+                    <ul>
+                        <li>Er is geen samenwerking met de buurt.</li>
+                        <li>Opgewekte energie wordt niet lokaal gedeeld.</li>
+                    </ul>
+                </div>
+            </div>
+            <button class="expand-btn" onclick="toggleContent(this)">Meer</button>
         </div>
-        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht9b">
-            <strong>Individueel</strong>
-            <ul>
-                <li>Je gebruikt stroom zoals je gewend bent.</li>
-                <li>Je profiteert persoonlijk van lagere kosten en stabielere tarieven.</li>
-            </ul>
-            <strong>Collectief</strong>
-            <ul>
-                <li>Opgewekte energie wordt samen met de buurt benut.</li>
-                <li>Bewoners met en zonder zonnepanelen doen mee.</li>
-                <li>Kosten, voordelen en techniek zijn collectief georganiseerd.</li>
-                <li>De buurt wordt minder afhankelijk van het elektriciteitsnet.</li>
-            </ul>
+        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+            <div class="content-wrapper">
+                <div class="content-truncated" id="overzicht9b">
+                    <strong>Individueel</strong>
+                    <ul>
+                        <li>Je gebruikt stroom zoals je gewend bent.</li>
+                        <li>Je profiteert persoonlijk van lagere kosten en stabielere tarieven.</li>
+                    </ul>
+                    <strong>Collectief</strong>
+                    <ul>
+                        <li>Opgewekte energie wordt samen met de buurt benut.</li>
+                        <li>Bewoners met en zonder zonnepanelen doen mee.</li>
+                        <li>Kosten, voordelen en techniek zijn collectief georganiseerd.</li>
+                        <li>De buurt wordt minder afhankelijk van het elektriciteitsnet.</li>
+                    </ul>
+                </div>
+            </div>
+            <button class="expand-btn" onclick="toggleContent(this)">Meer</button>
         </div>
-        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht9c">
-            <strong>Individueel</strong>
-            <ul>
-                <li>De batterij en het voordeel zijn volledig voor eigen gebruik.</li>
-                <li>Je regelt investering, onderhoud en vervanging zelf.</li>
-            </ul>
-            <strong>Collectief</strong>
-            <ul>
-                <li>Er is geen directe samenwerking met de buurt.</li>
-                <li>Andere bewoners profiteren niet mee van het systeem.</li>
-            </ul>
+        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+            <div class="content-wrapper">
+                <div class="content-truncated" id="overzicht9c">
+                    <strong>Individueel</strong>
+                    <ul>
+                        <li>De batterij en het voordeel zijn volledig voor eigen gebruik.</li>
+                        <li>Je regelt investering, onderhoud en vervanging zelf.</li>
+                    </ul>
+                    <strong>Collectief</strong>
+                    <ul>
+                        <li>Er is geen directe samenwerking met de buurt.</li>
+                        <li>Andere bewoners profiteren niet mee van het systeem.</li>
+                    </ul>
+                </div>
+            </div>
+            <button class="expand-btn" onclick="toggleContent(this)">Meer</button>
         </div>
     </div>
     <div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
         <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
             <h4 class="u-text-color-white default-font-size" id="overzicht10"> Duurzaamheid & netbelasting </h4>
         </div>
-        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht10a">
-            <strong>Duurzaamheid</strong>
-            <ul>
-                <li>Een groot deel van de zonne‑energie verlaat de buurt via het elektriciteitsnet.</li>
-                <li>Lokaal opgewekte stroom wordt niet optimaal benut.</li>
-            </ul>
-            <strong>Netbelasting</strong>
-            <ul>
-                <li>Teruglevering zorgt voor extra druk op het elektriciteitsnet.</li>
-                <li>Bij piekproductie kan dit leiden tot hogere kosten en beperkingen.</li>
-            </ul>
+        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+            <div class="content-wrapper">
+                <div class="content-truncated" id="overzicht10a">
+                    <strong>Duurzaamheid</strong>
+                    <ul>
+                        <li>Een groot deel van de zonne‑energie verlaat de buurt via het elektriciteitsnet.</li>
+                        <li>Lokaal opgewekte stroom wordt niet optimaal benut.</li>
+                    </ul>
+                    <strong>Netbelasting</strong>
+                    <ul>
+                        <li>Teruglevering zorgt voor extra druk op het elektriciteitsnet.</li>
+                        <li>Bij piekproductie kan dit leiden tot hogere kosten en beperkingen.</li>
+                    </ul>
+                </div>
+            </div>
+            <button class="expand-btn" onclick="toggleContent(this)">Meer</button>
         </div>
-        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht10b">
-            <strong>Duurzaamheid</strong>
-            <ul>
-                <li>Lokaal opgewekte zonne‑energie blijft in de buurt.</li>
-                <li>Meer directe en nuttige inzet van duurzame stroom.</li>
-                <li>Ook bewoners zonder zonnepanelen profiteren van groene energie.</li>
-            </ul>
-            <strong>Netbelasting</strong>
-            <ul>
-                <li>Minder teruglevering aan het elektriciteitsnet.</li>
-                <li>Pieken worden afgevlakt door lokale opslag en verdeling.</li>
-                <li>Het net wordt ontlast, wat bijdraagt aan toekomstbestendigheid.</li>
-            </ul>
+        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+            <div class="content-wrapper">
+                <div class="content-truncated" id="overzicht10b">
+                    <strong>Duurzaamheid</strong>
+                    <ul>
+                        <li>Lokaal opgewekte zonne‑energie blijft in de buurt.</li>
+                        <li>Meer directe en nuttige inzet van duurzame stroom.</li>
+                        <li>Ook bewoners zonder zonnepanelen profiteren van groene energie.</li>
+                    </ul>
+                    <strong>Netbelasting</strong>
+                    <ul>
+                        <li>Minder teruglevering aan het elektriciteitsnet.</li>
+                        <li>Pieken worden afgevlakt door lokale opslag en verdeling.</li>
+                        <li>Het net wordt ontlast, wat bijdraagt aan toekomstbestendigheid.</li>
+                    </ul>
+                </div>
+            </div>
+            <button class="expand-btn" onclick="toggleContent(this)">Meer</button>
         </div>
-        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht10c">
-            <strong>Duurzaamheid</strong>
-            <ul>
-                <li>Meer eigen gebruik van zonne‑energie dan bij niets doen.</li>
-                <li>Overschotten die niet opgeslagen kunnen worden, gaan alsnog terug naar het net.</li>
-            </ul>
-            <strong>Netbelasting</strong>
-            <ul>
-                <li>De belasting van het net neemt beperkt af.</li>
-                <li>Effect blijft afhankelijk van de grootte van de batterij.</li>
-            </ul>
+        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+            <div class="content-wrapper">
+                <div class="content-truncated" id="overzicht10c">
+                    <strong>Duurzaamheid</strong>
+                    <ul>
+                        <li>Meer eigen gebruik van zonne‑energie dan bij niets doen.</li>
+                        <li>Overschotten die niet opgeslagen kunnen worden, gaan alsnog terug naar het net.</li>
+                    </ul>
+                    <strong>Netbelasting</strong>
+                    <ul>
+                        <li>De belasting van het net neemt beperkt af.</li>
+                        <li>Effect blijft afhankelijk van de grootte van de batterij.</li>
+                    </ul>
+                </div>
+            </div>
+            <button class="expand-btn" onclick="toggleContent(this)">Meer</button>
         </div>
     </div>
     <div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features c-comparison__category--no-differences">
         <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
             <h4 class="u-text-color-white default-font-size" id="overzicht11"> Voor wie geschikt </h4>
         </div>
-        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht11a">
-            <strong>Past vooral bij</strong>
-            <ul>
-                <li>Huishoudens die geen veranderingen willen of kunnen doorvoeren.</li>
-                <li>Bewoners die geen investering willen doen.</li>
-            </ul>
-            <strong>Minder geschikt als</strong>
-            <ul>
-                <li>Je grip wilt krijgen op je energiekosten na 2027.</li>
-                <li>Je lokaal opgewekte zonne‑energie beter wilt benutten.</li>
-            </ul>
+        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+            <div class="content-wrapper">
+                <div class="content-truncated" id="overzicht11a">
+                    <strong>Past vooral bij</strong>
+                    <ul>
+                        <li>Huishoudens die geen veranderingen willen of kunnen doorvoeren.</li>
+                        <li>Bewoners die geen investering willen doen.</li>
+                    </ul>
+                    <strong>Minder geschikt als</strong>
+                    <ul>
+                        <li>Je grip wilt krijgen op je energiekosten na 2027.</li>
+                        <li>Je lokaal opgewekte zonne‑energie beter wilt benutten.</li>
+                    </ul>
+                </div>
+            </div>
+            <button class="expand-btn" onclick="toggleContent(this)">Meer</button>
         </div>
-        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht11b">
-            <strong>Past vooral bij</strong>
-            <ul>
-                <li>Bewoners die samen met de buurt energie willen delen.</li>
-                <li>Huishoudens met én zonder zonnepanelen.</li>
-                <li>Mensen die willen profiteren zonder zelf alles te moeten regelen.</li>
-            </ul>
-            <strong>Minder geschikt als</strong>
-            <ul>
-                <li>Je alleen individueel voordeel zoekt zonder samenwerking.</li>
-                <li>Je geen collectieve oplossing wilt.</li>
-            </ul>
+        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+            <div class="content-wrapper">
+                <div class="content-truncated" id="overzicht11b">
+                    <strong>Past vooral bij</strong>
+                    <ul>
+                        <li>Bewoners die samen met de buurt energie willen delen.</li>
+                        <li>Huishoudens met én zonder zonnepanelen.</li>
+                        <li>Mensen die willen profiteren zonder zelf alles te moeten regelen.</li>
+                    </ul>
+                    <strong>Minder geschikt als</strong>
+                    <ul>
+                        <li>Je alleen individueel voordeel zoekt zonder samenwerking.</li>
+                        <li>Je geen collectieve oplossing wilt.</li>
+                    </ul>
+                </div>
+            </div>
+            <button class="expand-btn" onclick="toggleContent(this)">Meer</button>
         </div>
-        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht11c">
-            <strong>Past vooral bij</strong>
-            <ul>
-                <li>Huishoudens die individueel hun zonne‑energie willen opslaan.</li>
-                <li>Bewoners die zelf willen investeren en beheren.</li>
-            </ul>
-            <strong>Minder geschikt als</strong>
-            <ul>
-                <li>Je geen grote eenmalige investering wilt doen.</li>
-                <li>Je zoekt naar een oplossing die ook de buurt helpt.</li>
-            </ul>
+        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+            <div class="content-wrapper">
+                <div class="content-truncated" id="overzicht11c">
+                    <strong>Past vooral bij</strong>
+                    <ul>
+                        <li>Huishoudens die individueel hun zonne‑energie willen opslaan.</li>
+                        <li>Bewoners die zelf willen investeren en beheren.</li>
+                    </ul>
+                    <strong>Minder geschikt als</strong>
+                    <ul>
+                        <li>Je geen grote eenmalige investering wilt doen.</li>
+                        <li>Je zoekt naar een oplossing die ook de buurt helpt.</li>
+                    </ul>
+                </div>
+            </div>
+            <button class="expand-btn" onclick="toggleContent(this)">Meer</button>
         </div>
     </div>
     <div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features c-comparison__category--no-differences">
         <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
             <h4 class="u-text-color-white default-font-size" id="overzicht12"> Contract beëindigen </h4>
         </div>
-        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht12a">
-            <strong>Beëindigen</strong>
-            <ul>
-                <li>Je kunt je energiecontract opzeggen volgens de voorwaarden van je energieleverancier.</li>
-                <li>Er zijn geen aanvullende afspraken of verplichtingen.</li>
-            </ul>
-            <strong>Gevolg</strong>
-            <ul>
-                <li>Bij een nieuw contract blijven de effecten van stoppen met salderen bestaan.</li>
-            </ul>
+        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+            <div class="content-wrapper">
+                <div class="content-truncated" id="overzicht12a">
+                    <strong>Beëindigen</strong>
+                    <ul>
+                        <li>Je kunt je energiecontract opzeggen volgens de voorwaarden van je energieleverancier.</li>
+                        <li>Er zijn geen aanvullende afspraken of verplichtingen.</li>
+                    </ul>
+                    <strong>Gevolg</strong>
+                    <ul>
+                        <li>Bij een nieuw contract blijven de effecten van stoppen met salderen bestaan.</li>
+                    </ul>
+                </div>
+            </div>
+            <button class="expand-btn" onclick="toggleContent(this)">Meer</button>
         </div>
-        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht12b">
-            <strong>Beëindigen</strong>
-            <ul>
-                <li>Deelname aan energie delen is vrijwillig.</li>
-                <li>Opzegging verloopt via het energieschap.</li>
-                <li>De collectieve installatie blijft in beheer van de buurt.</li>
-            </ul>
-            <strong>Gevolg</strong>
-            <ul>
-                <li>Na beëindiging maak je geen gebruik meer van buurtstroom.</li>
-                <li>Je valt terug op je reguliere energiecontract.</li>
-            </ul>
+        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+            <div class="content-wrapper">
+                <div class="content-truncated" id="overzicht12b">
+                    <strong>Beëindigen</strong>
+                    <ul>
+                        <li>Deelname aan energie delen is vrijwillig.</li>
+                        <li>Opzegging verloopt via het energieschap.</li>
+                        <li>De collectieve installatie blijft in beheer van de buurt.</li>
+                    </ul>
+                    <strong>Gevolg</strong>
+                    <ul>
+                        <li>Na beëindiging maak je geen gebruik meer van buurtstroom.</li>
+                        <li>Je valt terug op je reguliere energiecontract.</li>
+                    </ul>
+                </div>
+            </div>
+            <button class="expand-btn" onclick="toggleContent(this)">Meer</button>
         </div>
-        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht12c">
-            <strong>Beëindigen</strong>
-            <ul>
-                <li>Er is geen contract dat je kunt beëindigen.</li>
-                <li>De batterij blijft eigendom van de bewoner.</li>
-            </ul>
-            <strong>Gevolg</strong>
-            <ul>
-                <li>Bij stoppen met gebruik blijft de investering bestaan.</li>
-                <li>Eventuele verkoop of verwijdering regel je zelf.</li>
-            </ul>
+        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+            <div class="content-wrapper">
+                <div class="content-truncated" id="overzicht12c">
+                    <strong>Beëindigen</strong>
+                    <ul>
+                        <li>Er is geen contract dat je kunt beëindigen.</li>
+                        <li>De batterij blijft eigendom van de bewoner.</li>
+                    </ul>
+                    <strong>Gevolg</strong>
+                    <ul>
+                        <li>Bij stoppen met gebruik blijft de investering bestaan.</li>
+                        <li>Eventuele verkoop of verwijdering regel je zelf.</li>
+                    </ul>
+                </div>
+            </div>
+            <button class="expand-btn" onclick="toggleContent(this)">Meer</button>
         </div>
     </div>
     <div class="layout layout--flex layout--flush js-comparison__category c-comparison__category c-comparison__category--features">
         <div class="layout__item u-1/4-default c-comparison__coverage-cell c-comparison__coverage-cell--label">
             <h4 class="u-text-color-white default-font-size" id="overzicht13"> Opzegtermijn </h4>
         </div>
-        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht13a">
-            <strong>Opzegtermijn</strong>
-            <ul>
-                <li>De opzegtermijn volgt uit de voorwaarden van je energiecontract.</li>
-                <li>Deze verschilt per energieleverancier en type contract.</li>
-            </ul>
+        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+            <div class="content-wrapper">
+                <div class="content-truncated" id="overzicht13a">
+                    <strong>Opzegtermijn</strong>
+                    <ul>
+                        <li>De opzegtermijn volgt uit de voorwaarden van je energiecontract.</li>
+                        <li>Deze verschilt per energieleverancier en type contract.</li>
+                    </ul>
+                </div>
+            </div>
+            <button class="expand-btn" onclick="toggleContent(this)">Meer</button>
         </div>
-        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht13b">
-            <strong>Opzegtermijn</strong>
-            <ul>
-                <li>Deelname aan energie delen kent een opzegtermijn via het energieschap.</li>
-                <li>De opzegtermijn is vastgelegd in de lidmaatschapsvoorwaarden.</li>
-                <li>De collectieve installatie blijft bestaan, ook als je stopt.</li>
-            </ul>
+        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+            <div class="content-wrapper">
+                <div class="content-truncated" id="overzicht13b">
+                    <strong>Opzegtermijn</strong>
+                    <ul>
+                        <li>Deelname aan energie delen kent een opzegtermijn via het energieschap.</li>
+                        <li>De opzegtermijn is vastgelegd in de lidmaatschapsvoorwaarden.</li>
+                        <li>De collectieve installatie blijft bestaan, ook als je stopt.</li>
+                    </ul>
+                </div>
+            </div>
+            <button class="expand-btn" onclick="toggleContent(this)">Meer</button>
         </div>
-        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta" id="overzicht13c">
-            <strong>Opzegtermijn</strong>
-            <ul>
-                <li>Er is geen opzegtermijn van toepassing.</li>
-                <li>De batterij is eigendom van de bewoner.</li>
-            </ul>
+        <div class="layout__item u-1/4  u-1/3-palm u-bg-color-white c-comparison__coverage-cell zeta">
+            <div class="content-wrapper">
+                <div class="content-truncated" id="overzicht13c">
+                    <strong>Opzegtermijn</strong>
+                    <ul>
+                        <li>Er is geen opzegtermijn van toepassing.</li>
+                        <li>De batterij is eigendom van de bewoner.</li>
+                    </ul>
+                </div>
+            </div>
+            <button class="expand-btn" onclick="toggleContent(this)">Meer</button>
         </div>
     </div>
 </section>
@@ -875,6 +1063,48 @@ DEALINGS IN THE SOFTWARE.
     <element onload="myScript">
     </element>
 </footer>
+<script>
+        function toggleContent(btn) {
+        const wrapper = btn.previousElementSibling;
+        const content = wrapper.querySelector('.content-truncated');
+        content.classList.toggle('expanded');
+        btn.textContent = content.classList.contains('expanded') ? 'Minder' : 'Meer';
+        btn.classList.toggle('expanded');
+    }
+
+        // Hide Meer button if content fits in 4 lines — check after making visible
+        function checkExpandButtons() {
+            document.querySelectorAll('.content-wrapper').forEach(wrapper => {
+                const content = wrapper.querySelector('.content-truncated');
+                const btn = wrapper.nextElementSibling;
+                if (!content || !btn) return;
+
+                // Temporarily make the element measurable if it's inside a hidden container
+                const hiddenAncestors = [];
+                let el = wrapper.parentElement;
+                while (el) {
+                    if (getComputedStyle(el).display === 'none') {
+                        hiddenAncestors.push({ el, display: el.style.display });
+                        el.style.display = 'block';
+                    }
+                    el = el.parentElement;
+                }
+
+                const lineHeight = parseFloat(getComputedStyle(content).lineHeight) || 20;
+                const fits = content.scrollHeight <= lineHeight * 4 + 10;
+
+                // Restore hidden ancestors
+                hiddenAncestors.forEach(({ el, display }) => {
+                    el.style.display = display;
+                });
+
+                if (fits) {
+                    btn.style.display = 'none';
+                }
+            });
+        }
+        window.addEventListener('load', checkExpandButtons);
+</script>
 </body>
 <script>
     function showresult(){
@@ -918,6 +1148,7 @@ DEALINGS IN THE SOFTWARE.
       document.getElementById('invoer-sectie').style.display = 'none';
       document.getElementById('resultaten-sectie').style.display = 'inline';
       document.getElementById('terug-btn').style.display = 'inline-block';
+      checkExpandButtons();
       const element = document.getElementById('resultaat');
       element.scrollIntoView();
     }
