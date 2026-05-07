@@ -121,7 +121,7 @@ class ContentManager
         $allowedTags = [
             'p', 'br', 'strong', 'em', 'u', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
             'ul', 'ol', 'li', 'a', 'span', 'div', 'img', 'table', 'thead', 'tbody',
-            'tr', 'th', 'td', 'blockquote', 'code', 'pre', 'input'
+            'tr', 'th', 'td', 'blockquote', 'code', 'pre', 'input', 'button'
         ];
 
         $allowedAttributes = [
@@ -190,33 +190,36 @@ class ContentManager
      * Sanitize attribute values
      */
     private function sanitizeAttributeValue(string $attrName, string $value): string
-    {
-        switch (strtolower($attrName)) {
-            case 'href':
-                // Only allow safe URLs
-                if (preg_match('/^(https?:\/\/|mailto:|tel:)/i', $value)) {
-                    return $value;
-                }
-                return '#'; // Replace unsafe URLs with safe placeholder
-
-            case 'src':
-                // Only allow safe image sources
-                if (preg_match('/^(https?:\/\/|data:image\/(png|jpg|jpeg|gif|webp);base64,)/i', $value)) {
-                    return $value;
-                }
-                return ''; // Remove unsafe image sources
-
-            case 'style':
-                // Remove dangerous CSS properties
-                $value = preg_replace('/(expression|javascript|vbscript|on\w+)/i', '', $value);
+{
+    switch (strtolower($attrName)) {
+        case 'href':
+            if (preg_match('/^(https?:\/\/|mailto:|tel:)/i', $value)) {
                 return $value;
+            }
+            return '#';
 
-            default:
-                // Remove any JavaScript event handlers or dangerous content
-                $value = preg_replace('/(javascript|vbscript|on\w+):/i', '', $value);
-                return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
-        }
+        case 'src':
+            if (preg_match('/^(https?:\/\/|data:image\/(png|jpg|jpeg|gif|webp);base64,)/i', $value)) {
+                return $value;
+            }
+            return '';
+
+        case 'onclick':
+            // Allow only window.location.href = '...' or "..." assignments
+            if (preg_match('/^window\.location\.href\s*=\s*[\'"][^\'"]*[\'"]$/', $value)) {
+                return $value;
+            }
+            return '';
+
+        case 'style':
+            $value = preg_replace('/(expression|javascript|vbscript|on\w+)/i', '', $value);
+            return $value;
+
+        default:
+            $value = preg_replace('/(javascript|vbscript|on\w+):/i', '', $value);
+            return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
     }
+}
 
     /**
      * Validate content for potentially malicious patterns
@@ -225,20 +228,20 @@ class ContentManager
     {
         // Check for dangerous patterns
         $dangerousPatterns = [
-            '/<script/i',
-            '/javascript:/i',
-            '/vbscript:/i',
-            '/<iframe/i',
-            '/<object/i',
-            '/<embed/i',
-            '/<form/i',
-            '/<meta/i',
-            '/expression\s*\(/i',
-            '/eval\s*\(/i',
-            '/document\./i',
-            '/window\./i',
-            '/location\./i'
-        ];
+    '/<script/i',
+    '/javascript:/i',
+    '/vbscript:/i',
+    '/<iframe/i',
+    '/<object/i',
+    '/<embed/i',
+    '/<form/i',
+    '/<meta/i',
+    '/expression\s*\(/i',
+    '/eval\s*\(/i',
+    '/document\./i',
+    '/window\.(?!location\.href\s*=)/i',  // Allow window.location.href = only
+    '/location\.(?!href\s*=)/i'           // Tighten this too for consistency
+];
 
         foreach ($dangerousPatterns as $pattern) {
             if (preg_match($pattern, $content)) {
