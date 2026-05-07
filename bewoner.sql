@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 04, 2026 at 12:21 PM
+-- Generation Time: May 07, 2026 at 09:16 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -48,7 +48,7 @@ CREATE TABLE `admin_users` (
 --
 
 INSERT INTO `admin_users` (`id`, `username`, `password_hash`, `email`, `full_name`, `role`, `active`, `created_at`, `last_login`, `login_attempts`, `locked_until`) VALUES
-(1, 'admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin@example.com', 'Administrator', 'admin', 1, '2026-04-21 12:03:46', '2026-05-04 10:12:02', 0, NULL);
+(1, 'admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin@example.com', 'Administrator', 'admin', 1, '2026-04-21 12:03:46', '2026-05-07 06:32:42', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -108,9 +108,6 @@ INSERT INTO `page_content` (`id`, `section_key`, `content`, `updated_at`, `activ
 (41, 'overzicht11', 'Voor wie geschikt', '2026-04-20 09:36:27', 1),
 (42, 'overzicht12', 'Contract beëindigen', '2026-04-20 09:35:45', 1),
 (45, 'overzicht13', 'Opzegtermijn', '2026-04-20 09:35:03', 1),
-(46, 'pakket1a', '<div class=\"pv--\">\r\n<span class=\"c-rating-total c-spec c-spec--rating u-display--inline-block\">\r\n\r\n8<span class=\"c-spec__decimals\">,6</span>\r\n<span class=\"c-rating-total__svg\"><svg viewBox=\"0 0 61 61\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M28.195 58.036l-1.345.559a5.354 5.354 0 01-6.175-1.522l-.93-1.12a6 6 0 00-4.083-2.143l-1.45-.13a5.354 5.354 0 01-4.76-4.217l-.304-1.424a6 6 0 00-2.619-3.794l-1.224-.789A5.354 5.354 0 013.05 37.51l.393-1.401a6 6 0 00-.556-4.577l-.717-1.267a5.354 5.354 0 01.767-6.314l1-1.059a6 6 0 001.634-4.31l-.046-1.456a5.354 5.354 0 013.613-5.234l1.377-.473a6 6 0 003.451-3.057l.635-1.31a5.354 5.354 0 015.632-2.956l1.439.221a6 6 0 004.477-1.103l1.171-.865a5.354 5.354 0 016.36 0l1.171.865a6 6 0 004.477 1.103l1.44-.221a5.354 5.354 0 015.63 2.956l.636 1.31a6 6 0 003.45 3.057l1.378.473a5.354 5.354 0 013.613 5.234l-.046 1.455a6 6 0 001.635 4.311l1 1.059a5.354 5.354 0 01.766 6.314l-.717 1.267a6 6 0 00-.556 4.577l.393 1.401a5.354 5.354 0 01-2.255 5.947l-1.224.789a6 6 0 00-2.62 3.794l-.303 1.424a5.354 5.354 0 01-4.76 4.218l-1.45.13a6 6 0 00-4.083 2.142l-.93 1.12a5.354 5.354 0 01-6.175 1.522l-1.345-.56a6 6 0 00-4.61 0z\" fill=\"#61A38D\" class=\"u-svg-fill\"></path><circle stroke=\"#F7F7F7\" cx=\"30.5\" cy=\"30.5\" r=\"22.961\"></circle></svg></span>\r\n</span>\r\n</div>', '2026-04-20 09:45:49', 1),
-(47, 'pakket1b', '<div class=\"pv-- c-comparison__highlight\">\r\n<span class=\"c-rating-total c-spec c-spec--rating u-display--inline-block\">\r\n\r\n8<span class=\"c-spec__decimals\">,7</span>\r\n<span class=\"c-rating-total__svg\"><svg viewBox=\"0 0 61 61\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M28.195 58.036l-1.345.559a5.354 5.354 0 01-6.175-1.522l-.93-1.12a6 6 0 00-4.083-2.143l-1.45-.13a5.354 5.354 0 01-4.76-4.217l-.304-1.424a6 6 0 00-2.619-3.794l-1.224-.789A5.354 5.354 0 013.05 37.51l.393-1.401a6 6 0 00-.556-4.577l-.717-1.267a5.354 5.354 0 01.767-6.314l1-1.059a6 6 0 001.634-4.31l-.046-1.456a5.354 5.354 0 013.613-5.234l1.377-.473a6 6 0 003.451-3.057l.635-1.31a5.354 5.354 0 015.632-2.956l1.439.221a6 6 0 004.477-1.103l1.171-.865a5.354 5.354 0 016.36 0l1.171.865a6 6 0 004.477 1.103l1.44-.221a5.354 5.354 0 015.63 2.956l.636 1.31a6 6 0 003.45 3.057l1.378.473a5.354 5.354 0 013.613 5.234l-.046 1.455a6 6 0 001.635 4.311l1 1.059a5.354 5.354 0 01.766 6.314l-.717 1.267a6 6 0 00-.556 4.577l.393 1.401a5.354 5.354 0 01-2.255 5.947l-1.224.789a6 6 0 00-2.62 3.794l-.303 1.424a5.354 5.354 0 01-4.76 4.218l-1.45.13a6 6 0 00-4.083 2.142l-.93 1.12a5.354 5.354 0 01-6.175 1.522l-1.345-.56a6 6 0 00-4.61 0z\" fill=\"#61A38D\" class=\"u-svg-fill\"></path><circle stroke=\"#F7F7F7\" cx=\"30.5\" cy=\"30.5\" r=\"22.961\"></circle></svg></span>\r\n</span>\r\n</div>', '2026-04-20 09:45:39', 1),
-(48, 'pakket1c', '<div class=\"pv--\">\r\n<span class=\"c-rating-total c-spec c-spec--rating u-display--inline-block\">\r\n\r\n8<span class=\"c-spec__decimals\">,6</span>\r\n<span class=\"c-rating-total__svg\"><svg viewBox=\"0 0 61 61\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M28.195 58.036l-1.345.559a5.354 5.354 0 01-6.175-1.522l-.93-1.12a6 6 0 00-4.083-2.143l-1.45-.13a5.354 5.354 0 01-4.76-4.217l-.304-1.424a6 6 0 00-2.619-3.794l-1.224-.789A5.354 5.354 0 013.05 37.51l.393-1.401a6 6 0 00-.556-4.577l-.717-1.267a5.354 5.354 0 01.767-6.314l1-1.059a6 6 0 001.634-4.31l-.046-1.456a5.354 5.354 0 013.613-5.234l1.377-.473a6 6 0 003.451-3.057l.635-1.31a5.354 5.354 0 015.632-2.956l1.439.221a6 6 0 004.477-1.103l1.171-.865a5.354 5.354 0 016.36 0l1.171.865a6 6 0 004.477 1.103l1.44-.221a5.354 5.354 0 015.63 2.956l.636 1.31a6 6 0 003.45 3.057l1.378.473a5.354 5.354 0 013.613 5.234l-.046 1.455a6 6 0 001.635 4.311l1 1.059a5.354 5.354 0 01.766 6.314l-.717 1.267a6 6 0 00-.556 4.577l.393 1.401a5.354 5.354 0 01-2.255 5.947l-1.224.789a6 6 0 00-2.62 3.794l-.303 1.424a5.354 5.354 0 01-4.76 4.218l-1.45.13a6 6 0 00-4.083 2.142l-.93 1.12a5.354 5.354 0 01-6.175 1.522l-1.345-.56a6 6 0 00-4.61 0z\" fill=\"#61A38D\" class=\"u-svg-fill\"></path><circle stroke=\"#F7F7F7\" cx=\"30.5\" cy=\"30.5\" r=\"22.961\"></circle></svg></span>\r\n</span>\r\n</div>', '2026-04-20 09:45:26', 1),
 (49, 'pakket2a', '<div class=\"pv-- c-comparison__highlight\">\r\n<span class=\"c-rating-circle c-spec\">\r\n\r\n7<span class=\"c-spec__decimals\">,7</span>\r\n</span>\r\n</div>', '2026-04-20 09:45:05', 1),
 (50, 'pakket2b', '<div class=\"pv-- c-comparison__highlight\">\r\n<span class=\"c-rating-circle c-spec\">\r\n\r\n7<span class=\"c-spec__decimals\">,9</span>\r\n</span>\r\n</div>', '2026-04-20 09:44:53', 1),
 (51, 'pakket2c', '<div class=\"pv-- c-comparison__highlight\">\r\n<span class=\"c-rating-circle c-spec\">\r\n\r\n7<span class=\"c-spec__decimals\">,4</span>\r\n</span>\r\n</div>', '2026-04-20 09:44:45', 1),
@@ -184,9 +181,14 @@ INSERT INTO `page_content` (`id`, `section_key`, `content`, `updated_at`, `activ
 (217, '27buurtterug', 'Terugleverkosten buurtstroom per kWh: <input type=\"\" min=\"0\" id=\"teruglvrkostbs\" value=\"0.009\" name=\"\" readonly class=\"inputno\"> ', '2026-05-01 09:23:08', 1),
 (231, 'mijnverbruik', 'Mijn verbruik per jaar: <input type=\"number\" min=\"0\" value=\"3500\" id=\"gemjaarverbr\" name=\"verbruik\" onclick=\"inkoopz();inkoopm();totaalz();totaalm();gelijkz();gelijkm();gelijkth();inkoopth();tlkth();tlvth();totaalthuis();versch();\" onkeyup=\"inkoopz();inkoopth();totaalz();totaalm();totaalthuis();gelijkz();gelijkm();gelijkth();versch();\" step=\"50\">', '2026-05-01 09:30:45', 1),
 (246, 'kleinelettertjes', ' ', '2026-05-04 08:57:56', 1),
-(250, 'pakket0a', '<h3 style=\"text-align: center;\">Niets doen</h3>', '2026-04-20 09:46:06', 1),
-(252, 'pakket0b', '<h3 style=\"text-align: center;\">Buurtbatterij</h3>', '2026-04-20 09:46:05', 1),
-(253, 'pakket0c', '<h3 style=\"text-align: center;\">Thuisbatterij</h3>', '2026-04-20 09:46:04', 1);
+(250, 'pakket0a', '<h3 style=\"text-align: center;border-style:solid; border-radius:5px;border-color:#e45f13;height:40px;padding:5px;background-color:#e45f13;color:white;\">Niets doen</h3>', '2026-05-07 07:07:15', 1),
+(252, 'pakket0b', '<h3 style=\"text-align: center;border-style:solid; border-radius:5px;border-color:#e45f13;height:40px;padding:5px;background-color:#e45f13;color:white;\">Buurtbatterij<h3>', '2026-05-07 07:09:30', 1),
+(253, 'pakket0c', '<h3 style=\"text-align: center;border-style:solid; border-radius:5px;border-color:#e45f13;height:40px;padding:5px;background-color:#e45f13;color:white;\">Thuisbatterij</h3>', '2026-05-07 07:09:49', 1),
+(258, 'overzicht14', '.', '2025-05-06 14:40:46', 1),
+(259, 'overzicht14a', '.', '2025-05-06 14:40:48', 1),
+(260, 'overzicht14b', '<div id=\"wrapperDiv\">\r\n                        <div id=\"div1\" style=\"padding:40px;float:left\">\r\n                            <button onclick=\"window.location.href=\'https://oranjeadvies2051.nl/\'\">Aanmelden</button>\r\n                        </div>\r\n                        <div id=\"div2\" style=\"padding:40px;float:right\">\r\n                            <button onclick=\"window.location.href=\'https://oranjeadvies2051.nl/\'\">Meer weten</button>\r\n                        </div>\r\n                    </div>', '2025-05-07 06:41:43', 1),
+(261, 'overzicht14c', '.', '2025-05-06 14:40:56', 1),
+(269, 'pakket1b', '<div class=\"pv-- \">\r\n                    <span class=\"c-rating-total1 c-spec c-spec--rating u-display--inline-block\">\r\n                        <span class=\"c-rating-total__svg\">\r\n                            \r\n                </span>\r\n            </span>\r\n        </div>', '2026-05-07 06:46:52', 1);
 
 --
 -- Indexes for dumped tables
@@ -233,7 +235,7 @@ ALTER TABLE `household_data`
 -- AUTO_INCREMENT for table `page_content`
 --
 ALTER TABLE `page_content`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=258;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=274;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
